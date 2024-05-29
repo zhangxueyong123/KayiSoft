@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget* parent)
     m_vecWidget[1]->setText("sjahndajklh fjklhafljkh ikljbhnlcjkvnbkjwhnoilqwjiolf nxcklvbnkwjehl");
 
     loadStructuralWidget("", "", "");
+    //测试gitee
 }
 
 MainWindow::~MainWindow()
@@ -55,7 +56,7 @@ void MainWindow::loadStructuralWidget(QString firstId, QString secondId, QString
     QString str = file.readAll();
     m_pExplotWidget->SetViewerType(eTemplateType_SRRa, false, "4756628e-34c2-408f-b510-9f3f7785cb4f" ,"2aa8215f-bbb1-422a-b591-b9c9e4897443",str, true);
 }
-static QString strrrr = "";
+
 void MainWindow::on_pushButton_clicked()
 {
     if (count++ % 2 != 0)
