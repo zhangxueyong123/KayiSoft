@@ -54,7 +54,7 @@ void MainWindow::loadStructuralWidget(QString firstId, QString secondId, QString
     m_pExplotWidget->setTextEdit(m_vecWidget[1]);
     m_pExplotWidget->SetViewerType(eTemplateType_SRRa, false, "" ,"","", true);
 }
-static QString strrrr = "";
+
 void MainWindow::on_pushButton_clicked()
 {
     if (count++ % 2 != 0)
@@ -83,16 +83,11 @@ void MainWindow::on_pushButton_clicked()
 
     m_vecWidget[1]->setText("sjahndajklh fjklhafljkh ikljbhnlcjkvnbkjwhnoilqwjiolf nxcklvbnkwjehl");
     m_pExplotWidget->SetViewerType(eTemplateType_SRRa, false, "", "", "", true);
-    //m_pExplotWidget->reloadStructuralWidget("4756628e-34c2-408f-b510-9f3f7785cb4f","9681fb67-c5cf-4d80-9b39-9c95568c3197", strrrr);
 }
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    auto json = m_pExplotWidget->GetSaveReportPar();
-    QJsonDocument doc;
-    
-    doc.setObject(json);
-    strrrr =  doc.toJson();
+
 }
 
 void MainWindow::on_pushButton_3_clicked()
