@@ -54,9 +54,13 @@ void MainWindow::loadStructuralWidget(QString firstId, QString secondId, QString
     m_pExplotWidget->setTextEdit(m_vecWidget[1]);
     QFile file("C:\\Users\\章学勇\\Desktop\\左肺 - 副本.txt");
     file.open(QIODevice::ReadOnly);
-    QString strrr = file.readAll();
-    m_pExplotWidget->SetViewerType(eTemplateType_SRRa, false, "4756628e-34c2-408f-b510-9f3f7785cb4f" ,"2aa8215f-bbb1-422a-b591-b9c9e4897443",strrr, true);
-    //测试main分支 第二次
+    QString str = file.readAll();
+    m_pExplotWidget->SetViewerType(eTemplateType_SRRa, false, "4756628e-34c2-408f-b510-9f3f7785cb4f" ,"2aa8215f-bbb1-422a-b591-b9c9e4897443",str, true);
+    //测试main分支 第三次
+    //测试main分支 第三次
+    //测试main分支 第三次
+    //测试main分支 第三次
+    //
 }
 static QString strrrr = "";
 void MainWindow::on_pushButton_clicked()
