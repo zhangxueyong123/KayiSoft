@@ -73,9 +73,6 @@ public:
     QString     m_defaultSecondId;
     QString     m_department;
     QString     m_bodyPart;
-    //上一份的的firstId和secondId
-    QString     m_beforeFirstId;
-    QString     m_beforeSecondId;
     //当前的firstId和secondId
     QString     m_currentFirstId;
     QString     m_currentSecondId;

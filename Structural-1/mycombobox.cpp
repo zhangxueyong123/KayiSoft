@@ -58,9 +58,6 @@ MyComboBox::MyComboBox(const QString &strId, const QString &strTitle,const QStri
             if (strId != "" && parentId != "")
             {
                 //先把之前的选择过的json保存下来
-                //
-                //ControlCenter::getInstance()->m_beforeFirstId = ControlCenter::getInstance()->m_currentFirstId;
-                //ControlCenter::getInstance()->m_beforeSecondId = ControlCenter::getInstance()->m_currentSecondId;
                 ControlCenter::getInstance()->m_currentFirstId = parentId;
                 ControlCenter::getInstance()->m_currentSecondId = strId;
             }
@@ -68,24 +65,6 @@ MyComboBox::MyComboBox(const QString &strId, const QString &strTitle,const QStri
             return;
         }        
     });
-    connect(this, &MyComboBox::clicked, this, [=]() {
-        QString str = currentText();
-        int n_level = ControlCenter::getInstance()->getComboboxLevelForTitle(str);
-        if (n_level == 2)
-        {
-            auto firstid = ControlCenter::getInstance()->getParentIDByTitle(str);
-            QString strId;
-            for (auto& itMap : m_mapComboboxId)
-            {
-                if (itMap.second.strName == str)
-                {
-                    strId = itMap.first;
-                }
-            }
-            //ControlCenter::getInstance()->signSaveOpenedReport(firstid, strId);
-
-        }
-        });
 }
 
 void MyComboBox::SetExplain(const QString &strExplain)
@@ -260,12 +239,3 @@ void MyComboBox::slotChangeComboboxItem(QString title,bool sw)
 }
 
 
-void MyComboBox::mousePressEvent(QMouseEvent* event)
-{
-    if (event->button() == Qt::LeftButton)
-    {
-        emit clicked();  //触发clicked信号
-    }
-
-    QComboBox::mousePressEvent(event);  //将该事件传给父类处理，这句话很重要，如果没有，父类无法处理本来的点击事件
-}

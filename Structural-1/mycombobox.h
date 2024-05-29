@@ -89,12 +89,6 @@ public:
     void Tconnect();
     QString m_strFormula;
 
-protected:
-    virtual void mousePressEvent(QMouseEvent* e);  //添加鼠标点击事件
-
-signals:
-    void clicked();  //自定义点击信号，在mousePressEvent事件发生时触发
-
 public slots:
 
     void slotChangeComboboxItem(QString title,bool sw);

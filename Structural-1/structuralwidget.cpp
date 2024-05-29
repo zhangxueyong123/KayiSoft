@@ -60,29 +60,7 @@ StructuralWidget::StructuralWidget(const QString &strUrl, CNetworkAccessManager 
     connect(CTemplateManage::GetSingle(), &CTemplateManage::signSettingInfo, this, &StructuralWidget::slotSettingInfo);
 
     connect(ControlCenter::getInstance(), &ControlCenter::signSendTemplateData, this, &StructuralWidget::sendTemplateData);
-    connect(ControlCenter::getInstance(), &ControlCenter::signDeleteTemplateData, this, &StructuralWidget::deleteTemplateData);
-    connect(ControlCenter::getInstance(), &ControlCenter::signSaveOpenedReport, this, [=](QString first,QString second) {
-        if (first == "" || second == "")
-            return;
-        auto json = GetSaveReportJson(ControlCenter::getInstance()->m_type);
-        QByteArray jsonBytes = json.toUtf8();
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonBytes);
-        // 将QJsonDocument转换为QJsonObject
-        QJsonObject jsonObj = jsonDoc.object();
-        // 输出QJsonObject的内容
-        if (jsonObj["FirstId"].toString() == first && jsonObj["SecondId"].toString() == second && jsonObj["TreeJson"].toString() != "")
-        {
-            BothId b(first, second);
-            ControlCenter::getInstance()->setOpenedReportJson(b, json);
-        }
-        });
-    //th.start();
-    //connect(&th, &HttpThread::signReplySuccess, this, &StructuralWidget::handleReply);
-    
-    //m_file.setFileName("C:\\code\\log.txt");
-    //m_file.open(QIODevice::WriteOnly);
-    //m_qnetwork = new QNetworkAccessManager();
-    
+    connect(ControlCenter::getInstance(), &ControlCenter::signDeleteTemplateData, this, &StructuralWidget::deleteTemplateData);   
 
     this->setStyleSheet(QString("MyGroup{border:1px solid rgb(183,198,221);border-radius:4px;background:rgb(220,231,244);}"
                                 "QLabel{ color:rgba(0,0,0,0.7); }"
