@@ -53,13 +53,8 @@ void MainWindow::loadStructuralWidget(QString firstId, QString secondId, QString
     m_pExplotWidget->setTextEdit(m_vecWidget[0]);
     m_pExplotWidget->setTextEdit(m_vecWidget[1]);
 
-//    m_pExplotWidget->SetPatientPar("RIS", "47000593033030211A1001", "男", "10Y");
-//    m_pExplotWidget->SetDepartment("CT", QStringLiteral("胸部"));
-    //m_pExplotWidget->SetViewerType(eTemplateType_SRRa, false, firstId, secondId, json, true);
-    QFile file("C:\\Users\\章学勇\\Desktop\\左肺 - 副本.txt");
-    file.open(QIODevice::ReadOnly);
-    QString  str = file.readAll();
-    m_pExplotWidget->SetViewerType(eTemplateType_SRRa, false, "4756628e-34c2-408f-b510-9f3f7785cb4f","2aa8215f-bbb1-422a-b591-b9c9e4897443", str, true);
+
+    m_pExplotWidget->SetViewerType(eTemplateType_SRRa, false, "","", "", true);
 }
 static QString strrrr = "";
 void MainWindow::on_pushButton_clicked()
