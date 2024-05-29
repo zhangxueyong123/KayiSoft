@@ -30,3 +30,1748 @@
 *.exe
 *.out
 *.app
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/.qmake.stash
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/Makefile
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/Makefile.Debug
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/Makefile.Release
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/ui_mainwindow.h
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/ui_structuralwidget.h
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_clickablelabel.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_cnetworkaccessmanager.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_contrl_center.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_ctemplatemanage.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_explotwidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_mainwindow.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_mycheckbox.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_mycombobox.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_mygroup.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_mypushbutton.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_myradiobutton.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_mytextreportwidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_predefs.h
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_qsinglelinewidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/moc_structuralwidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/Structural.ilk
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/Structural.pdb
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Debug/debug/Structural.vc.pdb
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/.qmake.stash
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/Makefile
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/Makefile.Debug
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/Makefile.Release
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/ui_mainwindow.h
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/ui_structuralwidget.h
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_clickablelabel.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_cnetworkaccessmanager.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_contrl_center.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_ctemplatemanage.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_explotwidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_mainwindow.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_mycheckbox.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_mycombobox.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_mygroup.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_mypushbutton.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_myradiobutton.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_mytextreportwidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_predefs.h
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_qsinglelinewidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/moc_structuralwidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/Structural.pdb
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Profile/release/Structural.vc.pdb
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/.qmake.stash
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/Makefile
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/Makefile.Debug
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/Makefile.Release
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/ui_mainwindow.h
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/ui_structuralwidget.h
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_clickablelabel.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_cnetworkaccessmanager.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_contrl_center.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_ctemplatemanage.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_explotwidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_mainwindow.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_mycheckbox.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_mycombobox.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_mygroup.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_mypushbutton.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_myradiobutton.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_mytextreportwidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_predefs.h
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_qsinglelinewidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/moc_structuralwidget.cpp
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_ar.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_bg.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_ca.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_cs.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_da.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_de.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_en.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_es.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_fi.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_fr.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_gd.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_he.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_hu.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_it.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_ja.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_ko.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_lv.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_pl.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_ru.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_sk.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_uk.qm
+build-Structural-Replacement_for_Desktop_Qt_5_14_2_MSVC2017_64bit-Release/release/translations/qt_zh_TW.qm
+exe/translations/qt_ar.qm
+exe/translations/qt_bg.qm
+exe/translations/qt_ca.qm
+exe/translations/qt_cs.qm
+exe/translations/qt_da.qm
+exe/translations/qt_de.qm
+exe/translations/qt_en.qm
+exe/translations/qt_es.qm
+exe/translations/qt_fi.qm
+exe/translations/qt_fr.qm
+exe/translations/qt_gd.qm
+exe/translations/qt_he.qm
+exe/translations/qt_hu.qm
+exe/translations/qt_it.qm
+exe/translations/qt_ja.qm
+exe/translations/qt_ko.qm
+exe/translations/qt_lv.qm
+exe/translations/qt_pl.qm
+exe/translations/qt_ru.qm
+exe/translations/qt_sk.qm
+exe/translations/qt_uk.qm
+exe/translations/qt_zh_TW.qm
+Structural-1 - 副本/.qmake.stash
+Structural-1 - 副本/CLabelSplitLayout.cpp
+Structural-1 - 副本/CLabelSplitLayout.h
+Structural-1 - 副本/clickablelabel.cpp
+Structural-1 - 副本/clickablelabel.h
+Structural-1 - 副本/CNetWork.cpp
+Structural-1 - 副本/CNetWork.h
+Structural-1 - 副本/cnetworkaccessmanager.cpp
+Structural-1 - 副本/cnetworkaccessmanager.h
+Structural-1 - 副本/contrl_center.cpp
+Structural-1 - 副本/contrl_center.h
+Structural-1 - 副本/ctemplatemanage - 副本.cpp
+Structural-1 - 副本/ctemplatemanage - 副本.h
+Structural-1 - 副本/ctemplatemanage.cpp
+Structural-1 - 副本/ctemplatemanage.h
+Structural-1 - 副本/main.cpp
+Structural-1 - 副本/mainwindow.cpp
+Structural-1 - 副本/mainwindow.h
+Structural-1 - 副本/mainwindow.ui
+Structural-1 - 副本/mycheckbox.cpp
+Structural-1 - 副本/mycheckbox.h
+Structural-1 - 副本/mycombobox.cpp
+Structural-1 - 副本/mycombobox.h
+Structural-1 - 副本/mygroup.cpp
+Structural-1 - 副本/mygroup.h
+Structural-1 - 副本/mylayerwnd.cpp
+Structural-1 - 副本/mylayerwnd.h
+Structural-1 - 副本/mylineedit.cpp
+Structural-1 - 副本/mylineedit.h
+Structural-1 - 副本/mymeasureparameter.cpp
+Structural-1 - 副本/mymeasureparameter.h
+Structural-1 - 副本/myradiobutton.cpp
+Structural-1 - 副本/myradiobutton.h
+Structural-1 - 副本/mytextreportwidget - 副本.cpp
+Structural-1 - 副本/mytextreportwidget - 副本.h
+Structural-1 - 副本/mytextreportwidget.cpp
+Structural-1 - 副本/mytextreportwidget.h
+Structural-1 - 副本/qsinglelinewidget.cpp
+Structural-1 - 副本/qsinglelinewidget.h
+Structural-1 - 副本/structdef.h
+Structural-1 - 副本/Structural.pro
+Structural-1 - 副本/Structural.pro.user
+Structural-1 - 副本/Structural.pro.user.4b927d9
+Structural-1 - 副本/Structural.qtvscr
+Structural-1 - 副本/Structural.sln
+Structural-1 - 副本/Structural.vcxproj
+Structural-1 - 副本/Structural.vcxproj.filters
+Structural-1 - 副本/Structural.vcxproj.user
+Structural-1 - 副本/structuraldata.cpp
+Structural-1 - 副本/structuraldata.h
+Structural-1 - 副本/structuralwidget - 副本.cpp
+Structural-1 - 副本/structuralwidget - 副本.h
+Structural-1 - 副本/structuralwidget.cpp
+Structural-1 - 副本/structuralwidget.h
+Structural-1 - 副本/structuralwidget.ui
+Structural-1 - 副本/ui_mainwindow.h
+Structural-1 - 副本/ui_structuralwidget.h
+Structural-1 - 副本/vc140.pdb
+Structural-1 - 副本/wndsingle - 副本.cpp
+Structural-1 - 副本/wndsingle - 副本.h
+Structural-1 - 副本/wndsingle.cpp
+Structural-1 - 副本/wndsingle.h
+Structural-1 - 副本/.vs/Structural/v16/.suo
+Structural-1 - 副本/.vs/Structural/v16/Browse.VC.db
+Structural-1 - 副本/.vs/Structural/v16/Browse.VC.db-shm
+Structural-1 - 副本/.vs/Structural/v16/Browse.VC.db-wal
+Structural-1 - 副本/.vs/Structural/v16/Browse.VC.opendb
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/13780614d7187a59/STRUCTURALDATA.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/1a4bdd7eaa9b7025/MAIN.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/407e67c504f563f1/STRUCTURALDATA.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/4d7c183c67925a0a/MYLINEEDIT.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/4f11d25f20ed928d/STRUCTURALWIDGET.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/4f8b6403bf4abbc9/MYCHECKBOX.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/5f4043d4ff3ac619/MYTEXTREPORTWIDGET.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/5fd8f6b9668ffab3/MYCOMBOBOX.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/6cde53c03cb78062/CONTRL_CENTER.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/7269868395ef6358/MYLAYERWND.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/7440cb6d126358bb/MOC_CTEMPLATEMANAGE.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/85a8a1dda2799ec1/MYGROUP.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/85d63aee57f53aab/MAINWINDOW.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/88fcbde5cd2237c5/MYRADIOBUTTON.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/91ab1652ef0af6fa/CONTRL_CENTER.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/9a85ef2485d25ba0/MOC_STRUCTURALWIDGET.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/9cf993aac5ae9c3b/MYCOMBOBOX.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/a2bb6d8268dd095/CLABELSPLITLAYOUT.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/a362cf94449a774d/QSINGLELINEWIDGET.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/ac09c1891cd7023f/WNDSINGLE.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/ae6a3cbee87a3883/MAINWINDOW.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/b2b2d43513d3925f/MAIN.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/b56a3dbf09681d5f/CNETWORK.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/bf581d15e3ef2f5e/CNETWORKACCESSMANAGER.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/c3bfa23e05b7b8fe/MOC_MAINWINDOW.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/c847f7fb1478b510/CTEMPLATEMANAGE.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/d1ed77f622c5b1ca/PARSE_THREAD.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/d7cd00f584816485/STRUCTURALWIDGET.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/f27f6b281f4d28d7/WNDSINGLE.ipch
+Structural-1 - 副本/.vs/Structural/v16/ipch/AutoPCH/fabe161d0beaa063/MYMEASUREPARAMETER.ipch
+Structural-1 - 副本/5.9.16.15/.qmake.stash
+Structural-1 - 副本/5.9.16.15/CLabelSplitLayout.cpp
+Structural-1 - 副本/5.9.16.15/CLabelSplitLayout.h
+Structural-1 - 副本/5.9.16.15/clickablelabel.cpp
+Structural-1 - 副本/5.9.16.15/clickablelabel.h
+Structural-1 - 副本/5.9.16.15/CNetWork.cpp
+Structural-1 - 副本/5.9.16.15/CNetWork.h
+Structural-1 - 副本/5.9.16.15/cnetworkaccessmanager.cpp
+Structural-1 - 副本/5.9.16.15/cnetworkaccessmanager.h
+Structural-1 - 副本/5.9.16.15/contrl_center.cpp
+Structural-1 - 副本/5.9.16.15/contrl_center.h
+Structural-1 - 副本/5.9.16.15/ctemplatemanage.cpp
+Structural-1 - 副本/5.9.16.15/ctemplatemanage.h
+Structural-1 - 副本/5.9.16.15/main.cpp
+Structural-1 - 副本/5.9.16.15/mainwindow.cpp
+Structural-1 - 副本/5.9.16.15/mainwindow.h
+Structural-1 - 副本/5.9.16.15/mainwindow.ui
+Structural-1 - 副本/5.9.16.15/mycheckbox.cpp
+Structural-1 - 副本/5.9.16.15/mycheckbox.h
+Structural-1 - 副本/5.9.16.15/mycombobox.cpp
+Structural-1 - 副本/5.9.16.15/mycombobox.h
+Structural-1 - 副本/5.9.16.15/mygroup.cpp
+Structural-1 - 副本/5.9.16.15/mygroup.h
+Structural-1 - 副本/5.9.16.15/mylayerwnd.cpp
+Structural-1 - 副本/5.9.16.15/mylayerwnd.h
+Structural-1 - 副本/5.9.16.15/mylineedit.cpp
+Structural-1 - 副本/5.9.16.15/mylineedit.h
+Structural-1 - 副本/5.9.16.15/mymeasureparameter.cpp
+Structural-1 - 副本/5.9.16.15/mymeasureparameter.h
+Structural-1 - 副本/5.9.16.15/myradiobutton.cpp
+Structural-1 - 副本/5.9.16.15/myradiobutton.h
+Structural-1 - 副本/5.9.16.15/mytextreportwidget.cpp
+Structural-1 - 副本/5.9.16.15/mytextreportwidget.h
+Structural-1 - 副本/5.9.16.15/qsinglelinewidget.cpp
+Structural-1 - 副本/5.9.16.15/qsinglelinewidget.h
+Structural-1 - 副本/5.9.16.15/structdef.h
+Structural-1 - 副本/5.9.16.15/Structural.pro
+Structural-1 - 副本/5.9.16.15/Structural.pro.user
+Structural-1 - 副本/5.9.16.15/Structural.pro.user.4b927d9
+Structural-1 - 副本/5.9.16.15/Structural.qtvscr
+Structural-1 - 副本/5.9.16.15/Structural.sln
+Structural-1 - 副本/5.9.16.15/Structural.vcxproj
+Structural-1 - 副本/5.9.16.15/Structural.vcxproj.filters
+Structural-1 - 副本/5.9.16.15/Structural.vcxproj.user
+Structural-1 - 副本/5.9.16.15/structuraldata.cpp
+Structural-1 - 副本/5.9.16.15/structuraldata.h
+Structural-1 - 副本/5.9.16.15/structuralwidget.cpp
+Structural-1 - 副本/5.9.16.15/structuralwidget.h
+Structural-1 - 副本/5.9.16.15/structuralwidget.ui
+Structural-1 - 副本/5.9.16.15/ui_mainwindow.h
+Structural-1 - 副本/5.9.16.15/ui_structuralwidget.h
+Structural-1 - 副本/5.9.16.15/vc140.pdb
+Structural-1 - 副本/5.9.16.15/wndsingle.cpp
+Structural-1 - 副本/5.9.16.15/wndsingle.h
+Structural-1 - 副本/Debug/moc_clickablelabel.cpp
+Structural-1 - 副本/Debug/moc_cnetworkaccessmanager.cpp
+Structural-1 - 副本/Debug/moc_ctemplatemanage.cpp
+Structural-1 - 副本/Debug/moc_mainwindow.cpp
+Structural-1 - 副本/Debug/moc_mycheckbox.cpp
+Structural-1 - 副本/Debug/moc_mycombobox.cpp
+Structural-1 - 副本/Debug/moc_mygroup.cpp
+Structural-1 - 副本/Debug/moc_myradiobutton.cpp
+Structural-1 - 副本/Debug/moc_mytextreportwidget.cpp
+Structural-1 - 副本/Debug/moc_parse_thread.cpp
+Structural-1 - 副本/Debug/moc_predefs.h
+Structural-1 - 副本/Debug/moc_qsinglelinewidget.cpp
+Structural-1 - 副本/Debug/moc_structuralwidget.cpp
+Structural-1 - 副本/Debug/qt_work.log
+Structural-1 - 副本/Debug/qt.natvis
+Structural-1 - 副本/Debug/Structural.exe.recipe
+Structural-1 - 副本/Debug/Structural.log
+Structural-1 - 副本/Debug/Structural.pdb
+Structural-1 - 副本/Debug/Structural.vcxproj.FileListAbsolute.txt
+Structural-1 - 副本/Debug/vc142.pdb
+Structural-1 - 副本/Debug/Structural.tlog/CL.10932.write.1.tlog
+Structural-1 - 副本/Debug/Structural.tlog/CL.command.1.tlog
+Structural-1 - 副本/Debug/Structural.tlog/CL.read.1.tlog
+Structural-1 - 副本/Debug/Structural.tlog/CustomBuild.command.1.tlog
+Structural-1 - 副本/Debug/Structural.tlog/CustomBuild.read.1.tlog
+Structural-1 - 副本/Debug/Structural.tlog/CustomBuild.write.1.tlog
+Structural-1 - 副本/Debug/Structural.tlog/link.command.1.tlog
+Structural-1 - 副本/Debug/Structural.tlog/link.read.1.tlog
+Structural-1 - 副本/Debug/Structural.tlog/link.write.1.tlog
+Structural-1 - 副本/Debug/Structural.tlog/moc.read.1u.tlog
+Structural-1 - 副本/Debug/Structural.tlog/moc.write.1u.tlog
+Structural-1 - 副本/Debug/Structural.tlog/Structural.lastbuildstate
+Structural-1 - 副本/Debug/Structural.tlog/Structural.write.1u.tlog
+Structural-1 - 副本/Release/moc_clickablelabel.cpp
+Structural-1 - 副本/Release/moc_cnetworkaccessmanager.cpp
+Structural-1 - 副本/Release/moc_contrl_center.cpp
+Structural-1 - 副本/Release/moc_ctemplatemanage.cpp
+Structural-1 - 副本/Release/moc_mainwindow.cpp
+Structural-1 - 副本/Release/moc_mycheckbox.cpp
+Structural-1 - 副本/Release/moc_mycombobox.cpp
+Structural-1 - 副本/Release/moc_mygroup.cpp
+Structural-1 - 副本/Release/moc_myradiobutton.cpp
+Structural-1 - 副本/Release/moc_mytextreportwidget.cpp
+Structural-1 - 副本/Release/moc_predefs.h
+Structural-1 - 副本/Release/moc_qsinglelinewidget.cpp
+Structural-1 - 副本/Release/moc_structuralwidget.cpp
+Structural-1 - 副本/Release/qt_work.log
+Structural-1 - 副本/Release/Structural.Build.CppClean.log
+Structural-1 - 副本/Release/Structural.exe.recipe
+Structural-1 - 副本/Release/Structural.log
+Structural-1 - 副本/Release/Structural.pdb
+Structural-1 - 副本/Release/Structural.vcxproj.FileListAbsolute.txt
+Structural-1 - 副本/Release/Structural.tlog/CL.command.1.tlog
+Structural-1 - 副本/Release/Structural.tlog/CL.read.1.tlog
+Structural-1 - 副本/Release/Structural.tlog/CL.write.1.tlog
+Structural-1 - 副本/Release/Structural.tlog/CustomBuild.command.1.tlog
+Structural-1 - 副本/Release/Structural.tlog/CustomBuild.read.1.tlog
+Structural-1 - 副本/Release/Structural.tlog/CustomBuild.write.1.tlog
+Structural-1 - 副本/Release/Structural.tlog/link.command.1.tlog
+Structural-1 - 副本/Release/Structural.tlog/link.read.1.tlog
+Structural-1 - 副本/Release/Structural.tlog/link.write.1.tlog
+Structural-1 - 副本/Release/Structural.tlog/moc.read.1u.tlog
+Structural-1 - 副本/Release/Structural.tlog/moc.write.1u.tlog
+Structural-1 - 副本/Release/Structural.tlog/Structural.lastbuildstate
+Structural-1 - 副本/Release/Structural.tlog/Structural.write.1u.tlog
+Structural-1 - 副本/Release/Structural.tlog/uic.read.1u.tlog
+Structural-1 - 副本/Release/Structural.tlog/uic.write.1u.tlog
+Structural-1 - 副本/Release/qmake/qtvars_Win32_Release.props
+Structural-1 - 副本/Release/qmake/temp/.qmake.stash
+Structural-1 - 副本/Release/qmake/temp/moc_predefs.h.cbt
+Structural-1 - 副本/Release/qmake/temp/props.txt
+Structural-1 - 副本/Release/qmake/temp/qtvars_Win32_Release.props
+Structural-1 - 副本/Release/qmake/temp/qtvars.log
+Structural-1 - 副本/Release/qmake/temp/qtvars.pro
+Structural-1 - 副本/Release/qmake/temp/qtvars.vcxproj
+Structural-1 - 副本/Release/qmake/temp/qtvars.vcxproj.filters
+Structural-1 - 副本/Release/translations/qt_ar.qm
+Structural-1 - 副本/Release/translations/qt_bg.qm
+Structural-1 - 副本/Release/translations/qt_ca.qm
+Structural-1 - 副本/Release/translations/qt_cs.qm
+Structural-1 - 副本/Release/translations/qt_da.qm
+Structural-1 - 副本/Release/translations/qt_de.qm
+Structural-1 - 副本/Release/translations/qt_en.qm
+Structural-1 - 副本/Release/translations/qt_es.qm
+Structural-1 - 副本/Release/translations/qt_fi.qm
+Structural-1 - 副本/Release/translations/qt_fr.qm
+Structural-1 - 副本/Release/translations/qt_gd.qm
+Structural-1 - 副本/Release/translations/qt_he.qm
+Structural-1 - 副本/Release/translations/qt_hu.qm
+Structural-1 - 副本/Release/translations/qt_it.qm
+Structural-1 - 副本/Release/translations/qt_ja.qm
+Structural-1 - 副本/Release/translations/qt_ko.qm
+Structural-1 - 副本/Release/translations/qt_lv.qm
+Structural-1 - 副本/Release/translations/qt_pl.qm
+Structural-1 - 副本/Release/translations/qt_ru.qm
+Structural-1 - 副本/Release/translations/qt_sk.qm
+Structural-1 - 副本/Release/translations/qt_uk.qm
+Structural-1 - 副本/Release/translations/qt_zh_TW.qm
+Structural-1 - 副本/temp5.9.11.49/CLabelSplitLayout.cpp
+Structural-1 - 副本/temp5.9.11.49/CLabelSplitLayout.h
+Structural-1 - 副本/temp5.9.11.49/clickablelabel.cpp
+Structural-1 - 副本/temp5.9.11.49/clickablelabel.h
+Structural-1 - 副本/temp5.9.11.49/CNetWork.cpp
+Structural-1 - 副本/temp5.9.11.49/CNetWork.h
+Structural-1 - 副本/temp5.9.11.49/cnetworkaccessmanager.cpp
+Structural-1 - 副本/temp5.9.11.49/cnetworkaccessmanager.h
+Structural-1 - 副本/temp5.9.11.49/contrl_center.cpp
+Structural-1 - 副本/temp5.9.11.49/contrl_center.h
+Structural-1 - 副本/temp5.9.11.49/ctemplatemanage - 副本.cpp
+Structural-1 - 副本/temp5.9.11.49/ctemplatemanage - 副本.h
+Structural-1 - 副本/temp5.9.11.49/ctemplatemanage.cpp
+Structural-1 - 副本/temp5.9.11.49/ctemplatemanage.h
+Structural-1 - 副本/temp5.9.11.49/main.cpp
+Structural-1 - 副本/temp5.9.11.49/mainwindow.cpp
+Structural-1 - 副本/temp5.9.11.49/mainwindow.h
+Structural-1 - 副本/temp5.9.11.49/mainwindow.ui
+Structural-1 - 副本/temp5.9.11.49/mycheckbox.cpp
+Structural-1 - 副本/temp5.9.11.49/mycheckbox.h
+Structural-1 - 副本/temp5.9.11.49/mycombobox.cpp
+Structural-1 - 副本/temp5.9.11.49/mycombobox.h
+Structural-1 - 副本/temp5.9.11.49/mygroup.cpp
+Structural-1 - 副本/temp5.9.11.49/mygroup.h
+Structural-1 - 副本/temp5.9.11.49/mylayerwnd.cpp
+Structural-1 - 副本/temp5.9.11.49/mylayerwnd.h
+Structural-1 - 副本/temp5.9.11.49/mylineedit.cpp
+Structural-1 - 副本/temp5.9.11.49/mylineedit.h
+Structural-1 - 副本/temp5.9.11.49/mymeasureparameter.cpp
+Structural-1 - 副本/temp5.9.11.49/mymeasureparameter.h
+Structural-1 - 副本/temp5.9.11.49/myradiobutton.cpp
+Structural-1 - 副本/temp5.9.11.49/myradiobutton.h
+Structural-1 - 副本/temp5.9.11.49/mytextreportwidget - 副本.cpp
+Structural-1 - 副本/temp5.9.11.49/mytextreportwidget - 副本.h
+Structural-1 - 副本/temp5.9.11.49/mytextreportwidget.cpp
+Structural-1 - 副本/temp5.9.11.49/mytextreportwidget.h
+Structural-1 - 副本/temp5.9.11.49/qsinglelinewidget.cpp
+Structural-1 - 副本/temp5.9.11.49/qsinglelinewidget.h
+Structural-1 - 副本/temp5.9.11.49/structdef.h
+Structural-1 - 副本/temp5.9.11.49/Structural.pro
+Structural-1 - 副本/temp5.9.11.49/Structural.pro.user
+Structural-1 - 副本/temp5.9.11.49/Structural.pro.user.4b927d9
+Structural-1 - 副本/temp5.9.11.49/Structural.qtvscr
+Structural-1 - 副本/temp5.9.11.49/Structural.sln
+Structural-1 - 副本/temp5.9.11.49/Structural.vcxproj
+Structural-1 - 副本/temp5.9.11.49/Structural.vcxproj.filters
+Structural-1 - 副本/temp5.9.11.49/Structural.vcxproj.user
+Structural-1 - 副本/temp5.9.11.49/structuraldata.cpp
+Structural-1 - 副本/temp5.9.11.49/structuraldata.h
+Structural-1 - 副本/temp5.9.11.49/structuralwidget - 副本.cpp
+Structural-1 - 副本/temp5.9.11.49/structuralwidget - 副本.h
+Structural-1 - 副本/temp5.9.11.49/structuralwidget.cpp
+Structural-1 - 副本/temp5.9.11.49/structuralwidget.h
+Structural-1 - 副本/temp5.9.11.49/structuralwidget.ui
+Structural-1 - 副本/temp5.9.11.49/ui_mainwindow.h
+Structural-1 - 副本/temp5.9.11.49/ui_structuralwidget.h
+Structural-1 - 副本/temp5.9.11.49/vc140.pdb
+Structural-1 - 副本/temp5.9.11.49/wndsingle - 副本.cpp
+Structural-1 - 副本/temp5.9.11.49/wndsingle - 副本.h
+Structural-1 - 副本/temp5.9.11.49/wndsingle.cpp
+Structural-1 - 副本/temp5.9.11.49/wndsingle.h
+Structural-1 - 副本/x64/Debug/qmake/temp/.qmake.stash
+Structural-1 - 副本/x64/Debug/qmake/temp/7CED5CF4-B3A9-387D-8031-BE07DB5CA27E.Structural.designtime.idx
+Structural-1 - 副本/x64/Debug/qmake/temp/moc_predefs.h.cbt
+Structural-1 - 副本/x64/Debug/qmake/temp/props.txt
+Structural-1 - 副本/x64/Debug/qmake/temp/qtvars_x64_Debug.props
+Structural-1 - 副本/x64/Debug/qmake/temp/qtvars.log
+Structural-1 - 副本/x64/Debug/qmake/temp/qtvars.pro
+Structural-1 - 副本/x64/Debug/qmake/temp/qtvars.vcxproj
+Structural-1 - 副本/x64/Debug/qmake/temp/qtvars.vcxproj.filters
+Structural-1 - 副本/x64/Release/qmake/qtvars_x64_Release.props
+Structural-1 - 副本/x64/Release/qmake/temp/.qmake.stash
+Structural-1 - 副本/x64/Release/qmake/temp/moc_predefs.h.cbt
+Structural-1 - 副本/x64/Release/qmake/temp/props.txt
+Structural-1 - 副本/x64/Release/qmake/temp/qtvars_x64_Release.props
+Structural-1 - 副本/x64/Release/qmake/temp/qtvars.log
+Structural-1 - 副本/x64/Release/qmake/temp/qtvars.pro
+Structural-1 - 副本/x64/Release/qmake/temp/qtvars.vcxproj
+Structural-1 - 副本/x64/Release/qmake/temp/qtvars.vcxproj.filters
+Structural-1 - 全部加载/.qmake.stash
+Structural-1 - 全部加载/CLabelSplitLayout.cpp
+Structural-1 - 全部加载/CLabelSplitLayout.h
+Structural-1 - 全部加载/clickablelabel.cpp
+Structural-1 - 全部加载/clickablelabel.h
+Structural-1 - 全部加载/CNetWork.cpp
+Structural-1 - 全部加载/CNetWork.h
+Structural-1 - 全部加载/cnetworkaccessmanager.cpp
+Structural-1 - 全部加载/cnetworkaccessmanager.h
+Structural-1 - 全部加载/ctemplatemanage - 副本.cpp
+Structural-1 - 全部加载/ctemplatemanage - 副本.h
+Structural-1 - 全部加载/ctemplatemanage.cpp
+Structural-1 - 全部加载/ctemplatemanage.h
+Structural-1 - 全部加载/main.cpp
+Structural-1 - 全部加载/mainwindow.cpp
+Structural-1 - 全部加载/mainwindow.h
+Structural-1 - 全部加载/mainwindow.ui
+Structural-1 - 全部加载/mycheckbox.cpp
+Structural-1 - 全部加载/mycheckbox.h
+Structural-1 - 全部加载/mycombobox.cpp
+Structural-1 - 全部加载/mycombobox.h
+Structural-1 - 全部加载/mygroup.cpp
+Structural-1 - 全部加载/mygroup.h
+Structural-1 - 全部加载/mylayerwnd.cpp
+Structural-1 - 全部加载/mylayerwnd.h
+Structural-1 - 全部加载/mylineedit.cpp
+Structural-1 - 全部加载/mylineedit.h
+Structural-1 - 全部加载/mymeasureparameter.cpp
+Structural-1 - 全部加载/mymeasureparameter.h
+Structural-1 - 全部加载/myradiobutton.cpp
+Structural-1 - 全部加载/myradiobutton.h
+Structural-1 - 全部加载/mytextreportwidget - 副本.cpp
+Structural-1 - 全部加载/mytextreportwidget - 副本.h
+Structural-1 - 全部加载/mytextreportwidget.cpp
+Structural-1 - 全部加载/mytextreportwidget.h
+Structural-1 - 全部加载/parse_thread.cpp
+Structural-1 - 全部加载/parse_thread.h
+Structural-1 - 全部加载/qsinglelinewidget.cpp
+Structural-1 - 全部加载/qsinglelinewidget.h
+Structural-1 - 全部加载/structdef.h
+Structural-1 - 全部加载/Structural.pro
+Structural-1 - 全部加载/Structural.pro.user
+Structural-1 - 全部加载/Structural.pro.user.4b927d9
+Structural-1 - 全部加载/Structural.qtvscr
+Structural-1 - 全部加载/Structural.sln
+Structural-1 - 全部加载/Structural.vcxproj
+Structural-1 - 全部加载/Structural.vcxproj.filters
+Structural-1 - 全部加载/Structural.vcxproj.user
+Structural-1 - 全部加载/structuraldata.cpp
+Structural-1 - 全部加载/structuraldata.h
+Structural-1 - 全部加载/structuralwidget - 副本.cpp
+Structural-1 - 全部加载/structuralwidget - 副本.h
+Structural-1 - 全部加载/structuralwidget.cpp
+Structural-1 - 全部加载/structuralwidget.h
+Structural-1 - 全部加载/structuralwidget.ui
+Structural-1 - 全部加载/ui_mainwindow.h
+Structural-1 - 全部加载/ui_structuralwidget.h
+Structural-1 - 全部加载/vc140.pdb
+Structural-1 - 全部加载/wndsingle - 副本.cpp
+Structural-1 - 全部加载/wndsingle - 副本.h
+Structural-1 - 全部加载/wndsingle.cpp
+Structural-1 - 全部加载/wndsingle.h
+Structural-1 - 全部加载/.vs/Structural/v16/.suo
+Structural-1 - 全部加载/.vs/Structural/v16/Browse.VC.db
+Structural-1 - 全部加载/.vs/Structural/v16/Browse.VC.db-shm
+Structural-1 - 全部加载/.vs/Structural/v16/Browse.VC.db-wal
+Structural-1 - 全部加载/.vs/Structural/v16/Browse.VC.opendb
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/407e67c504f563f1/STRUCTURALDATA.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/4d7c183c67925a0a/MYLINEEDIT.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/4f11d25f20ed928d/STRUCTURALWIDGET.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/4f8b6403bf4abbc9/MYCHECKBOX.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/5f4043d4ff3ac619/MYTEXTREPORTWIDGET.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/5fd8f6b9668ffab3/MYCOMBOBOX.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/7269868395ef6358/MYLAYERWND.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/7440cb6d126358bb/MOC_CTEMPLATEMANAGE.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/85a8a1dda2799ec1/MYGROUP.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/85d63aee57f53aab/MAINWINDOW.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/88fcbde5cd2237c5/MYRADIOBUTTON.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/9a85ef2485d25ba0/MOC_STRUCTURALWIDGET.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/a2bb6d8268dd095/CLABELSPLITLAYOUT.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/a362cf94449a774d/QSINGLELINEWIDGET.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/b2b2d43513d3925f/MAIN.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/b56a3dbf09681d5f/CNETWORK.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/bf581d15e3ef2f5e/CNETWORKACCESSMANAGER.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/c847f7fb1478b510/CTEMPLATEMANAGE.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/d1ed77f622c5b1ca/PARSE_THREAD.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/f27f6b281f4d28d7/WNDSINGLE.ipch
+Structural-1 - 全部加载/.vs/Structural/v16/ipch/AutoPCH/fabe161d0beaa063/MYMEASUREPARAMETER.ipch
+Structural-1 - 全部加载/Debug/moc_clickablelabel.cpp
+Structural-1 - 全部加载/Debug/moc_cnetworkaccessmanager.cpp
+Structural-1 - 全部加载/Debug/moc_ctemplatemanage.cpp
+Structural-1 - 全部加载/Debug/moc_mainwindow.cpp
+Structural-1 - 全部加载/Debug/moc_mycheckbox.cpp
+Structural-1 - 全部加载/Debug/moc_mygroup.cpp
+Structural-1 - 全部加载/Debug/moc_myradiobutton.cpp
+Structural-1 - 全部加载/Debug/moc_mytextreportwidget.cpp
+Structural-1 - 全部加载/Debug/moc_parse_thread.cpp
+Structural-1 - 全部加载/Debug/moc_qsinglelinewidget.cpp
+Structural-1 - 全部加载/Debug/moc_structuralwidget.cpp
+Structural-1 - 全部加载/Debug/qt_work.log
+Structural-1 - 全部加载/Debug/Structural.tlog/moc.read.1u.tlog
+Structural-1 - 全部加载/Debug/Structural.tlog/moc.write.1u.tlog
+Structural-1 - 全部加载/Debug/Structural.tlog/Structural.write.1u.tlog
+Structural-1 - 全部加载/Release/moc_clickablelabel.cpp
+Structural-1 - 全部加载/Release/moc_cnetworkaccessmanager.cpp
+Structural-1 - 全部加载/Release/moc_ctemplatemanage.cpp
+Structural-1 - 全部加载/Release/moc_mainwindow.cpp
+Structural-1 - 全部加载/Release/moc_mycheckbox.cpp
+Structural-1 - 全部加载/Release/moc_mycombobox.cpp
+Structural-1 - 全部加载/Release/moc_mygroup.cpp
+Structural-1 - 全部加载/Release/moc_myradiobutton.cpp
+Structural-1 - 全部加载/Release/moc_mytextreportwidget.cpp
+Structural-1 - 全部加载/Release/moc_parse_thread.cpp
+Structural-1 - 全部加载/Release/moc_predefs.h
+Structural-1 - 全部加载/Release/moc_qsinglelinewidget.cpp
+Structural-1 - 全部加载/Release/moc_structuralwidget.cpp
+Structural-1 - 全部加载/Release/qt_work.log
+Structural-1 - 全部加载/Release/Structural.Build.CppClean.log
+Structural-1 - 全部加载/Release/Structural.exe.recipe
+Structural-1 - 全部加载/Release/Structural.log
+Structural-1 - 全部加载/Release/Structural.pdb
+Structural-1 - 全部加载/Release/Structural.vcxproj.FileListAbsolute.txt
+Structural-1 - 全部加载/Release/Structural.tlog/CL.command.1.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/CL.read.1.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/CL.write.1.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/CustomBuild.command.1.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/CustomBuild.read.1.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/CustomBuild.write.1.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/link.command.1.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/link.read.1.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/link.write.1.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/moc.read.1u.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/moc.write.1u.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/Structural.lastbuildstate
+Structural-1 - 全部加载/Release/Structural.tlog/Structural.write.1u.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/uic.read.1u.tlog
+Structural-1 - 全部加载/Release/Structural.tlog/uic.write.1u.tlog
+Structural-1 - 全部加载/Release/qmake/qtvars_Win32_Release.props
+Structural-1 - 全部加载/Release/qmake/temp/.qmake.stash
+Structural-1 - 全部加载/Release/qmake/temp/moc_predefs.h.cbt
+Structural-1 - 全部加载/Release/qmake/temp/props.txt
+Structural-1 - 全部加载/Release/qmake/temp/qtvars_Win32_Release.props
+Structural-1 - 全部加载/Release/qmake/temp/qtvars.log
+Structural-1 - 全部加载/Release/qmake/temp/qtvars.pro
+Structural-1 - 全部加载/Release/qmake/temp/qtvars.vcxproj
+Structural-1 - 全部加载/Release/qmake/temp/qtvars.vcxproj.filters
+Structural-1 - 全部加载/Release/translations/qt_ar.qm
+Structural-1 - 全部加载/Release/translations/qt_bg.qm
+Structural-1 - 全部加载/Release/translations/qt_ca.qm
+Structural-1 - 全部加载/Release/translations/qt_cs.qm
+Structural-1 - 全部加载/Release/translations/qt_da.qm
+Structural-1 - 全部加载/Release/translations/qt_de.qm
+Structural-1 - 全部加载/Release/translations/qt_en.qm
+Structural-1 - 全部加载/Release/translations/qt_es.qm
+Structural-1 - 全部加载/Release/translations/qt_fi.qm
+Structural-1 - 全部加载/Release/translations/qt_fr.qm
+Structural-1 - 全部加载/Release/translations/qt_gd.qm
+Structural-1 - 全部加载/Release/translations/qt_he.qm
+Structural-1 - 全部加载/Release/translations/qt_hu.qm
+Structural-1 - 全部加载/Release/translations/qt_it.qm
+Structural-1 - 全部加载/Release/translations/qt_ja.qm
+Structural-1 - 全部加载/Release/translations/qt_ko.qm
+Structural-1 - 全部加载/Release/translations/qt_lv.qm
+Structural-1 - 全部加载/Release/translations/qt_pl.qm
+Structural-1 - 全部加载/Release/translations/qt_ru.qm
+Structural-1 - 全部加载/Release/translations/qt_sk.qm
+Structural-1 - 全部加载/Release/translations/qt_uk.qm
+Structural-1 - 全部加载/Release/translations/qt_zh_TW.qm
+Structural-1 - 全部加载/x64/Debug/qmake/temp/.qmake.stash
+Structural-1 - 全部加载/x64/Debug/qmake/temp/7CED5CF4-B3A9-387D-8031-BE07DB5CA27E.Structural.designtime.idx
+Structural-1 - 全部加载/x64/Debug/qmake/temp/moc_predefs.h.cbt
+Structural-1 - 全部加载/x64/Debug/qmake/temp/props.txt
+Structural-1 - 全部加载/x64/Debug/qmake/temp/qtvars_x64_Debug.props
+Structural-1 - 全部加载/x64/Debug/qmake/temp/qtvars.log
+Structural-1 - 全部加载/x64/Debug/qmake/temp/qtvars.pro
+Structural-1 - 全部加载/x64/Debug/qmake/temp/qtvars.vcxproj
+Structural-1 - 全部加载/x64/Debug/qmake/temp/qtvars.vcxproj.filters
+Structural-1 - 全部加载/x64/Release/qmake/qtvars_x64_Release.props
+Structural-1 - 全部加载/x64/Release/qmake/temp/.qmake.stash
+Structural-1 - 全部加载/x64/Release/qmake/temp/moc_predefs.h.cbt
+Structural-1 - 全部加载/x64/Release/qmake/temp/props.txt
+Structural-1 - 全部加载/x64/Release/qmake/temp/qtvars_x64_Release.props
+Structural-1 - 全部加载/x64/Release/qmake/temp/qtvars.log
+Structural-1 - 全部加载/x64/Release/qmake/temp/qtvars.pro
+Structural-1 - 全部加载/x64/Release/qmake/temp/qtvars.vcxproj
+Structural-1 - 全部加载/x64/Release/qmake/temp/qtvars.vcxproj.filters
+Structural-1/.vs/Structural/v16/.suo
+Structural-1/.vs/Structural/v16/Browse.VC.db
+Structural-1/.vs/Structural/v16/Browse.VC.db-shm
+Structural-1/.vs/Structural/v16/Browse.VC.db-wal
+Structural-1/.vs/Structural/v16/Browse.VC.opendb
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/2150c94cb844bbc1/MOC_CONTRL_CENTER.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/407e67c504f563f1/STRUCTURALDATA.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/4d7c183c67925a0a/MYLINEEDIT.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/4f11d25f20ed928d/STRUCTURALWIDGET.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/4f8b6403bf4abbc9/MYCHECKBOX.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/5f4043d4ff3ac619/MYTEXTREPORTWIDGET.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/5fd8f6b9668ffab3/MYCOMBOBOX.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/6aea6bcb8381c910/CLICKABLELABEL.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/6cde53c03cb78062/CONTRL_CENTER.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/85a8a1dda2799ec1/MYGROUP.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/85d63aee57f53aab/MAINWINDOW.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/88fcbde5cd2237c5/MYRADIOBUTTON.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/9994c38fac84466c/EXPLOTWIDGET.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/9a85ef2485d25ba0/MOC_STRUCTURALWIDGET.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/a2bb6d8268dd095/CLABELSPLITLAYOUT.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/a362cf94449a774d/QSINGLELINEWIDGET.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/ac42b6a050f06b89/MOC_EXPLOTWIDGET.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/b0077f72dc2556a4/MYPUSHBUTTON.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/b2b2d43513d3925f/MAIN.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/b56a3dbf09681d5f/CNETWORK.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/c3bfa23e05b7b8fe/MOC_MAINWINDOW.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/c847f7fb1478b510/CTEMPLATEMANAGE.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/f27f6b281f4d28d7/WNDSINGLE.ipch
+Structural-1/.vs/Structural/v16/ipch/AutoPCH/fabe161d0beaa063/MYMEASUREPARAMETER.ipch
+Structural-1/5.9.16.15/.qmake.stash
+Structural-1/5.9.16.15/CLabelSplitLayout.cpp
+Structural-1/5.9.16.15/CLabelSplitLayout.h
+Structural-1/5.9.16.15/clickablelabel.cpp
+Structural-1/5.9.16.15/clickablelabel.h
+Structural-1/5.9.16.15/CNetWork.cpp
+Structural-1/5.9.16.15/CNetWork.h
+Structural-1/5.9.16.15/cnetworkaccessmanager.cpp
+Structural-1/5.9.16.15/cnetworkaccessmanager.h
+Structural-1/5.9.16.15/contrl_center.cpp
+Structural-1/5.9.16.15/contrl_center.h
+Structural-1/5.9.16.15/ctemplatemanage.cpp
+Structural-1/5.9.16.15/ctemplatemanage.h
+Structural-1/5.9.16.15/main.cpp
+Structural-1/5.9.16.15/mainwindow.cpp
+Structural-1/5.9.16.15/mainwindow.h
+Structural-1/5.9.16.15/mainwindow.ui
+Structural-1/5.9.16.15/mycheckbox.cpp
+Structural-1/5.9.16.15/mycheckbox.h
+Structural-1/5.9.16.15/mycombobox.cpp
+Structural-1/5.9.16.15/mycombobox.h
+Structural-1/5.9.16.15/mygroup.cpp
+Structural-1/5.9.16.15/mygroup.h
+Structural-1/5.9.16.15/mylayerwnd.cpp
+Structural-1/5.9.16.15/mylayerwnd.h
+Structural-1/5.9.16.15/mylineedit.cpp
+Structural-1/5.9.16.15/mylineedit.h
+Structural-1/5.9.16.15/mymeasureparameter.cpp
+Structural-1/5.9.16.15/mymeasureparameter.h
+Structural-1/5.9.16.15/myradiobutton.cpp
+Structural-1/5.9.16.15/myradiobutton.h
+Structural-1/5.9.16.15/mytextreportwidget.cpp
+Structural-1/5.9.16.15/mytextreportwidget.h
+Structural-1/5.9.16.15/qsinglelinewidget.cpp
+Structural-1/5.9.16.15/qsinglelinewidget.h
+Structural-1/5.9.16.15/structdef.h
+Structural-1/5.9.16.15/Structural.pro
+Structural-1/5.9.16.15/Structural.pro.user
+Structural-1/5.9.16.15/Structural.pro.user.4b927d9
+Structural-1/5.9.16.15/Structural.qtvscr
+Structural-1/5.9.16.15/Structural.sln
+Structural-1/5.9.16.15/Structural.vcxproj
+Structural-1/5.9.16.15/Structural.vcxproj.filters
+Structural-1/5.9.16.15/Structural.vcxproj.user
+Structural-1/5.9.16.15/structuraldata.cpp
+Structural-1/5.9.16.15/structuraldata.h
+Structural-1/5.9.16.15/structuralwidget.cpp
+Structural-1/5.9.16.15/structuralwidget.h
+Structural-1/5.9.16.15/structuralwidget.ui
+Structural-1/5.9.16.15/ui_mainwindow.h
+Structural-1/5.9.16.15/ui_structuralwidget.h
+Structural-1/5.9.16.15/vc140.pdb
+Structural-1/5.9.16.15/wndsingle.cpp
+Structural-1/5.9.16.15/wndsingle.h
+Structural-1/5.11.9.40/.qmake.stash
+Structural-1/5.11.9.40/CLabelSplitLayout.cpp
+Structural-1/5.11.9.40/CLabelSplitLayout.h
+Structural-1/5.11.9.40/clickablelabel.cpp
+Structural-1/5.11.9.40/clickablelabel.h
+Structural-1/5.11.9.40/CNetWork.cpp
+Structural-1/5.11.9.40/CNetWork.h
+Structural-1/5.11.9.40/cnetworkaccessmanager.cpp
+Structural-1/5.11.9.40/cnetworkaccessmanager.h
+Structural-1/5.11.9.40/contrl_center.cpp
+Structural-1/5.11.9.40/contrl_center.h
+Structural-1/5.11.9.40/ctemplatemanage.cpp
+Structural-1/5.11.9.40/ctemplatemanage.h
+Structural-1/5.11.9.40/main.cpp
+Structural-1/5.11.9.40/mainwindow.cpp
+Structural-1/5.11.9.40/mainwindow.h
+Structural-1/5.11.9.40/mainwindow.ui
+Structural-1/5.11.9.40/mycheckbox.cpp
+Structural-1/5.11.9.40/mycheckbox.h
+Structural-1/5.11.9.40/mycombobox.cpp
+Structural-1/5.11.9.40/mycombobox.h
+Structural-1/5.11.9.40/mygroup.cpp
+Structural-1/5.11.9.40/mygroup.h
+Structural-1/5.11.9.40/mylayerwnd.cpp
+Structural-1/5.11.9.40/mylayerwnd.h
+Structural-1/5.11.9.40/mylineedit.cpp
+Structural-1/5.11.9.40/mylineedit.h
+Structural-1/5.11.9.40/mymeasureparameter.cpp
+Structural-1/5.11.9.40/mymeasureparameter.h
+Structural-1/5.11.9.40/myradiobutton.cpp
+Structural-1/5.11.9.40/myradiobutton.h
+Structural-1/5.11.9.40/mytextreportwidget.cpp
+Structural-1/5.11.9.40/mytextreportwidget.h
+Structural-1/5.11.9.40/qsinglelinewidget.cpp
+Structural-1/5.11.9.40/qsinglelinewidget.h
+Structural-1/5.11.9.40/structdef.h
+Structural-1/5.11.9.40/Structural.pro
+Structural-1/5.11.9.40/Structural.pro.user
+Structural-1/5.11.9.40/Structural.pro.user.4b927d9
+Structural-1/5.11.9.40/Structural.qtvscr
+Structural-1/5.11.9.40/Structural.sln
+Structural-1/5.11.9.40/Structural.vcxproj
+Structural-1/5.11.9.40/Structural.vcxproj.filters
+Structural-1/5.11.9.40/Structural.vcxproj.user
+Structural-1/5.11.9.40/structuraldata.cpp
+Structural-1/5.11.9.40/structuraldata.h
+Structural-1/5.11.9.40/structuralwidget.cpp
+Structural-1/5.11.9.40/structuralwidget.h
+Structural-1/5.11.9.40/structuralwidget.ui
+Structural-1/5.11.9.40/ui_mainwindow.h
+Structural-1/5.11.9.40/ui_structuralwidget.h
+Structural-1/5.11.9.40/vc140.pdb
+Structural-1/5.11.9.40/wndsingle.cpp
+Structural-1/5.11.9.40/wndsingle.h
+Structural-1/5.14.8.81/CLabelSplitLayout.cpp
+Structural-1/5.14.8.81/CLabelSplitLayout.h
+Structural-1/5.14.8.81/clickablelabel.cpp
+Structural-1/5.14.8.81/clickablelabel.h
+Structural-1/5.14.8.81/contrl_center.cpp
+Structural-1/5.14.8.81/contrl_center.h
+Structural-1/5.14.8.81/ctemplatemanage.cpp
+Structural-1/5.14.8.81/ctemplatemanage.h
+Structural-1/5.14.8.81/mycheckbox.cpp
+Structural-1/5.14.8.81/mycheckbox.h
+Structural-1/5.14.8.81/mycombobox.cpp
+Structural-1/5.14.8.81/mycombobox.h
+Structural-1/5.14.8.81/mygroup.cpp
+Structural-1/5.14.8.81/mygroup.h
+Structural-1/5.14.8.81/mylayerwnd.cpp
+Structural-1/5.14.8.81/mylayerwnd.h
+Structural-1/5.14.8.81/mylineedit.cpp
+Structural-1/5.14.8.81/mylineedit.h
+Structural-1/5.14.8.81/mymeasureparameter.cpp
+Structural-1/5.14.8.81/mymeasureparameter.h
+Structural-1/5.14.8.81/myradiobutton.cpp
+Structural-1/5.14.8.81/myradiobutton.h
+Structural-1/5.14.8.81/mytextreportwidget.cpp
+Structural-1/5.14.8.81/mytextreportwidget.h
+Structural-1/5.14.8.81/qsinglelinewidget.cpp
+Structural-1/5.14.8.81/qsinglelinewidget.h
+Structural-1/5.14.8.81/structdef.h
+Structural-1/5.14.8.81/structuraldata.cpp
+Structural-1/5.14.8.81/structuraldata.h
+Structural-1/5.14.8.81/structuralwidget.cpp
+Structural-1/5.14.8.81/structuralwidget.h
+Structural-1/5.14.8.81/structuralwidget.ui
+Structural-1/5.14.8.81/wndsingle.cpp
+Structural-1/5.14.8.81/wndsingle.h
+Structural-1/5.15.9.53/CLabelSplitLayout.cpp
+Structural-1/5.15.9.53/CLabelSplitLayout.h
+Structural-1/5.15.9.53/clickablelabel.cpp
+Structural-1/5.15.9.53/clickablelabel.h
+Structural-1/5.15.9.53/contrl_center.cpp
+Structural-1/5.15.9.53/contrl_center.h
+Structural-1/5.15.9.53/ctemplatemanage.cpp
+Structural-1/5.15.9.53/ctemplatemanage.h
+Structural-1/5.15.9.53/explotwidget.cpp
+Structural-1/5.15.9.53/explotwidget.h
+Structural-1/5.15.9.53/mycheckbox.cpp
+Structural-1/5.15.9.53/mycheckbox.h
+Structural-1/5.15.9.53/mycombobox.cpp
+Structural-1/5.15.9.53/mycombobox.h
+Structural-1/5.15.9.53/mygroup.cpp
+Structural-1/5.15.9.53/mygroup.h
+Structural-1/5.15.9.53/mylayerwnd.cpp
+Structural-1/5.15.9.53/mylayerwnd.h
+Structural-1/5.15.9.53/mylineedit.cpp
+Structural-1/5.15.9.53/mylineedit.h
+Structural-1/5.15.9.53/mymeasureparameter.cpp
+Structural-1/5.15.9.53/mymeasureparameter.h
+Structural-1/5.15.9.53/myradiobutton.cpp
+Structural-1/5.15.9.53/myradiobutton.h
+Structural-1/5.15.9.53/mytextreportwidget.cpp
+Structural-1/5.15.9.53/mytextreportwidget.h
+Structural-1/5.15.9.53/qsinglelinewidget.cpp
+Structural-1/5.15.9.53/qsinglelinewidget.h
+Structural-1/5.15.9.53/structdef.h
+Structural-1/5.15.9.53/structuraldata.cpp
+Structural-1/5.15.9.53/structuraldata.h
+Structural-1/5.15.9.53/structuralwidget.cpp
+Structural-1/5.15.9.53/structuralwidget.h
+Structural-1/5.15.9.53/structuralwidget.ui
+Structural-1/5.15.9.53/wndsingle.cpp
+Structural-1/5.15.9.53/wndsingle.h
+Structural-1/5.15.10.24/CLabelSplitLayout.cpp
+Structural-1/5.15.10.24/CLabelSplitLayout.h
+Structural-1/5.15.10.24/clickablelabel.cpp
+Structural-1/5.15.10.24/clickablelabel.h
+Structural-1/5.15.10.24/contrl_center.cpp
+Structural-1/5.15.10.24/contrl_center.h
+Structural-1/5.15.10.24/ctemplatemanage.cpp
+Structural-1/5.15.10.24/ctemplatemanage.h
+Structural-1/5.15.10.24/explotwidget.cpp
+Structural-1/5.15.10.24/explotwidget.h
+Structural-1/5.15.10.24/mycheckbox.cpp
+Structural-1/5.15.10.24/mycheckbox.h
+Structural-1/5.15.10.24/mycombobox.cpp
+Structural-1/5.15.10.24/mycombobox.h
+Structural-1/5.15.10.24/mygroup.cpp
+Structural-1/5.15.10.24/mygroup.h
+Structural-1/5.15.10.24/mylayerwnd.cpp
+Structural-1/5.15.10.24/mylayerwnd.h
+Structural-1/5.15.10.24/mylineedit.cpp
+Structural-1/5.15.10.24/mylineedit.h
+Structural-1/5.15.10.24/mymeasureparameter.cpp
+Structural-1/5.15.10.24/mymeasureparameter.h
+Structural-1/5.15.10.24/myradiobutton.cpp
+Structural-1/5.15.10.24/myradiobutton.h
+Structural-1/5.15.10.24/mytextreportwidget.cpp
+Structural-1/5.15.10.24/mytextreportwidget.h
+Structural-1/5.15.10.24/qsinglelinewidget.cpp
+Structural-1/5.15.10.24/qsinglelinewidget.h
+Structural-1/5.15.10.24/structdef.h
+Structural-1/5.15.10.24/structuraldata.cpp
+Structural-1/5.15.10.24/structuraldata.h
+Structural-1/5.15.10.24/structuralwidget.cpp
+Structural-1/5.15.10.24/structuralwidget.h
+Structural-1/5.15.10.24/structuralwidget.ui
+Structural-1/5.15.10.24/wndsingle.cpp
+Structural-1/5.15.10.24/wndsingle.h
+Structural-1/5.15.16.51/CLabelSplitLayout.cpp
+Structural-1/5.15.16.51/CLabelSplitLayout.h
+Structural-1/5.15.16.51/clickablelabel.cpp
+Structural-1/5.15.16.51/clickablelabel.h
+Structural-1/5.15.16.51/contrl_center.cpp
+Structural-1/5.15.16.51/contrl_center.h
+Structural-1/5.15.16.51/ctemplatemanage.cpp
+Structural-1/5.15.16.51/ctemplatemanage.h
+Structural-1/5.15.16.51/explotwidget.cpp
+Structural-1/5.15.16.51/explotwidget.h
+Structural-1/5.15.16.51/mycheckbox.cpp
+Structural-1/5.15.16.51/mycheckbox.h
+Structural-1/5.15.16.51/mycombobox.cpp
+Structural-1/5.15.16.51/mycombobox.h
+Structural-1/5.15.16.51/mygroup.cpp
+Structural-1/5.15.16.51/mygroup.h
+Structural-1/5.15.16.51/mylayerwnd.cpp
+Structural-1/5.15.16.51/mylayerwnd.h
+Structural-1/5.15.16.51/mylineedit.cpp
+Structural-1/5.15.16.51/mylineedit.h
+Structural-1/5.15.16.51/mymeasureparameter.cpp
+Structural-1/5.15.16.51/mymeasureparameter.h
+Structural-1/5.15.16.51/myradiobutton.cpp
+Structural-1/5.15.16.51/myradiobutton.h
+Structural-1/5.15.16.51/mytextreportwidget.cpp
+Structural-1/5.15.16.51/mytextreportwidget.h
+Structural-1/5.15.16.51/qsinglelinewidget.cpp
+Structural-1/5.15.16.51/qsinglelinewidget.h
+Structural-1/5.15.16.51/structdef.h
+Structural-1/5.15.16.51/structuraldata.cpp
+Structural-1/5.15.16.51/structuraldata.h
+Structural-1/5.15.16.51/structuralwidget.cpp
+Structural-1/5.15.16.51/structuralwidget.h
+Structural-1/5.15.16.51/structuralwidget.ui
+Structural-1/5.15.16.51/wndsingle.cpp
+Structural-1/5.15.16.51/wndsingle.h
+Structural-1/5.16.13.43/CLabelSplitLayout.cpp
+Structural-1/5.16.13.43/CLabelSplitLayout.h
+Structural-1/5.16.13.43/clickablelabel.cpp
+Structural-1/5.16.13.43/clickablelabel.h
+Structural-1/5.16.13.43/contrl_center.cpp
+Structural-1/5.16.13.43/contrl_center.h
+Structural-1/5.16.13.43/ctemplatemanage.cpp
+Structural-1/5.16.13.43/ctemplatemanage.h
+Structural-1/5.16.13.43/explotwidget.cpp
+Structural-1/5.16.13.43/explotwidget.h
+Structural-1/5.16.13.43/mycheckbox.cpp
+Structural-1/5.16.13.43/mycheckbox.h
+Structural-1/5.16.13.43/mycombobox.cpp
+Structural-1/5.16.13.43/mycombobox.h
+Structural-1/5.16.13.43/mygroup.cpp
+Structural-1/5.16.13.43/mygroup.h
+Structural-1/5.16.13.43/mylayerwnd.cpp
+Structural-1/5.16.13.43/mylayerwnd.h
+Structural-1/5.16.13.43/mylineedit.cpp
+Structural-1/5.16.13.43/mylineedit.h
+Structural-1/5.16.13.43/mymeasureparameter.cpp
+Structural-1/5.16.13.43/mymeasureparameter.h
+Structural-1/5.16.13.43/myradiobutton.cpp
+Structural-1/5.16.13.43/myradiobutton.h
+Structural-1/5.16.13.43/mytextreportwidget.cpp
+Structural-1/5.16.13.43/mytextreportwidget.h
+Structural-1/5.16.13.43/qsinglelinewidget.cpp
+Structural-1/5.16.13.43/qsinglelinewidget.h
+Structural-1/5.16.13.43/structdef.h
+Structural-1/5.16.13.43/structuraldata.cpp
+Structural-1/5.16.13.43/structuraldata.h
+Structural-1/5.16.13.43/structuralwidget.cpp
+Structural-1/5.16.13.43/structuralwidget.h
+Structural-1/5.16.13.43/structuralwidget.ui
+Structural-1/5.16.13.43/wndsingle.cpp
+Structural-1/5.16.13.43/wndsingle.h
+Structural-1/5.17.16.13/.qmake.stash
+Structural-1/5.17.16.13/1715837673002.png
+Structural-1/5.17.16.13/CLabelSplitLayout.cpp
+Structural-1/5.17.16.13/CLabelSplitLayout.h
+Structural-1/5.17.16.13/clickablelabel.cpp
+Structural-1/5.17.16.13/clickablelabel.h
+Structural-1/5.17.16.13/CNetWork.cpp
+Structural-1/5.17.16.13/CNetWork.h
+Structural-1/5.17.16.13/cnetworkaccessmanager.cpp
+Structural-1/5.17.16.13/cnetworkaccessmanager.h
+Structural-1/5.17.16.13/contrl_center.cpp
+Structural-1/5.17.16.13/contrl_center.h
+Structural-1/5.17.16.13/ctemplatemanage.cpp
+Structural-1/5.17.16.13/ctemplatemanage.h
+Structural-1/5.17.16.13/explotwidget.cpp
+Structural-1/5.17.16.13/explotwidget.h
+Structural-1/5.17.16.13/ExplotWidget1715837766181.png
+Structural-1/5.17.16.13/main.cpp
+Structural-1/5.17.16.13/mainwindow.cpp
+Structural-1/5.17.16.13/mainwindow.h
+Structural-1/5.17.16.13/mainwindow.ui
+Structural-1/5.17.16.13/mycheckbox.cpp
+Structural-1/5.17.16.13/mycheckbox.h
+Structural-1/5.17.16.13/mycombobox.cpp
+Structural-1/5.17.16.13/mycombobox.h
+Structural-1/5.17.16.13/mygroup.cpp
+Structural-1/5.17.16.13/mygroup.h
+Structural-1/5.17.16.13/mylayerwnd.cpp
+Structural-1/5.17.16.13/mylayerwnd.h
+Structural-1/5.17.16.13/mylineedit.cpp
+Structural-1/5.17.16.13/mylineedit.h
+Structural-1/5.17.16.13/mymeasureparameter.cpp
+Structural-1/5.17.16.13/mymeasureparameter.h
+Structural-1/5.17.16.13/myradiobutton.cpp
+Structural-1/5.17.16.13/myradiobutton.h
+Structural-1/5.17.16.13/mytextreportwidget.cpp
+Structural-1/5.17.16.13/mytextreportwidget.h
+Structural-1/5.17.16.13/qsinglelinewidget.cpp
+Structural-1/5.17.16.13/qsinglelinewidget.h
+Structural-1/5.17.16.13/structdef.h
+Structural-1/5.17.16.13/Structural.pro
+Structural-1/5.17.16.13/Structural.pro.user
+Structural-1/5.17.16.13/Structural.pro.user.4b927d9
+Structural-1/5.17.16.13/Structural.qtvscr
+Structural-1/5.17.16.13/Structural.sln
+Structural-1/5.17.16.13/Structural.vcxproj
+Structural-1/5.17.16.13/Structural.vcxproj.filters
+Structural-1/5.17.16.13/Structural.vcxproj.user
+Structural-1/5.17.16.13/structuraldata.cpp
+Structural-1/5.17.16.13/structuraldata.h
+Structural-1/5.17.16.13/structuralwidget.cpp
+Structural-1/5.17.16.13/structuralwidget.h
+Structural-1/5.17.16.13/structuralwidget.ui
+Structural-1/5.17.16.13/ui_mainwindow.h
+Structural-1/5.17.16.13/ui_structuralwidget.h
+Structural-1/5.17.16.13/vc140.pdb
+Structural-1/5.17.16.13/wndsingle.cpp
+Structural-1/5.17.16.13/wndsingle.h
+Structural-1/5.20.11.25/.qmake.stash
+Structural-1/5.20.11.25/1715837673002.png
+Structural-1/5.20.11.25/CLabelSplitLayout.cpp
+Structural-1/5.20.11.25/CLabelSplitLayout.h
+Structural-1/5.20.11.25/clickablelabel.cpp
+Structural-1/5.20.11.25/clickablelabel.h
+Structural-1/5.20.11.25/CNetWork.cpp
+Structural-1/5.20.11.25/CNetWork.h
+Structural-1/5.20.11.25/cnetworkaccessmanager.cpp
+Structural-1/5.20.11.25/cnetworkaccessmanager.h
+Structural-1/5.20.11.25/contrl_center.cpp
+Structural-1/5.20.11.25/contrl_center.h
+Structural-1/5.20.11.25/ctemplatemanage.cpp
+Structural-1/5.20.11.25/ctemplatemanage.h
+Structural-1/5.20.11.25/explotwidget.cpp
+Structural-1/5.20.11.25/explotwidget.h
+Structural-1/5.20.11.25/ExplotWidget1715837766181.png
+Structural-1/5.20.11.25/main.cpp
+Structural-1/5.20.11.25/mainwindow.cpp
+Structural-1/5.20.11.25/mainwindow.h
+Structural-1/5.20.11.25/mainwindow.ui
+Structural-1/5.20.11.25/mycheckbox.cpp
+Structural-1/5.20.11.25/mycheckbox.h
+Structural-1/5.20.11.25/mycombobox.cpp
+Structural-1/5.20.11.25/mycombobox.h
+Structural-1/5.20.11.25/mygroup.cpp
+Structural-1/5.20.11.25/mygroup.h
+Structural-1/5.20.11.25/mylayerwnd.cpp
+Structural-1/5.20.11.25/mylayerwnd.h
+Structural-1/5.20.11.25/mylineedit.cpp
+Structural-1/5.20.11.25/mylineedit.h
+Structural-1/5.20.11.25/mymeasureparameter.cpp
+Structural-1/5.20.11.25/mymeasureparameter.h
+Structural-1/5.20.11.25/myradiobutton.cpp
+Structural-1/5.20.11.25/myradiobutton.h
+Structural-1/5.20.11.25/mytextreportwidget.cpp
+Structural-1/5.20.11.25/mytextreportwidget.h
+Structural-1/5.20.11.25/qsinglelinewidget.cpp
+Structural-1/5.20.11.25/qsinglelinewidget.h
+Structural-1/5.20.11.25/structdef.h
+Structural-1/5.20.11.25/Structural.pro
+Structural-1/5.20.11.25/Structural.pro.user
+Structural-1/5.20.11.25/Structural.pro.user.4b927d9
+Structural-1/5.20.11.25/Structural.qtvscr
+Structural-1/5.20.11.25/Structural.sln
+Structural-1/5.20.11.25/Structural.vcxproj
+Structural-1/5.20.11.25/Structural.vcxproj.filters
+Structural-1/5.20.11.25/Structural.vcxproj.user
+Structural-1/5.20.11.25/structuraldata.cpp
+Structural-1/5.20.11.25/structuraldata.h
+Structural-1/5.20.11.25/structuralwidget.cpp
+Structural-1/5.20.11.25/structuralwidget.h
+Structural-1/5.20.11.25/structuralwidget.ui
+Structural-1/5.20.11.25/ui_mainwindow.h
+Structural-1/5.20.11.25/ui_structuralwidget.h
+Structural-1/5.20.11.25/vc140.pdb
+Structural-1/5.20.11.25/wndsingle.cpp
+Structural-1/5.20.11.25/wndsingle.h
+Structural-1/5.20.15.50/CLabelSplitLayout.cpp
+Structural-1/5.20.15.50/CLabelSplitLayout.h
+Structural-1/5.20.15.50/clickablelabel.cpp
+Structural-1/5.20.15.50/clickablelabel.h
+Structural-1/5.20.15.50/contrl_center.cpp
+Structural-1/5.20.15.50/contrl_center.h
+Structural-1/5.20.15.50/ctemplatemanage.cpp
+Structural-1/5.20.15.50/ctemplatemanage.h
+Structural-1/5.20.15.50/explotwidget.cpp
+Structural-1/5.20.15.50/explotwidget.h
+Structural-1/5.20.15.50/mycheckbox.cpp
+Structural-1/5.20.15.50/mycheckbox.h
+Structural-1/5.20.15.50/mycombobox.cpp
+Structural-1/5.20.15.50/mycombobox.h
+Structural-1/5.20.15.50/mygroup.cpp
+Structural-1/5.20.15.50/mygroup.h
+Structural-1/5.20.15.50/mylayerwnd.cpp
+Structural-1/5.20.15.50/mylayerwnd.h
+Structural-1/5.20.15.50/mylineedit.cpp
+Structural-1/5.20.15.50/mylineedit.h
+Structural-1/5.20.15.50/mymeasureparameter.cpp
+Structural-1/5.20.15.50/mymeasureparameter.h
+Structural-1/5.20.15.50/myradiobutton.cpp
+Structural-1/5.20.15.50/myradiobutton.h
+Structural-1/5.20.15.50/mytextreportwidget.cpp
+Structural-1/5.20.15.50/mytextreportwidget.h
+Structural-1/5.20.15.50/qsinglelinewidget.cpp
+Structural-1/5.20.15.50/qsinglelinewidget.h
+Structural-1/5.20.15.50/structdef.h
+Structural-1/5.20.15.50/structuraldata.cpp
+Structural-1/5.20.15.50/structuraldata.h
+Structural-1/5.20.15.50/structuralwidget.cpp
+Structural-1/5.20.15.50/structuralwidget.h
+Structural-1/5.20.15.50/structuralwidget.ui
+Structural-1/5.20.15.50/wndsingle.cpp
+Structural-1/5.20.15.50/wndsingle.h
+Structural-1/5.21.9.54/.qmake.stash
+Structural-1/5.21.9.54/1715837673002.png
+Structural-1/5.21.9.54/CLabelSplitLayout.cpp
+Structural-1/5.21.9.54/CLabelSplitLayout.h
+Structural-1/5.21.9.54/clickablelabel.cpp
+Structural-1/5.21.9.54/clickablelabel.h
+Structural-1/5.21.9.54/CNetWork.cpp
+Structural-1/5.21.9.54/CNetWork.h
+Structural-1/5.21.9.54/cnetworkaccessmanager.cpp
+Structural-1/5.21.9.54/cnetworkaccessmanager.h
+Structural-1/5.21.9.54/contrl_center.cpp
+Structural-1/5.21.9.54/contrl_center.h
+Structural-1/5.21.9.54/ctemplatemanage.cpp
+Structural-1/5.21.9.54/ctemplatemanage.h
+Structural-1/5.21.9.54/explotwidget.cpp
+Structural-1/5.21.9.54/explotwidget.h
+Structural-1/5.21.9.54/main.cpp
+Structural-1/5.21.9.54/mainwindow.cpp
+Structural-1/5.21.9.54/mainwindow.h
+Structural-1/5.21.9.54/mainwindow.ui
+Structural-1/5.21.9.54/mycheckbox.cpp
+Structural-1/5.21.9.54/mycheckbox.h
+Structural-1/5.21.9.54/mycombobox.cpp
+Structural-1/5.21.9.54/mycombobox.h
+Structural-1/5.21.9.54/mygroup.cpp
+Structural-1/5.21.9.54/mygroup.h
+Structural-1/5.21.9.54/mylayerwnd.cpp
+Structural-1/5.21.9.54/mylayerwnd.h
+Structural-1/5.21.9.54/mylineedit.cpp
+Structural-1/5.21.9.54/mylineedit.h
+Structural-1/5.21.9.54/mymeasureparameter.cpp
+Structural-1/5.21.9.54/mymeasureparameter.h
+Structural-1/5.21.9.54/myradiobutton.cpp
+Structural-1/5.21.9.54/myradiobutton.h
+Structural-1/5.21.9.54/mytextreportwidget.cpp
+Structural-1/5.21.9.54/mytextreportwidget.h
+Structural-1/5.21.9.54/qsinglelinewidget.cpp
+Structural-1/5.21.9.54/qsinglelinewidget.h
+Structural-1/5.21.9.54/structdef.h
+Structural-1/5.21.9.54/Structural.pro
+Structural-1/5.21.9.54/Structural.pro.user
+Structural-1/5.21.9.54/Structural.pro.user.4b927d9
+Structural-1/5.21.9.54/Structural.qtvscr
+Structural-1/5.21.9.54/Structural.sln
+Structural-1/5.21.9.54/Structural.vcxproj
+Structural-1/5.21.9.54/Structural.vcxproj.filters
+Structural-1/5.21.9.54/Structural.vcxproj.user
+Structural-1/5.21.9.54/structuraldata.cpp
+Structural-1/5.21.9.54/structuraldata.h
+Structural-1/5.21.9.54/structuralwidget.cpp
+Structural-1/5.21.9.54/structuralwidget.h
+Structural-1/5.21.9.54/structuralwidget.ui
+Structural-1/5.21.9.54/ui_mainwindow.h
+Structural-1/5.21.9.54/ui_structuralwidget.h
+Structural-1/5.21.9.54/vc140.pdb
+Structural-1/5.21.9.54/wndsingle.cpp
+Structural-1/5.21.9.54/wndsingle.h
+Structural-1/5.22.13.31/.qmake.stash
+Structural-1/5.22.13.31/5.20.15.50.zip
+Structural-1/5.22.13.31/1715837673002.png
+Structural-1/5.22.13.31/CLabelSplitLayout.cpp
+Structural-1/5.22.13.31/CLabelSplitLayout.h
+Structural-1/5.22.13.31/clickablelabel.cpp
+Structural-1/5.22.13.31/clickablelabel.h
+Structural-1/5.22.13.31/CNetWork.cpp
+Structural-1/5.22.13.31/CNetWork.h
+Structural-1/5.22.13.31/cnetworkaccessmanager.cpp
+Structural-1/5.22.13.31/cnetworkaccessmanager.h
+Structural-1/5.22.13.31/contrl_center.cpp
+Structural-1/5.22.13.31/contrl_center.h
+Structural-1/5.22.13.31/ctemplatemanage.cpp
+Structural-1/5.22.13.31/ctemplatemanage.h
+Structural-1/5.22.13.31/explotwidget.cpp
+Structural-1/5.22.13.31/explotwidget.h
+Structural-1/5.22.13.31/ExplotWidget1715837766181.png
+Structural-1/5.22.13.31/main.cpp
+Structural-1/5.22.13.31/mainwindow.cpp
+Structural-1/5.22.13.31/mainwindow.h
+Structural-1/5.22.13.31/mainwindow.ui
+Structural-1/5.22.13.31/mycheckbox.cpp
+Structural-1/5.22.13.31/mycheckbox.h
+Structural-1/5.22.13.31/mycombobox.cpp
+Structural-1/5.22.13.31/mycombobox.h
+Structural-1/5.22.13.31/mygroup.cpp
+Structural-1/5.22.13.31/mygroup.h
+Structural-1/5.22.13.31/mylayerwnd.cpp
+Structural-1/5.22.13.31/mylayerwnd.h
+Structural-1/5.22.13.31/mylineedit.cpp
+Structural-1/5.22.13.31/mylineedit.h
+Structural-1/5.22.13.31/mymeasureparameter.cpp
+Structural-1/5.22.13.31/mymeasureparameter.h
+Structural-1/5.22.13.31/mypushbutton.cpp
+Structural-1/5.22.13.31/mypushbutton.h
+Structural-1/5.22.13.31/myradiobutton.cpp
+Structural-1/5.22.13.31/myradiobutton.h
+Structural-1/5.22.13.31/mytextreportwidget.cpp
+Structural-1/5.22.13.31/mytextreportwidget.h
+Structural-1/5.22.13.31/qsinglelinewidget.cpp
+Structural-1/5.22.13.31/qsinglelinewidget.h
+Structural-1/5.22.13.31/structdef.h
+Structural-1/5.22.13.31/Structural.pro
+Structural-1/5.22.13.31/Structural.pro.user
+Structural-1/5.22.13.31/Structural.pro.user.4b927d9
+Structural-1/5.22.13.31/Structural.qtvscr
+Structural-1/5.22.13.31/Structural.sln
+Structural-1/5.22.13.31/Structural.vcxproj
+Structural-1/5.22.13.31/Structural.vcxproj.filters
+Structural-1/5.22.13.31/Structural.vcxproj.user
+Structural-1/5.22.13.31/structuraldata.cpp
+Structural-1/5.22.13.31/structuraldata.h
+Structural-1/5.22.13.31/structuralwidget.cpp
+Structural-1/5.22.13.31/structuralwidget.h
+Structural-1/5.22.13.31/structuralwidget.ui
+Structural-1/5.22.13.31/ui_mainwindow.h
+Structural-1/5.22.13.31/ui_structuralwidget.h
+Structural-1/5.22.13.31/vc140.pdb
+Structural-1/5.22.13.31/wndsingle.cpp
+Structural-1/5.22.13.31/wndsingle.h
+Structural-1/5.22.14.46/.qmake.stash
+Structural-1/5.22.14.46/5.20.15.50.zip
+Structural-1/5.22.14.46/1715837673002.png
+Structural-1/5.22.14.46/CLabelSplitLayout.cpp
+Structural-1/5.22.14.46/CLabelSplitLayout.h
+Structural-1/5.22.14.46/clickablelabel.cpp
+Structural-1/5.22.14.46/clickablelabel.h
+Structural-1/5.22.14.46/CNetWork.cpp
+Structural-1/5.22.14.46/CNetWork.h
+Structural-1/5.22.14.46/cnetworkaccessmanager.cpp
+Structural-1/5.22.14.46/cnetworkaccessmanager.h
+Structural-1/5.22.14.46/contrl_center.cpp
+Structural-1/5.22.14.46/contrl_center.h
+Structural-1/5.22.14.46/ctemplatemanage.cpp
+Structural-1/5.22.14.46/ctemplatemanage.h
+Structural-1/5.22.14.46/explotwidget.cpp
+Structural-1/5.22.14.46/explotwidget.h
+Structural-1/5.22.14.46/ExplotWidget1715837766181.png
+Structural-1/5.22.14.46/main.cpp
+Structural-1/5.22.14.46/mainwindow.cpp
+Structural-1/5.22.14.46/mainwindow.h
+Structural-1/5.22.14.46/mainwindow.ui
+Structural-1/5.22.14.46/mycheckbox.cpp
+Structural-1/5.22.14.46/mycheckbox.h
+Structural-1/5.22.14.46/mycombobox.cpp
+Structural-1/5.22.14.46/mycombobox.h
+Structural-1/5.22.14.46/mygroup.cpp
+Structural-1/5.22.14.46/mygroup.h
+Structural-1/5.22.14.46/mylayerwnd.cpp
+Structural-1/5.22.14.46/mylayerwnd.h
+Structural-1/5.22.14.46/mylineedit.cpp
+Structural-1/5.22.14.46/mylineedit.h
+Structural-1/5.22.14.46/mymeasureparameter.cpp
+Structural-1/5.22.14.46/mymeasureparameter.h
+Structural-1/5.22.14.46/mypushbutton.cpp
+Structural-1/5.22.14.46/mypushbutton.h
+Structural-1/5.22.14.46/myradiobutton.cpp
+Structural-1/5.22.14.46/myradiobutton.h
+Structural-1/5.22.14.46/mytextreportwidget.cpp
+Structural-1/5.22.14.46/mytextreportwidget.h
+Structural-1/5.22.14.46/qsinglelinewidget.cpp
+Structural-1/5.22.14.46/qsinglelinewidget.h
+Structural-1/5.22.14.46/structdef.h
+Structural-1/5.22.14.46/Structural.pro
+Structural-1/5.22.14.46/Structural.pro.user
+Structural-1/5.22.14.46/Structural.pro.user.4b927d9
+Structural-1/5.22.14.46/Structural.qtvscr
+Structural-1/5.22.14.46/Structural.sln
+Structural-1/5.22.14.46/Structural.vcxproj
+Structural-1/5.22.14.46/Structural.vcxproj.filters
+Structural-1/5.22.14.46/Structural.vcxproj.user
+Structural-1/5.22.14.46/structuraldata.cpp
+Structural-1/5.22.14.46/structuraldata.h
+Structural-1/5.22.14.46/structuralwidget.cpp
+Structural-1/5.22.14.46/structuralwidget.h
+Structural-1/5.22.14.46/structuralwidget.ui
+Structural-1/5.22.14.46/ui_mainwindow.h
+Structural-1/5.22.14.46/ui_structuralwidget.h
+Structural-1/5.22.14.46/vc140.pdb
+Structural-1/5.22.14.46/wndsingle.cpp
+Structural-1/5.22.14.46/wndsingle.h
+Structural-1/5.24.14.17/CLabelSplitLayout.cpp
+Structural-1/5.24.14.17/CLabelSplitLayout.h
+Structural-1/5.24.14.17/clickablelabel.cpp
+Structural-1/5.24.14.17/clickablelabel.h
+Structural-1/5.24.14.17/contrl_center.cpp
+Structural-1/5.24.14.17/contrl_center.h
+Structural-1/5.24.14.17/ctemplatemanage.cpp
+Structural-1/5.24.14.17/ctemplatemanage.h
+Structural-1/5.24.14.17/explotwidget.cpp
+Structural-1/5.24.14.17/explotwidget.h
+Structural-1/5.24.14.17/mycheckbox.cpp
+Structural-1/5.24.14.17/mycheckbox.h
+Structural-1/5.24.14.17/mycombobox.cpp
+Structural-1/5.24.14.17/mycombobox.h
+Structural-1/5.24.14.17/mygroup.cpp
+Structural-1/5.24.14.17/mygroup.h
+Structural-1/5.24.14.17/mylayerwnd.cpp
+Structural-1/5.24.14.17/mylayerwnd.h
+Structural-1/5.24.14.17/mylineedit.cpp
+Structural-1/5.24.14.17/mylineedit.h
+Structural-1/5.24.14.17/mymeasureparameter.cpp
+Structural-1/5.24.14.17/mymeasureparameter.h
+Structural-1/5.24.14.17/mypushbutton.cpp
+Structural-1/5.24.14.17/mypushbutton.h
+Structural-1/5.24.14.17/myradiobutton.cpp
+Structural-1/5.24.14.17/myradiobutton.h
+Structural-1/5.24.14.17/mytextreportwidget.cpp
+Structural-1/5.24.14.17/mytextreportwidget.h
+Structural-1/5.24.14.17/qsinglelinewidget.cpp
+Structural-1/5.24.14.17/qsinglelinewidget.h
+Structural-1/5.24.14.17/structdef.h
+Structural-1/5.24.14.17/structuraldata.cpp
+Structural-1/5.24.14.17/structuraldata.h
+Structural-1/5.24.14.17/structuralwidget.cpp
+Structural-1/5.24.14.17/structuralwidget.h
+Structural-1/5.24.14.17/structuralwidget.ui
+Structural-1/5.24.14.17/wndsingle.cpp
+Structural-1/5.24.14.17/wndsingle.h
+Structural-1/5.24.15.15/CLabelSplitLayout.cpp
+Structural-1/5.24.15.15/CLabelSplitLayout.h
+Structural-1/5.24.15.15/clickablelabel.cpp
+Structural-1/5.24.15.15/clickablelabel.h
+Structural-1/5.24.15.15/contrl_center.cpp
+Structural-1/5.24.15.15/contrl_center.h
+Structural-1/5.24.15.15/ctemplatemanage.cpp
+Structural-1/5.24.15.15/ctemplatemanage.h
+Structural-1/5.24.15.15/explotwidget.cpp
+Structural-1/5.24.15.15/explotwidget.h
+Structural-1/5.24.15.15/mycheckbox.cpp
+Structural-1/5.24.15.15/mycheckbox.h
+Structural-1/5.24.15.15/mycombobox.cpp
+Structural-1/5.24.15.15/mycombobox.h
+Structural-1/5.24.15.15/mygroup.cpp
+Structural-1/5.24.15.15/mygroup.h
+Structural-1/5.24.15.15/mylayerwnd.cpp
+Structural-1/5.24.15.15/mylayerwnd.h
+Structural-1/5.24.15.15/mylineedit.cpp
+Structural-1/5.24.15.15/mylineedit.h
+Structural-1/5.24.15.15/mymeasureparameter.cpp
+Structural-1/5.24.15.15/mymeasureparameter.h
+Structural-1/5.24.15.15/mypushbutton.cpp
+Structural-1/5.24.15.15/mypushbutton.h
+Structural-1/5.24.15.15/myradiobutton.cpp
+Structural-1/5.24.15.15/myradiobutton.h
+Structural-1/5.24.15.15/mytextreportwidget.cpp
+Structural-1/5.24.15.15/mytextreportwidget.h
+Structural-1/5.24.15.15/qsinglelinewidget.cpp
+Structural-1/5.24.15.15/qsinglelinewidget.h
+Structural-1/5.24.15.15/structdef.h
+Structural-1/5.24.15.15/structuraldata.cpp
+Structural-1/5.24.15.15/structuraldata.h
+Structural-1/5.24.15.15/structuralwidget.cpp
+Structural-1/5.24.15.15/structuralwidget.h
+Structural-1/5.24.15.15/structuralwidget.ui
+Structural-1/5.24.15.15/wndsingle.cpp
+Structural-1/5.24.15.15/wndsingle.h
+Structural-1/5.27.8.54/.qmake.stash
+Structural-1/5.27.8.54/1715837673002.png
+Structural-1/5.27.8.54/CLabelSplitLayout.cpp
+Structural-1/5.27.8.54/CLabelSplitLayout.h
+Structural-1/5.27.8.54/clickablelabel.cpp
+Structural-1/5.27.8.54/clickablelabel.h
+Structural-1/5.27.8.54/CNetWork.cpp
+Structural-1/5.27.8.54/CNetWork.h
+Structural-1/5.27.8.54/cnetworkaccessmanager.cpp
+Structural-1/5.27.8.54/cnetworkaccessmanager.h
+Structural-1/5.27.8.54/contrl_center.cpp
+Structural-1/5.27.8.54/contrl_center.h
+Structural-1/5.27.8.54/ctemplatemanage.cpp
+Structural-1/5.27.8.54/ctemplatemanage.h
+Structural-1/5.27.8.54/explotwidget.cpp
+Structural-1/5.27.8.54/explotwidget.h
+Structural-1/5.27.8.54/ExplotWidget1715837766181.png
+Structural-1/5.27.8.54/main.cpp
+Structural-1/5.27.8.54/mainwindow.cpp
+Structural-1/5.27.8.54/mainwindow.h
+Structural-1/5.27.8.54/mainwindow.ui
+Structural-1/5.27.8.54/mycheckbox.cpp
+Structural-1/5.27.8.54/mycheckbox.h
+Structural-1/5.27.8.54/mycombobox.cpp
+Structural-1/5.27.8.54/mycombobox.h
+Structural-1/5.27.8.54/mygroup.cpp
+Structural-1/5.27.8.54/mygroup.h
+Structural-1/5.27.8.54/mylayerwnd.cpp
+Structural-1/5.27.8.54/mylayerwnd.h
+Structural-1/5.27.8.54/mylineedit.cpp
+Structural-1/5.27.8.54/mylineedit.h
+Structural-1/5.27.8.54/mymeasureparameter.cpp
+Structural-1/5.27.8.54/mymeasureparameter.h
+Structural-1/5.27.8.54/mypushbutton.cpp
+Structural-1/5.27.8.54/mypushbutton.h
+Structural-1/5.27.8.54/myradiobutton.cpp
+Structural-1/5.27.8.54/myradiobutton.h
+Structural-1/5.27.8.54/mytextreportwidget.cpp
+Structural-1/5.27.8.54/mytextreportwidget.h
+Structural-1/5.27.8.54/qsinglelinewidget.cpp
+Structural-1/5.27.8.54/qsinglelinewidget.h
+Structural-1/5.27.8.54/structdef.h
+Structural-1/5.27.8.54/Structural.pro
+Structural-1/5.27.8.54/Structural.pro.user
+Structural-1/5.27.8.54/Structural.pro.user.4b927d9
+Structural-1/5.27.8.54/Structural.qtvscr
+Structural-1/5.27.8.54/Structural.sln
+Structural-1/5.27.8.54/Structural.vcxproj
+Structural-1/5.27.8.54/Structural.vcxproj.filters
+Structural-1/5.27.8.54/Structural.vcxproj.user
+Structural-1/5.27.8.54/structuraldata.cpp
+Structural-1/5.27.8.54/structuraldata.h
+Structural-1/5.27.8.54/structuralwidget.cpp
+Structural-1/5.27.8.54/structuralwidget.h
+Structural-1/5.27.8.54/structuralwidget.ui
+Structural-1/5.27.8.54/ui_mainwindow.h
+Structural-1/5.27.8.54/ui_structuralwidget.h
+Structural-1/5.27.8.54/vc140.pdb
+Structural-1/5.27.8.54/wndsingle.cpp
+Structural-1/5.27.8.54/wndsingle.h
+Structural-1/5.28.9.42/1715837673002.png
+Structural-1/5.28.9.42/CLabelSplitLayout.cpp
+Structural-1/5.28.9.42/CLabelSplitLayout.h
+Structural-1/5.28.9.42/clickablelabel.cpp
+Structural-1/5.28.9.42/clickablelabel.h
+Structural-1/5.28.9.42/CNetWork.cpp
+Structural-1/5.28.9.42/CNetWork.h
+Structural-1/5.28.9.42/cnetworkaccessmanager.cpp
+Structural-1/5.28.9.42/cnetworkaccessmanager.h
+Structural-1/5.28.9.42/contrl_center.cpp
+Structural-1/5.28.9.42/contrl_center.h
+Structural-1/5.28.9.42/ctemplatemanage.cpp
+Structural-1/5.28.9.42/ctemplatemanage.h
+Structural-1/5.28.9.42/explotwidget.cpp
+Structural-1/5.28.9.42/explotwidget.h
+Structural-1/5.28.9.42/ExplotWidget1715837766181.png
+Structural-1/5.28.9.42/main.cpp
+Structural-1/5.28.9.42/mainwindow.cpp
+Structural-1/5.28.9.42/mainwindow.h
+Structural-1/5.28.9.42/mainwindow.ui
+Structural-1/5.28.9.42/mycheckbox.cpp
+Structural-1/5.28.9.42/mycheckbox.h
+Structural-1/5.28.9.42/mycombobox.cpp
+Structural-1/5.28.9.42/mycombobox.h
+Structural-1/5.28.9.42/mygroup.cpp
+Structural-1/5.28.9.42/mygroup.h
+Structural-1/5.28.9.42/mylayerwnd.cpp
+Structural-1/5.28.9.42/mylayerwnd.h
+Structural-1/5.28.9.42/mylineedit.cpp
+Structural-1/5.28.9.42/mylineedit.h
+Structural-1/5.28.9.42/mymeasureparameter.cpp
+Structural-1/5.28.9.42/mymeasureparameter.h
+Structural-1/5.28.9.42/mypushbutton.cpp
+Structural-1/5.28.9.42/mypushbutton.h
+Structural-1/5.28.9.42/myradiobutton.cpp
+Structural-1/5.28.9.42/myradiobutton.h
+Structural-1/5.28.9.42/mytextreportwidget.cpp
+Structural-1/5.28.9.42/mytextreportwidget.h
+Structural-1/5.28.9.42/qsinglelinewidget.cpp
+Structural-1/5.28.9.42/qsinglelinewidget.h
+Structural-1/5.28.9.42/structdef.h
+Structural-1/5.28.9.42/Structural.pro
+Structural-1/5.28.9.42/Structural.pro.user
+Structural-1/5.28.9.42/Structural.pro.user.4b927d9
+Structural-1/5.28.9.42/Structural.qtvscr
+Structural-1/5.28.9.42/Structural.sln
+Structural-1/5.28.9.42/Structural.vcxproj
+Structural-1/5.28.9.42/Structural.vcxproj.filters
+Structural-1/5.28.9.42/Structural.vcxproj.user
+Structural-1/5.28.9.42/structuraldata.cpp
+Structural-1/5.28.9.42/structuraldata.h
+Structural-1/5.28.9.42/structuralwidget.cpp
+Structural-1/5.28.9.42/structuralwidget.h
+Structural-1/5.28.9.42/structuralwidget.ui
+Structural-1/5.28.9.42/ui_mainwindow.h
+Structural-1/5.28.9.42/ui_structuralwidget.h
+Structural-1/5.28.9.42/vc140.pdb
+Structural-1/5.28.9.42/wndsingle.cpp
+Structural-1/5.28.9.42/wndsingle.h
+Structural-1/5.29.9.25/CLabelSplitLayout.cpp
+Structural-1/5.29.9.25/CLabelSplitLayout.h
+Structural-1/5.29.9.25/clickablelabel.cpp
+Structural-1/5.29.9.25/clickablelabel.h
+Structural-1/5.29.9.25/contrl_center.cpp
+Structural-1/5.29.9.25/contrl_center.h
+Structural-1/5.29.9.25/ctemplatemanage.cpp
+Structural-1/5.29.9.25/ctemplatemanage.h
+Structural-1/5.29.9.25/explotwidget.cpp
+Structural-1/5.29.9.25/explotwidget.h
+Structural-1/5.29.9.25/mycheckbox.cpp
+Structural-1/5.29.9.25/mycheckbox.h
+Structural-1/5.29.9.25/mycombobox.cpp
+Structural-1/5.29.9.25/mycombobox.h
+Structural-1/5.29.9.25/mygroup.cpp
+Structural-1/5.29.9.25/mygroup.h
+Structural-1/5.29.9.25/mylayerwnd.cpp
+Structural-1/5.29.9.25/mylayerwnd.h
+Structural-1/5.29.9.25/mylineedit.cpp
+Structural-1/5.29.9.25/mylineedit.h
+Structural-1/5.29.9.25/mymeasureparameter.cpp
+Structural-1/5.29.9.25/mymeasureparameter.h
+Structural-1/5.29.9.25/mypushbutton.cpp
+Structural-1/5.29.9.25/mypushbutton.h
+Structural-1/5.29.9.25/myradiobutton.cpp
+Structural-1/5.29.9.25/myradiobutton.h
+Structural-1/5.29.9.25/mytextreportwidget.cpp
+Structural-1/5.29.9.25/mytextreportwidget.h
+Structural-1/5.29.9.25/qsinglelinewidget.cpp
+Structural-1/5.29.9.25/qsinglelinewidget.h
+Structural-1/5.29.9.25/structdef.h
+Structural-1/5.29.9.25/structuraldata.cpp
+Structural-1/5.29.9.25/structuraldata.h
+Structural-1/5.29.9.25/structuralwidget.cpp
+Structural-1/5.29.9.25/structuralwidget.h
+Structural-1/5.29.9.25/structuralwidget.ui
+Structural-1/5.29.9.25/wndsingle.cpp
+Structural-1/5.29.9.25/wndsingle.h
+Structural-1/5.29.10.25/CLabelSplitLayout.cpp
+Structural-1/5.29.10.25/CLabelSplitLayout.h
+Structural-1/5.29.10.25/clickablelabel.cpp
+Structural-1/5.29.10.25/clickablelabel.h
+Structural-1/5.29.10.25/contrl_center.cpp
+Structural-1/5.29.10.25/contrl_center.h
+Structural-1/5.29.10.25/ctemplatemanage.cpp
+Structural-1/5.29.10.25/ctemplatemanage.h
+Structural-1/5.29.10.25/explotwidget.cpp
+Structural-1/5.29.10.25/explotwidget.h
+Structural-1/5.29.10.25/mycheckbox.cpp
+Structural-1/5.29.10.25/mycheckbox.h
+Structural-1/5.29.10.25/mycombobox.cpp
+Structural-1/5.29.10.25/mycombobox.h
+Structural-1/5.29.10.25/mygroup.cpp
+Structural-1/5.29.10.25/mygroup.h
+Structural-1/5.29.10.25/mylayerwnd.cpp
+Structural-1/5.29.10.25/mylayerwnd.h
+Structural-1/5.29.10.25/mylineedit.cpp
+Structural-1/5.29.10.25/mylineedit.h
+Structural-1/5.29.10.25/mymeasureparameter.cpp
+Structural-1/5.29.10.25/mymeasureparameter.h
+Structural-1/5.29.10.25/mypushbutton.cpp
+Structural-1/5.29.10.25/mypushbutton.h
+Structural-1/5.29.10.25/myradiobutton.cpp
+Structural-1/5.29.10.25/myradiobutton.h
+Structural-1/5.29.10.25/mytextreportwidget.cpp
+Structural-1/5.29.10.25/mytextreportwidget.h
+Structural-1/5.29.10.25/qsinglelinewidget.cpp
+Structural-1/5.29.10.25/qsinglelinewidget.h
+Structural-1/5.29.10.25/structdef.h
+Structural-1/5.29.10.25/structuraldata.cpp
+Structural-1/5.29.10.25/structuraldata.h
+Structural-1/5.29.10.25/structuralwidget.cpp
+Structural-1/5.29.10.25/structuralwidget.h
+Structural-1/5.29.10.25/structuralwidget.ui
+Structural-1/5.29.10.25/wndsingle.cpp
+Structural-1/5.29.10.25/wndsingle.h
+Structural-1/5231402/CLabelSplitLayout.cpp
+Structural-1/5231402/CLabelSplitLayout.h
+Structural-1/5231402/clickablelabel.cpp
+Structural-1/5231402/clickablelabel.h
+Structural-1/5231402/contrl_center.cpp
+Structural-1/5231402/contrl_center.h
+Structural-1/5231402/ctemplatemanage.cpp
+Structural-1/5231402/ctemplatemanage.h
+Structural-1/5231402/explotwidget.cpp
+Structural-1/5231402/explotwidget.h
+Structural-1/5231402/mycheckbox.cpp
+Structural-1/5231402/mycheckbox.h
+Structural-1/5231402/mycombobox.cpp
+Structural-1/5231402/mycombobox.h
+Structural-1/5231402/mygroup.cpp
+Structural-1/5231402/mygroup.h
+Structural-1/5231402/mylayerwnd.cpp
+Structural-1/5231402/mylayerwnd.h
+Structural-1/5231402/mylineedit.cpp
+Structural-1/5231402/mylineedit.h
+Structural-1/5231402/mymeasureparameter.cpp
+Structural-1/5231402/mymeasureparameter.h
+Structural-1/5231402/mypushbutton.cpp
+Structural-1/5231402/mypushbutton.h
+Structural-1/5231402/myradiobutton.cpp
+Structural-1/5231402/myradiobutton.h
+Structural-1/5231402/mytextreportwidget.cpp
+Structural-1/5231402/mytextreportwidget.h
+Structural-1/5231402/qsinglelinewidget.cpp
+Structural-1/5231402/qsinglelinewidget.h
+Structural-1/5231402/structdef.h
+Structural-1/5231402/structuraldata.cpp
+Structural-1/5231402/structuraldata.h
+Structural-1/5231402/structuralwidget.cpp
+Structural-1/5231402/structuralwidget.h
+Structural-1/5231402/structuralwidget.ui
+Structural-1/5231402/wndsingle.cpp
+Structural-1/5231402/wndsingle.h
+Structural-1/Debug/moc_clickablelabel.cpp
+Structural-1/Debug/moc_cnetworkaccessmanager.cpp
+Structural-1/Debug/moc_contrl_center.cpp
+Structural-1/Debug/moc_ctemplatemanage.cpp
+Structural-1/Debug/moc_explotwidget.cpp
+Structural-1/Debug/moc_mainwindow.cpp
+Structural-1/Debug/moc_mycheckbox.cpp
+Structural-1/Debug/moc_mycombobox.cpp
+Structural-1/Debug/moc_mygroup.cpp
+Structural-1/Debug/moc_myradiobutton.cpp
+Structural-1/Debug/moc_mytextreportwidget.cpp
+Structural-1/Debug/moc_predefs.h
+Structural-1/Debug/moc_qsinglelinewidget.cpp
+Structural-1/Debug/moc_structuralwidget.cpp
+Structural-1/Debug/qt_work.log
+Structural-1/Debug/qt.natvis
+Structural-1/Debug/Structural.Build.CppClean.log
+Structural-1/Debug/Structural.exe.recipe
+Structural-1/Debug/Structural.log
+Structural-1/Debug/Structural.pdb
+Structural-1/Debug/Structural.vcxproj.FileListAbsolute.txt
+Structural-1/Debug/vc142.pdb
+Structural-1/Debug/Structural.tlog/CL.command.1.tlog
+Structural-1/Debug/Structural.tlog/CL.read.1.tlog
+Structural-1/Debug/Structural.tlog/CL.write.1.tlog
+Structural-1/Debug/Structural.tlog/CustomBuild.command.1.tlog
+Structural-1/Debug/Structural.tlog/CustomBuild.read.1.tlog
+Structural-1/Debug/Structural.tlog/CustomBuild.write.1.tlog
+Structural-1/Debug/Structural.tlog/link.command.1.tlog
+Structural-1/Debug/Structural.tlog/link.read.1.tlog
+Structural-1/Debug/Structural.tlog/link.write.1.tlog
+Structural-1/Debug/Structural.tlog/moc.read.1u.tlog
+Structural-1/Debug/Structural.tlog/moc.write.1u.tlog
+Structural-1/Debug/Structural.tlog/Structural.lastbuildstate
+Structural-1/Debug/Structural.tlog/Structural.write.1u.tlog
+Structural-1/Debug/Structural.tlog/uic.read.1u.tlog
+Structural-1/Debug/Structural.tlog/uic.write.1u.tlog
+Structural-1/Release/CLabelSplitLayout.nativecodeanalysis.sarif
+Structural-1/Release/clickablelabel.nativecodeanalysis.sarif
+Structural-1/Release/CNetWork.nativecodeanalysis.sarif
+Structural-1/Release/cnetworkaccessmanager.nativecodeanalysis.sarif
+Structural-1/Release/CodeAnalysisResultManifest.txt
+Structural-1/Release/contrl_center.nativecodeanalysis.sarif
+Structural-1/Release/ctemplatemanage.nativecodeanalysis.sarif
+Structural-1/Release/explotwidget.nativecodeanalysis.sarif
+Structural-1/Release/main.nativecodeanalysis.sarif
+Structural-1/Release/mainwindow.nativecodeanalysis.sarif
+Structural-1/Release/moc_clickablelabel.cpp
+Structural-1/Release/moc_clickablelabel.nativecodeanalysis.sarif
+Structural-1/Release/moc_cnetworkaccessmanager.cpp
+Structural-1/Release/moc_cnetworkaccessmanager.nativecodeanalysis.sarif
+Structural-1/Release/moc_contrl_center.cpp
+Structural-1/Release/moc_contrl_center.nativecodeanalysis.sarif
+Structural-1/Release/moc_ctemplatemanage.cpp
+Structural-1/Release/moc_ctemplatemanage.nativecodeanalysis.sarif
+Structural-1/Release/moc_explotwidget.cpp
+Structural-1/Release/moc_explotwidget.nativecodeanalysis.sarif
+Structural-1/Release/moc_mainwindow.cpp
+Structural-1/Release/moc_mainwindow.nativecodeanalysis.sarif
+Structural-1/Release/moc_mycheckbox.cpp
+Structural-1/Release/moc_mycheckbox.nativecodeanalysis.sarif
+Structural-1/Release/moc_mycombobox.cpp
+Structural-1/Release/moc_mycombobox.nativecodeanalysis.sarif
+Structural-1/Release/moc_mygroup.cpp
+Structural-1/Release/moc_mygroup.nativecodeanalysis.sarif
+Structural-1/Release/moc_mypushbutton.cpp
+Structural-1/Release/moc_myradiobutton.cpp
+Structural-1/Release/moc_myradiobutton.nativecodeanalysis.sarif
+Structural-1/Release/moc_mytextreportwidget.cpp
+Structural-1/Release/moc_mytextreportwidget.nativecodeanalysis.sarif
+Structural-1/Release/moc_predefs.h
+Structural-1/Release/moc_qsinglelinewidget.cpp
+Structural-1/Release/moc_qsinglelinewidget.nativecodeanalysis.sarif
+Structural-1/Release/moc_structuralwidget.cpp
+Structural-1/Release/moc_structuralwidget.nativecodeanalysis.sarif
+Structural-1/Release/mycheckbox.nativecodeanalysis.sarif
+Structural-1/Release/mycombobox.nativecodeanalysis.sarif
+Structural-1/Release/mygroup.nativecodeanalysis.sarif
+Structural-1/Release/mylayerwnd.nativecodeanalysis.sarif
+Structural-1/Release/mylineedit.nativecodeanalysis.sarif
+Structural-1/Release/mymeasureparameter.nativecodeanalysis.sarif
+Structural-1/Release/myradiobutton.nativecodeanalysis.sarif
+Structural-1/Release/mytextreportwidget.nativecodeanalysis.sarif
+Structural-1/Release/qsinglelinewidget.nativecodeanalysis.sarif
+Structural-1/Release/qt_work.log
+Structural-1/Release/Structural.Build.CppClean.log
+Structural-1/Release/Structural.exe.recipe
+Structural-1/Release/Structural.log
+Structural-1/Release/Structural.pdb
+Structural-1/Release/Structural.vcxproj.FileListAbsolute.txt
+Structural-1/Release/structuraldata.nativecodeanalysis.sarif
+Structural-1/Release/structuralwidget.nativecodeanalysis.sarif
+Structural-1/Release/wndsingle.nativecodeanalysis.sarif
+Structural-1/Release/Structural.tlog/CL.command.1.tlog
+Structural-1/Release/Structural.tlog/CL.read.1.tlog
+Structural-1/Release/Structural.tlog/CL.write.1.tlog
+Structural-1/Release/Structural.tlog/CustomBuild.command.1.tlog
+Structural-1/Release/Structural.tlog/CustomBuild.read.1.tlog
+Structural-1/Release/Structural.tlog/CustomBuild.write.1.tlog
+Structural-1/Release/Structural.tlog/link.command.1.tlog
+Structural-1/Release/Structural.tlog/link.read.1.tlog
+Structural-1/Release/Structural.tlog/link.write.1.tlog
+Structural-1/Release/Structural.tlog/moc.read.1u.tlog
+Structural-1/Release/Structural.tlog/moc.write.1u.tlog
+Structural-1/Release/Structural.tlog/Structural.lastbuildstate
+Structural-1/Release/Structural.tlog/Structural.write.1u.tlog
+Structural-1/Release/Structural.tlog/uic.read.1u.tlog
+Structural-1/Release/Structural.tlog/uic.write.1u.tlog
+Structural-1/Release/qmake/qtvars_Win32_Release.props
+Structural-1/Release/qmake/temp/.qmake.stash
+Structural-1/Release/qmake/temp/moc_predefs.h.cbt
+Structural-1/Release/qmake/temp/props.txt
+Structural-1/Release/qmake/temp/qtvars_Win32_Release.props
+Structural-1/Release/qmake/temp/qtvars.log
+Structural-1/Release/qmake/temp/qtvars.pro
+Structural-1/Release/qmake/temp/qtvars.vcxproj
+Structural-1/Release/qmake/temp/qtvars.vcxproj.filters
+Structural-1/Release/translations/qt_ar.qm
+Structural-1/Release/translations/qt_bg.qm
+Structural-1/Release/translations/qt_ca.qm
+Structural-1/Release/translations/qt_cs.qm
+Structural-1/Release/translations/qt_da.qm
+Structural-1/Release/translations/qt_de.qm
+Structural-1/Release/translations/qt_en.qm
+Structural-1/Release/translations/qt_es.qm
+Structural-1/Release/translations/qt_fi.qm
+Structural-1/Release/translations/qt_fr.qm
+Structural-1/Release/translations/qt_gd.qm
+Structural-1/Release/translations/qt_he.qm
+Structural-1/Release/translations/qt_hu.qm
+Structural-1/Release/translations/qt_it.qm
+Structural-1/Release/translations/qt_ja.qm
+Structural-1/Release/translations/qt_ko.qm
+Structural-1/Release/translations/qt_lv.qm
+Structural-1/Release/translations/qt_pl.qm
+Structural-1/Release/translations/qt_ru.qm
+Structural-1/Release/translations/qt_sk.qm
+Structural-1/Release/translations/qt_uk.qm
+Structural-1/Release/translations/qt_zh_TW.qm
+Structural-1/x64/Debug/qmake/temp/.qmake.stash
+Structural-1/x64/Debug/qmake/temp/7CED5CF4-B3A9-387D-8031-BE07DB5CA27E.Structural.designtime.idx
+Structural-1/x64/Debug/qmake/temp/moc_predefs.h.cbt
+Structural-1/x64/Debug/qmake/temp/props.txt
+Structural-1/x64/Debug/qmake/temp/qtvars_x64_Debug.props
+Structural-1/x64/Debug/qmake/temp/qtvars.log
+Structural-1/x64/Debug/qmake/temp/qtvars.pro
+Structural-1/x64/Debug/qmake/temp/qtvars.vcxproj
+Structural-1/x64/Debug/qmake/temp/qtvars.vcxproj.filters
+Structural-1/x64/Release/qmake/qtvars_x64_Release.props
+Structural-1/x64/Release/qmake/temp/.qmake.stash
+Structural-1/x64/Release/qmake/temp/moc_predefs.h.cbt
+Structural-1/x64/Release/qmake/temp/props.txt
+Structural-1/x64/Release/qmake/temp/qtvars_x64_Release.props
+Structural-1/x64/Release/qmake/temp/qtvars.log
+Structural-1/x64/Release/qmake/temp/qtvars.pro
+Structural-1/x64/Release/qmake/temp/qtvars.vcxproj
+Structural-1/x64/Release/qmake/temp/qtvars.vcxproj.filters
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+Structural-1/Structural.pro.user
+Structural-1/Structural.vcxproj
+Structural-1/Structural.vcxproj.filters
+Structural-1/Structural.vcxproj.user
+Structural-1/vc140.pdb

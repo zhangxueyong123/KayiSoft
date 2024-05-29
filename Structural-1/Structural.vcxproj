@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
@@ -37,11 +45,17 @@
     <IntermediateDirectory>debug\</IntermediateDirectory>
     <PrimaryOutput>Structural</PrimaryOutput>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <Import Project="$(QtMsBuild)\qt_defaults.props" Condition="Exists('$(QtMsBuild)\qt_defaults.props')" />
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>5.14.2_msvc2017_64</QtInstall>
-    <QtModules>core;network;gui;widgets;qml;concurrent</QtModules>
+    <QtModules>core;network;gui;widgets;qml;webchannel;concurrent</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <QtInstall>5.14.2_msvc2017_64</QtInstall>
@@ -189,7 +203,9 @@
     <ClCompile Include="CNetWork.cpp" />
     <ClCompile Include="clickablelabel.cpp" />
     <ClCompile Include="cnetworkaccessmanager.cpp" />
+    <ClCompile Include="contrl_center.cpp" />
     <ClCompile Include="ctemplatemanage.cpp" />
+    <ClCompile Include="explotwidget.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="mycheckbox.cpp" />
@@ -198,9 +214,9 @@
     <ClCompile Include="mylayerwnd.cpp" />
     <ClCompile Include="mylineedit.cpp" />
     <ClCompile Include="mymeasureparameter.cpp" />
+    <ClCompile Include="mypushbutton.cpp" />
     <ClCompile Include="myradiobutton.cpp" />
     <ClCompile Include="mytextreportwidget.cpp" />
-    <ClCompile Include="parse_thread.cpp" />
     <ClCompile Include="qsinglelinewidget.cpp" />
     <ClCompile Include="structuraldata.cpp" />
     <ClCompile Include="structuralwidget.cpp" />
@@ -214,15 +230,17 @@
     <QtMoc Include="mainwindow.h" />
     <QtMoc Include="mycheckbox.h" />
     <QtMoc Include="ctemplatemanage.h" />
-    <ClInclude Include="mycombobox.h" />
+    <QtMoc Include="mycombobox.h" />
     <QtMoc Include="mygroup.h" />
+    <QtMoc Include="contrl_center.h" />
+    <QtMoc Include="explotwidget.h" />
     <ClInclude Include="mylayerwnd.h" />
     <ClInclude Include="mylineedit.h" />
     <ClInclude Include="mymeasureparameter.h" />
     <QtMoc Include="myradiobutton.h" />
     <QtMoc Include="mytextreportwidget.h" />
     <QtMoc Include="qsinglelinewidget.h" />
-    <QtMoc Include="parse_thread.h" />
+    <QtMoc Include="mypushbutton.h" />
     <ClInclude Include="structdef.h" />
     <ClInclude Include="structuraldata.h" />
     <QtMoc Include="structuralwidget.h" />

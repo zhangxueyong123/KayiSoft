@@ -103,11 +103,17 @@
     <ClCompile Include="qsinglelinewidget.cpp">
       <Filter>Source Files\自定义控件</Filter>
     </ClCompile>
-    <ClCompile Include="parse_thread.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="ctemplatemanage.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="explotwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="contrl_center.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mypushbutton.cpp">
+      <Filter>Source Files\自定义控件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,9 +138,6 @@
     <ClInclude Include="wndsingle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mycombobox.h">
-      <Filter>Header Files\自定义控件</Filter>
-    </ClInclude>
     <ClInclude Include="mylineedit.h">
       <Filter>Header Files\自定义控件</Filter>
     </ClInclude>
@@ -150,18 +153,27 @@
     <QtMoc Include="qsinglelinewidget.h">
       <Filter>Header Files\自定义控件</Filter>
     </QtMoc>
-    <QtMoc Include="parse_thread.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
     <QtMoc Include="ctemplatemanage.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="mycombobox.h">
+      <Filter>Header Files\自定义控件</Filter>
+    </QtMoc>
+    <QtMoc Include="explotwidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="contrl_center.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="mypushbutton.h">
+      <Filter>Header Files\自定义控件</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="debug\moc_predefs.h.cbt">
+    <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="release\moc_predefs.h.cbt">
+    <CustomBuild Include="debug\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
   </ItemGroup>
