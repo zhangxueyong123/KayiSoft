@@ -10,18 +10,14 @@ CTemplateManage* CTemplateManage::m_pSinglePtr = nullptr;
 CTemplateManage::CTemplateManage(const QString &strUrl, CNetworkAccessManager *network)
     :m_strUrl(strUrl),
       m_network(network)
-{
-    
-    QTimer timer;
+{ 
     int nTimeout = 1000;
-    timer.setInterval(nTimeout);  // 设置超时时间
+    //timer.setInterval(nTimeout);  // 设置超时时间
     timer.setSingleShot(true);
-
- 
-    if (nTimeout > 0) {
-        QObject::connect(&timer, &QTimer::timeout, &eventLoop, &QEventLoop::quit);
-        timer.start();
-    }
+    //QObject::connect(&timer, &QTimer::timeout, &eventLoop, &QEventLoop::quit);
+    QObject::connect(&timer, &QTimer::timeout, this, [=]() {
+        eventLoop.quit();
+        });
 }
 
 CTemplateManage *CTemplateManage::GetSingle()
@@ -371,13 +367,13 @@ std::vector<stTableKey> CTemplateManage::LoadTemplateList(const QString &strFirs
     QObject::connect(reply, &QNetworkReply::finished, forwarder, &SignalForwarder::handleSignal);
     QObject::connect(forwarder, &SignalForwarder::forwardSignal, this,&CTemplateManage::handleTemplateListReplay);
     std::vector<stTableKey> result;
-    QObject::connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-
+    //QObject::connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+    timer.start(1000);
     eventLoop.exec();
 
 
     
-    timer.start(1000);
+    
     //auto vec = m_mapTemplateList.find(strFirst)->second.find(strSecond)->second;
     auto iter = m_mapTemplateList.find(strFirst);// ->second.find(strSecond)->second;
     if (iter != m_mapTemplateList.end())
@@ -489,10 +485,10 @@ QString CTemplateManage::LoadTemplateData(const QString &strId)
  
     
     connect(reply, &QNetworkReply::finished, this, &CTemplateManage::handleTemplateJsonReplay);
-    QObject::connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-
-    eventLoop.exec();
+    //QObject::connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
     timer.start(1000);
+    eventLoop.exec();
+    
     //m_mapTemplate.insert(std::pair(, g_strTreeJson));
     //切换显示页面
     return g_strTreeJson;

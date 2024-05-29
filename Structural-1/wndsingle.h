@@ -1160,6 +1160,8 @@ private:
     QStringList templeteList;
     QString         m_currentTemplateText = "";
     bool        m_isFinish = false;
+    //QEventLoop      eventLoop;
+    QTimer          timer;
 public:
 };
 

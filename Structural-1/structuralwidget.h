@@ -971,6 +971,8 @@ public:
     QPropertyAnimation* animation = nullptr;
     QTimer* timer;
     float m_opacityVal = 1.0f;
+    //定时器
+    QTimer      timerForLoop;
 public:
     void resizeEvent(QResizeEvent *event);
     void paintEvent(QPaintEvent *event);

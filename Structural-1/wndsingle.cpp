@@ -45,6 +45,10 @@ WndSingle::WndSingle(StructuralData* pData, UpdateDataCallBack updateCall, QWidg
     }
     if (parentId != "")
         m_strParentId = parentId;
+
+    timer.setSingleShot(true);
+    
+
 }
 
 //显示或隐藏子控件。根据提供的ID和布尔标志，决定是否显示特定的子控件。如果bMulti为false，还会隐藏所有不匹配的子控件。
@@ -581,6 +585,7 @@ bool WndSingle::LoadDictionaryData(const QString& strId, bool bCheck, bool bWait
     if (bWait)
     {
         eventLoop = new QEventLoop();
+        QObject::connect(&timer, &QTimer::timeout, eventLoop, &QEventLoop::quit);
     }
     QNetworkRequest request = QNetworkRequest(strUrl);
     QNetworkReply* reply = m_pData->m_network->get(request);
@@ -623,6 +628,7 @@ bool WndSingle::LoadDictionaryData(const QString& strId, bool bCheck, bool bWait
         });
     if (bWait && eventLoop != nullptr)
     {
+        timer.start(1000);
         eventLoop->exec();
         delete eventLoop;
         eventLoop = nullptr;
