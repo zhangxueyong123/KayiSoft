@@ -17,10 +17,6 @@ MyTextReportWidget::MyTextReportWidget(const QString &strRemarks,QWidget *parent
     setContextMenuPolicy(Qt::ContextMenuPolicy::NoContextMenu);
     connect(this, &QTextEdit::cursorPositionChanged, this, &MyTextReportWidget::PositionChanged);
     connect(this, &QTextEdit::textChanged, this, &MyTextReportWidget::IsInputChangePostion);
-
-
-
-
 }
 
 void MyTextReportWidget::SetRemarks(const QString &strRemarks)
@@ -32,18 +28,21 @@ bool CheckPosInRange(int nPos, int nLeft, int nRight, bool bMax)
 {
     return nPos >= nLeft && (bMax ? (nPos <= nRight) : (nPos < nRight));
 }
-
+//copy  默认是eCopyState_CopyDrawById
 void MyTextReportWidget::SetReportData( listReportData *pListData, const QString &strChangeId, eCopyState copy)
 {
     int nOldPos = m_nSelectLeft ;
-
+    //关闭所有信号
     blockSignals(true);
+    //对m_listReportData进行赋值
     CopyList(pListData,strChangeId, copy);
+    //处理一下换行
     ResetListLineState();
+    //重绘文字
     ReDrawList();
-
+    //打开所有信号
     blockSignals(false);
-    auto str = this->toPlainText();
+    //光标移动到末尾
     m_nNowSize =  this->toPlainText().size();
     if(m_bChangePos)
     {
@@ -55,8 +54,9 @@ void MyTextReportWidget::SetReportData( listReportData *pListData, const QString
         cur.setPosition(nOldPos );
         setTextCursor(cur);
     }
-
+    //改变显示高度
     ChangeHeightByData();
+    //触发默认的光标改变信号
     if(m_bChangePos)
     {
         emit cursorPositionChanged();
@@ -78,6 +78,7 @@ QString MyTextReportWidget::GetListData()
     }
     return strList;
 }
+
 bool FindDataRange(const QString &strData,  std::vector<int> *pVecLeft, std::vector<int >*pVecRight)
 {
     QRegExp rx("\\[.*\\|.*\\]");
@@ -633,9 +634,13 @@ void MyTextReportWidget::ReDrawList()
 {
     QColor colorNormal = Qt::black;
     QColor colorTrans = Qt::blue;
+    QColor colorTest = Qt::red;
+    m_currentDrawPre = "";
+    m_isFirst = true;
     int nLeft = 0;
 
     QTextEdit:: clear();
+    /*qDebug()<< this->toPlainText();*/
     auto funDraw = [&](const QString &strData, const QColor & color)
     {
         listHighLight list;
@@ -712,21 +717,49 @@ void MyTextReportWidget::ReDrawList()
             if(!strDraw.isEmpty())
             {
                 setTextColor(color);
+                
                 QTextEdit::insertPlainText(strDraw);
             }
         }
     };
+    
     auto drawColor = colorNormal;
+    ////移除第一个换行符
+    //auto str = this->toPlainText();
+    //if (!str.isEmpty() && str[0] == "\n")
+    //{
+    //    str.remove(0, 1); // 移除第一个字符
+    //    this->setPlainText(str); // 更新文本
+    //}
+    int count = 0;
     for(auto &itList : m_listReportData)
     {
-        if(!itList.drawData.strDrawPre.isEmpty())
+        if (count == 0)
+        {
+            if (!itList.drawData.strDrawPre.isEmpty() && itList.drawData.strDrawPre[0] == "\n")
+            {
+                itList.drawData.strDrawPre.remove(0, 1);
+            }
+        }
+        if(!itList.drawData.strDrawPre.isEmpty()/* m_currentDrawPre != itList.drawData.strDrawPre */)
         {
             drawColor = colorNormal;
-            funDraw(itList.drawData.strDrawPre /*+ ":"*/, drawColor);
+            if (m_isFirst)
+            {
+                funDraw(itList.drawData.strDrawPre, drawColor);
+                m_isFirst = false;
+            }
+            else
+            {
+                funDraw(itList.drawData.strDrawPre/*.split("\n").last().split(" ").last()*/, drawColor);
+            }
+            
+            /*m_currentDrawPre = itList.drawData.strDrawPre*/;
         }
-        if(!itList.drawData.bMulti)
+        if(!itList.drawData.bMulti && (int)itList.drawData.vecData.size() > 1)
         {
             drawColor = colorTrans;
+            //drawColor = colorTest;
             //setTextColor(colorTrans);
         }
 
@@ -736,12 +769,14 @@ void MyTextReportWidget::ReDrawList()
         {
             drawColor = colorNormal;
             funDraw(itList.drawData.strDrawSuff, drawColor);
+            
         }
         if(!itList.drawData.strDrawSuffAdd.isEmpty())
         {
             drawColor = colorNormal;
             funDraw(itList.drawData.strDrawSuffAdd, drawColor);
         }
+
         itList.nLeft[0] = nLeft;
         itList.nRight[0] = nLeft+ itList.drawData.strDrawPre.size();
         itList.nLeft[1] = itList.nRight[0];
@@ -751,7 +786,20 @@ void MyTextReportWidget::ReDrawList()
         itList.nLeft[3] = itList.nRight[2];
         itList.nRight[3] = itList.nLeft[3]+ itList.drawData.strDrawSuffAdd.size();
         nLeft =  itList.nRight[3];
+        count++;
     }
+    blockSignals(1);
+    QTextBlockFormat blockFormat;
+    blockFormat.setLineHeight(m_lineSpacing, QTextBlockFormat::LineDistanceHeight);//设置行间距为10
+    selectAll();//选中全部文本，否则只会修改当前行
+    auto textCursor = this->textCursor();
+    textCursor.setBlockFormat(blockFormat);
+    setTextCursor(textCursor);
+
+    //设置完后，取消选中状态，若不写，则会导致存在选中状态
+    textCursor.clearSelection();
+    setTextCursor(textCursor);
+    blockSignals(0);
 
 }
 
@@ -780,6 +828,7 @@ void MyTextReportWidget::CopyList( listReportData *pListData,const QString &strC
                 ++itFind;
             }
         }
+        //修改节点上的数据
         if(m_listReportData.size() == pListData->size() && itFind != m_listReportData.end() && itAdd != pListData->end())
         {
             itFind->drawData.strDrawData = itAdd->drawData.strDrawData ;
@@ -792,6 +841,7 @@ void MyTextReportWidget::CopyList( listReportData *pListData,const QString &strC
                 itFind->drawData.strDrawSuff = itAdd->drawData.strDrawSuff ;
             }
         }
+        //新增或者删除节点
         else
         {
             auto listTmp = m_listReportData;
@@ -823,10 +873,10 @@ void MyTextReportWidget::CopyList( listReportData *pListData,const QString &strC
                     }
                     else
                     {
-                        itFind->drawData.strDrawPre = itTmp.drawData.strDrawPre;
+                        //itFind->drawData.strDrawPre = itTmp.drawData.strDrawPre;
                         itFind->drawData.strDrawData = itTmp.drawData.strDrawData;
                         itFind->drawData.strDrawSuff = itTmp.drawData.strDrawSuff;
-                        itFind->drawData.strDrawSuffAdd = itTmp.drawData.strDrawSuffAdd;
+                        //itFind->drawData.strDrawSuffAdd = itTmp.drawData.strDrawSuffAdd;
 
                         itFind->strId = itTmp.strId;
                     }
@@ -864,14 +914,14 @@ void MyTextReportWidget::CopyList( listReportData *pListData,const QString &strC
             }
         }
     }
+
     auto itNow = m_listReportData.begin();
     int nCul = 0;
     while(itNow != m_listReportData.end())
     {
         if(itNow->drawData.strDrawData.isEmpty() &&
                 itNow->drawData.strDrawPre.isEmpty() &&
-                (itNow->drawData.strDrawSuff.isEmpty() || itNow->drawData.strDrawSuff == "\n"
-                 || itNow->drawData.strDrawSuffAdd == "\n") )
+                (itNow->drawData.strDrawSuff.isEmpty() || itNow->drawData.strDrawSuff == "\n" || itNow->drawData.strDrawSuffAdd == "\n") )
         {
             m_listReportData.erase(itNow);
             itNow =  m_listReportData.begin() + nCul;
@@ -1000,7 +1050,8 @@ void MyTextReportWidget::IsButtonChangePostion()
     m_bHasChange = false;
     for(auto &itList : m_listReportData)
     {
-        if(!itList.drawData.bMulti  && m_nSelectLeft >0 && CheckPosInRange(m_nSelectLeft, itList.nLeft[1], itList.nRight[1], true) )
+        if(!itList.drawData.bMulti  && m_nSelectLeft >0 && (int)itList.drawData.vecData.size() > 1 &&
+            CheckPosInRange(m_nSelectLeft, itList.nLeft[1], itList.nRight[1], true) )
         {
 
             m_strChangeId = itList.strId;
@@ -1221,6 +1272,13 @@ void MyTextReportWidget::keyPressEvent(QKeyEvent *e)
         QTextEdit::keyPressEvent(e);
         m_bStick = false;
     }
+    else if (e->key() == Qt::Key_Enter)
+    {
+        append("\n");
+        moveCursor(QTextCursor::Down, QTextCursor::MoveAnchor);
+
+    
+    }
     else
     {
         m_bStick = true;
@@ -1237,6 +1295,7 @@ void MyTextReportWidget::OnTimeOut()
         {
             if(m_TransListDataCallBack != nullptr)
             {
+                //绑定的UpdateByReportData函数
                 m_TransListDataCallBack(&m_listReportData, "");
             }
             m_timerTimes = 0;
@@ -1324,6 +1383,7 @@ void MyTextReportWidget::IsInputChangePostion()
         SendData();
 
     }
+
 }
 
 void MyTextReportWidget::ChangeHeightByData()
@@ -1347,6 +1407,11 @@ void MyTextReportWidget::ChangeHeightByData()
     {
         this->setFixedHeight(height);
     }
+}
+
+void MyTextReportWidget::setLineSpacing(int space)
+{
+    m_lineSpacing = space;
 }
 
 void MyTextReportWidget::OnMenuSelect()

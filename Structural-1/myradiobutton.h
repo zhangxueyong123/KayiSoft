@@ -7,6 +7,7 @@
 #include "qlabel.h"
 #include "clickablelabel.h"
 #include "qboxlayout.h"
+#include <qdatetime.h>
 //自定义单选框
 class MyRadioButton : public QRadioButton
 {
@@ -33,7 +34,10 @@ public:
     QString text() const;
    // QSize sizeHint() const ;
 
+    void setFormula(const QString& strFormula);
+
     ClickableLabel  *m_label = nullptr;
+    QString     m_strFormula;
 //public slots:
 //    void labelIsClicked();
 public Q_SLOTS:
@@ -45,6 +49,7 @@ private:
     QString m_strDataTypeSummary;
     StateChangeCallBack m_pCallBack = nullptr;
     const int separation = 5;
+    bool    isNewChild = true; 
 };
 
 #endif // MYRADIOBUTTON_H

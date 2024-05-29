@@ -98,10 +98,19 @@ public:
     void AddColorShow(const QString &strData,const QColor &color);
     void ClearColorShow();
    // bool eventFilter(QObject *obj, QEvent *e);
+    void ChangeHeightByData();
+
+    void setLineSpacing(int space);
+
+    QString GetRemarks()
+    {
+        return m_strRemarks;
+    }
 signals:
     void signal_clicked();
 
 private:
+    int m_lineSpacing = 10;
     bool m_bSendChange = false;
     QTimer *m_pTimer = nullptr;
     std::atomic_int m_timerTimes;
@@ -132,7 +141,7 @@ private:
     void mousePressEvent(QMouseEvent *e) ;
     void IsButtonChangePostion();
     void IsInputChangePostion();
-    void ChangeHeightByData();
+    
     QString m_strOldData;
    // int m_nPos = 0;
     bool m_bStick = false;
@@ -153,7 +162,8 @@ private:
     bool DeletePostionData(int nLeft, int nRight);
     void keyPressEvent(QKeyEvent *e);
     QString m_strRemarks;
-
+    QString m_currentDrawPre = "";
+    bool    m_isFirst = true;
 public slots:
     void OnTimeOut();
     void OnMenuSelect();

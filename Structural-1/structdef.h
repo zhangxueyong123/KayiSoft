@@ -6,8 +6,8 @@
 #include <future>
 #include "qstring.h"
 //状态变化回调
-using StateChangeCallBack = std::function<void(bool bCheck, const QString &strId, const QString &strTitle, bool bWait)>;
-using ComboboxChangeCallBack = std::function<void(const QString &strSelect, const QString &strId ,const QString& parentId, const int& level)>;
+using StateChangeCallBack = std::function<void(bool bCheck, const QString &strId, const QString &strTitle, bool bWait,bool * isNewChild)>;
+using ComboboxChangeCallBack = std::function<void(const QString &strSelect, const QString &strId ,const QString& parentId, const int& level, bool* isNewChild)>;
 
 //Rect, 因为QRect不好用  它设计为可以使用不同的数据类型来创建矩形的维度（例如int、float等）
 template<class T>
@@ -129,6 +129,12 @@ struct stSingleDrawData
 
     }
 
+    QString print()
+    {
+        QString str = "";
+        str += strDrawPre + strDrawData + strDrawSuff + strDrawSuffAdd + strDrawDeleteBefer + strRemarks + strParentId;
+        return str;
+    }
 };
 const int MAXDRAWSIZE = 4;
 struct stReportData
@@ -143,6 +149,14 @@ struct stReportData
     {
         return strId == str;
     }
+    //bool operator != (const QString& str) const
+    //{
+    //    return (strId == str) ? true : false;
+    //}
+    //bool operator == (const stReportData& s) const
+    //{
+    //    return (strId == s.strId) && (strRemarks == s.strRemarks) && (strPreId == s.strPreId);
+    //}
     void InitEmpty(const QString &strData, int nAddPos)
     {
        int nDataSize = strData.size();
@@ -154,6 +168,12 @@ struct stReportData
            this->nRight[i] =  this->nRight[0];
        }
        this->drawData.strDrawPre = strData;
+    }
+    QString print()
+    {
+        QString str = "";
+        str += drawData.print() + strRemarks + strPreId + strId;
+        return str;
     }
 };
 

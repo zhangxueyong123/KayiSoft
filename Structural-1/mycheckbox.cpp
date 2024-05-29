@@ -32,7 +32,7 @@ MyCheckBox::MyCheckBox(const QString &strId,const QString &strTitle,   const QSt
         //回调
         if(m_pCallBack != nullptr)
         {
-            m_pCallBack(Qt::Checked == nState,m_strId,m_strTitle,m_bWait);
+            m_pCallBack(Qt::Checked == nState,m_strId,m_strTitle,m_bWait, &isNewChild);
             m_bWait = true;
         }
     });
@@ -81,4 +81,9 @@ void MyCheckBox::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
     updateGeometry();
+}
+
+void MyCheckBox::setFormula(const QString& strFormula)
+{
+    m_strFormula = strFormula;
 }

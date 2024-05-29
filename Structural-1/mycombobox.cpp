@@ -1,8 +1,8 @@
 ﻿#include "mycombobox.h"
 #include <iostream>
 //static QString g_parentId;
-
-QMap<QString, QMap<QString, comboboxInfo>>MyComboBox:: m_comboboxInfoMap;
+#include "ctemplatemanage.h"
+#include "contrl_center.h"
 
 MyComboBox::MyComboBox(const QString &strId, const QString &strTitle,const QString &strPre, const QString &strSuff,
                        const QString &strDataTypeSummary,
@@ -20,6 +20,13 @@ MyComboBox::MyComboBox(const QString &strId, const QString &strTitle,const QStri
     //选中事件
     connect(this, &QComboBox::currentTextChanged,  [&](const QString &str)
     {
+        if (str == "")
+            return;  
+        //qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") << __FUNCDNAME__;
+        bool flag = ControlCenter::getInstance()->isCreatedFinish();
+        if (!flag)
+            return;
+
         if(str.isEmpty())
         {
             if(m_pChildCombobox != nullptr)
@@ -37,21 +44,48 @@ MyComboBox::MyComboBox(const QString &strId, const QString &strTitle,const QStri
                 m_strId = strId;
             }      
         }
-       
-        if(m_pChildCombobox != nullptr)
+       //一级节点
+        int n_level = ControlCenter::getInstance()->getComboboxLevelForTitle(str);
+        if(m_pChildCombobox != nullptr && n_level == 1)
         {
+            //m_pCallBack("", "", m_strId, n_level, &isNewChild);
             SetChild(m_pChildCombobox, m_strId);
-            m_pCallBack("", "", m_strId,level);
         }
-        else
+        //二三级节点
+        else if(m_pCallBack != nullptr && n_level != 1)
         {
-            if(m_pCallBack != nullptr)
+            QString parentId = ControlCenter::getInstance()->getParentID(strId);
+            if (strId != "" && parentId != "")
             {
-                m_pCallBack(str,strId, "", level);
+                //先把之前的选择过的json保存下来
+                //
+                //ControlCenter::getInstance()->m_beforeFirstId = ControlCenter::getInstance()->m_currentFirstId;
+                //ControlCenter::getInstance()->m_beforeSecondId = ControlCenter::getInstance()->m_currentSecondId;
+                ControlCenter::getInstance()->m_currentFirstId = parentId;
+                ControlCenter::getInstance()->m_currentSecondId = strId;
             }
-        }
-
+            m_pCallBack(str,strId, parentId, n_level, &isNewChild);
+            return;
+        }        
     });
+    connect(this, &MyComboBox::clicked, this, [=]() {
+        QString str = currentText();
+        int n_level = ControlCenter::getInstance()->getComboboxLevelForTitle(str);
+        if (n_level == 2)
+        {
+            auto firstid = ControlCenter::getInstance()->getParentIDByTitle(str);
+            QString strId;
+            for (auto& itMap : m_mapComboboxId)
+            {
+                if (itMap.second.strName == str)
+                {
+                    strId = itMap.first;
+                }
+            }
+            //ControlCenter::getInstance()->signSaveOpenedReport(firstid, strId);
+
+        }
+        });
 }
 
 void MyComboBox::SetExplain(const QString &strExplain)
@@ -69,21 +103,6 @@ void MyComboBox::SetChild(MyComboBox *pChild, const QString &strChildId)
     //找到子控件id
     auto itFindNameList = m_mapNextNameAndId.find(strChildId);
 
-    if (itFindNameList != m_mapNextNameAndId.end())
-    {
-        QMap<QString, comboboxInfo> m;
-        
-        for (auto it : itFindNameList->second)
-        {
-            comboboxInfo temp;
-            temp.id = it.strId;
-            temp.title = it.strName;
-            m.insert(it.strId,temp);
-        }
-        m_comboboxInfoMap.insert(strChildId, m);
-        //m_comboboxInfoMap.insert(std::pair(strChildId,std::pairitFindNameList.s)));
-    }
-
     if(itFindNameList != m_mapNextNameAndId.end())
     {
         m_pChildCombobox->blockSignals(true);
@@ -94,19 +113,25 @@ void MyComboBox::SetChild(MyComboBox *pChild, const QString &strChildId)
         for(auto &itName : itFindNameList->second)
         {
             //std::cout << itName.strShow.toStdString() << std::endl;
-            if(m_strBodyPart.isEmpty() || itName.strShow == m_strBodyPart)
+            auto bodyParttList = m_strBodyPart.split(",");
+            //if(m_strBodyPart.isEmpty() || itName.strShow == m_strBodyPart)
+            if(m_strBodyPart.isEmpty() || bodyParttList.contains(itName.strShow ))
             {
-                if(nDefulat == -1 && itName.bSelect)
+                auto secId = ControlCenter::getInstance()->m_defaultSecondId;
+                secId = ControlCenter::getInstance()->m_isUseDefault ? secId : "";
+                if(nDefulat == -1 && /*itName.bSelect*/ secId == "" ? itName.bSelect : secId == itName.strId)
                 {
                     nDefulat  = nCul;
                 }
                 m_pChildCombobox->addItem(itName.strName,itName.strId);
+                
                 m_pChildCombobox->m_mapComboboxId[itName.strId] = itName;
                 
                 ++nCul;
             }
 
         }
+        m_pChildCombobox->setToolTip();
         if(nDefulat == -1)
         {
             nDefulat = 0;
@@ -117,9 +142,7 @@ void MyComboBox::SetChild(MyComboBox *pChild, const QString &strChildId)
             m_pChildCombobox->setCurrentIndex(nDefulat);
             emit m_pChildCombobox->currentTextChanged(m_pChildCombobox->currentText());
         }
-
     }
-
 }
 
 std::vector<stTableState> MyComboBox::GetState()
@@ -139,24 +162,18 @@ void MyComboBox::SetDepartment(const QString &strDepartment, const QString &strB
     {
         return;
     }
+    QMutex mutex;
+    mutex.lock();
     m_strBodyPart = strBodyPart;
     this->clear();
-    for(auto &itMap : m_mapComboboxId)
+    int size = m_mapComboboxId.size();
+    for(auto itMap : m_mapComboboxId)
     {
         if(itMap.second.strShow == strDepartment)
-        {
             addItem(itMap.second.strName, itMap.second.strId);
-//            auto itFindChild = m_mapNextNameAndId.find(itMap.second.strId);
-//            if(itFindChild != m_mapNextNameAndId.end())
-//            {
-//                for(auto &itChild := itFindChild->second)
-//                {
-//                    itChild.strShow = strBodyPart;
-//                }
-//            }
-            //strId = itMap.first;
-        }
+     
     }
+    //setToolTip();
     if(this->count() != 0)
     {
         setCurrentIndex(0);
@@ -165,7 +182,7 @@ void MyComboBox::SetDepartment(const QString &strDepartment, const QString &strB
     {
         setCurrentText("");
     }
-
+    mutex.unlock();
 }
 
 void MyComboBox::SetBodyPart(const QString &strBodyPart)
@@ -173,10 +190,82 @@ void MyComboBox::SetBodyPart(const QString &strBodyPart)
 
 }
 
-
-
 QWidget *MyComboBox::GetPtr()
 {
     return this;
 }
+//禁用鼠标事件
+void MyComboBox::wheelEvent(QWheelEvent* e)
+{
+}
+//设置提示
+void MyComboBox::setToolTip()
+{
+    auto str = currentIndex();
+    QStandardItemModel* model = new QStandardItemModel();
+    QStandardItem* item = new QStandardItem();//设置下拉框选择提示
+    for (int i = 0; i < count(); i++)//RegionVo.list插入下拉框的数据
+    {
+        
+        item = new QStandardItem(this->itemText(i));//下拉框显示文本
+        item->setData(this->itemText(i));//显示文本对应的值,根据自己项目需要选择是否设置
+        item->setToolTip(this->itemText(i));//设置提示类容
+        model->appendRow(item);//将item添加到model中
+    }
+    this->setModel(model);//下拉框设置model
+    setCurrentIndex(str);
+}
+//暂时无用，用于公式功能
+void MyComboBox::setFormula(const QString& strFormula)
+{
+    m_strFormula = strFormula;
+}
+//仅用于快照combobox
+void MyComboBox::Tdisconnect()
+{
+    disconnect(CTemplateManage::GetSingle(), &CTemplateManage::signChangeComboboxItem, this, &MyComboBox::slotChangeComboboxItem);
+}
+//仅用于快照combobox
+void MyComboBox::Tconnect()
+{
+    connect(CTemplateManage::GetSingle(), &CTemplateManage::signChangeComboboxItem, this, &MyComboBox::slotChangeComboboxItem);
+}
+//仅用于快照combobox
+void MyComboBox::slotChangeComboboxItem(QString title,bool sw)
+{
+    //删除
+    if (!sw)
+    {
+        int index = findText(title);  // 查找文本匹配的项的索引
+        if (index != -1) {  // 确保找到了该项
+            removeItem(index);  // 删除找到的项
+        }
+        setCurrentIndex(0);
+        ControlCenter::getInstance()->m_currentTemplateName = "--";
+    }
+    else
+    {
+        int index = findText(title);  // 查找文本匹配的项的索引
+        if (index == -1) {  // 确保找到了该项
+            addItem(title);
+        }
+        
+        if (currentText() != title)
+        {
+            setCurrentText(title);
+            ControlCenter::getInstance()->m_currentTemplateName = title;
+        }
+           
+    }
+}
 
+
+void MyComboBox::mousePressEvent(QMouseEvent* event)
+{
+    if (event->button() == Qt::LeftButton)
+    {
+        emit clicked();  //触发clicked信号
+    }
+
+    QComboBox::mousePressEvent(event);  //将该事件传给父类处理，这句话很重要，如果没有，父类无法处理本来的点击事件
+}

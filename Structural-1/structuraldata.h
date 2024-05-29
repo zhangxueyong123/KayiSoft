@@ -5,6 +5,9 @@
 #include "structdef.h"
 #include "qjsondocument.h"
 #include "CNetWork.h"
+#include "contrl_center.h"
+#include <QtConcurrent>
+#include <QApplication>
 //Node
 struct stStructuralNode;
 
@@ -16,6 +19,7 @@ enum eStructuralDataType
     eStructuralDataType_Multi = 2, //多选
     eStructuralDataType_Edit = 4, //编辑框
     eStructuralDataType_Combobox = 8, //下拉框
+    eStructuralDataType_Illustrate = 16, //说明框
 };
 //控件选中状态
 struct stTableState
@@ -39,14 +43,7 @@ struct stTableState
     }
 };
 
-enum eTemplateType
-{
-    eTemplateType_Null = 0,
-    eTemplateType_SRRa = 1, //放射
-    eTemplateType_SRUS = 2, //超声
-    eTemplateType_SRES = 4, //内窥镜
-    eTemplateType_All = eTemplateType_SRRa | eTemplateType_SRUS |eTemplateType_SRES,
-};
+
 
 const QString SRRaType = "SRRaTemplate";
 const QString SRUSType = "SRUSTemplate";
@@ -170,6 +167,8 @@ typedef struct stStructuralNode
 
    // QString strOther; //提示表
     QString strTip; //提示字段
+    QString strFormula;
+    QString strFormulaSummary;
 
 }stStructuralContext;
 
@@ -238,6 +237,33 @@ struct stStructuralData
         {
             auto itFind = this->mapContext.find(itVec.first);
             if(itFind == this->mapContext.end())
+            {
+                mapContext[itVec.first] = itVec.second;
+            }
+            else
+            {
+                itFind->second = itVec.second;
+            }
+        }
+    }
+    //合并节点数据集
+    void MergeStructuralData1(const stStructuralData& data, const QString& strTop = "")
+    {
+        if (!data.bSuccess)
+        {
+            return;
+        }
+        // std::vector<QString> vecChild;
+        if (!strTop.isEmpty())
+        {
+            DeleteChild(strTop);
+        }
+        for (auto& itVec : data.mapContext)
+        {
+            if (itVec.first != strTop)
+                continue;
+            auto itFind = this->mapContext.find(itVec.first);
+            if (itFind == this->mapContext.end())
             {
                 mapContext[itVec.first] = itVec.second;
             }
@@ -322,6 +348,9 @@ public:
     void AddChildByJson(const QString &strJson,const QString &strId);
     //添加树型结构数据
     std::vector<QString> AddStructuralDataByJson(const QString &strJson, std::vector<QString> *pVecCode = nullptr, const QString &strFirst = "", const QString &strSecond = "");
+    std::vector<QString> AddStructuralDataByJson1(const QString &strJson, std::vector<QString> *pVecCode = nullptr, const QString &strFirst = "", const QString &strSecond = "");
+    QString screening( QString strJson,  QString strFirst,  QString strSecond, bool isFirst);
+    QString screeningForNKJ( QString strJson,  QString strFirst,  QString strSecond);
     std::map<eTemplateType, stTopPar> GetTopPar();
     //获取数据(完整数据)
     stStructuralData *GetStructuralDataPtr();

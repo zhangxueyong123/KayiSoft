@@ -43,6 +43,9 @@ public:
     void DeleteTemplateData(const QString &strFirst, const QString &strSecond, const QString &strName);
 
     void Clear(const QString &strFirst, const QString &strSecond);
+signals:
+    void signSettingInfo(QString title,bool flag);
+    void signChangeComboboxItem(QString str, bool f);//0是删 1是增
 public slots:
     void handleTemplateListReplay(QNetworkReply* reply, QString first, QString second);
 
@@ -52,7 +55,7 @@ private:
      void ClearTemplateData(const std::vector<stTableKey>& dataList);
     std::vector<stTableKey> LoadTemplateList(const QString &strFirst, const QString &strSecond); //通过接口获取列表
     QString LoadTemplateData(const QString &strId);
-    stTableKey AddTemplateData(const QJsonObject &json); //通过接口保存数据
+    stTableKey AddTemplateData(const QJsonObject &json,bool isAdd); //通过接口保存数据
     TemplateParameterMap m_mapTemplate; //模板数据
     TemplateFirstListMap m_mapTemplateList; // 模板列表
    // std::map<QString, std::map>
@@ -62,7 +65,11 @@ private:
     QNetworkReply* m_currentReply;
     QString m_currentFirst;
     QString m_currentSecond;
-    bool    handleFinish = false;
+    QString m_addName = "";
+    QString m_delName = "";
+    QTimer timer;
+    int nTimeout = 1000;
+    QEventLoop eventLoop;
 };
 
 class SignalForwarder : public QObject {

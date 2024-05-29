@@ -35,6 +35,8 @@ public:
     ClickableLabel  *m_label = nullptr;
 
     QString m_strExplain;
+    void setFormula(const QString& strFormula);
+    QString m_strFormula;
 public slots:
     void labelIsClicked();
 protected:
@@ -44,6 +46,7 @@ private:
     //状态变化回调
     StateChangeCallBack m_pCallBack = nullptr;
     const int separation = 5;
+    bool    isNewChild = true;
 };
 
 #endif // MYCHECKBOX_H

@@ -11,6 +11,17 @@ CTemplateManage::CTemplateManage(const QString &strUrl, CNetworkAccessManager *n
     :m_strUrl(strUrl),
       m_network(network)
 {
+    
+    QTimer timer;
+    int nTimeout = 1000;
+    timer.setInterval(nTimeout);  // 设置超时时间
+    timer.setSingleShot(true);
+
+ 
+    if (nTimeout > 0) {
+        QObject::connect(&timer, &QTimer::timeout, &eventLoop, &QEventLoop::quit);
+        timer.start();
+    }
 }
 
 CTemplateManage *CTemplateManage::GetSingle()
@@ -85,9 +96,9 @@ QString CTemplateManage::GetTemplateDataByName(const QString &strFirst, const QS
     auto vecTemplateList =  GetTemplateList(strFirst, strSecond);
     for(auto &itVec : vecTemplateList)
     {
-        if(itVec.keyEx.strLabelEx == strName)
+        if(itVec.strKey == strName)
         {
-            return GetTemplateDataById(itVec.strKey);
+            return GetTemplateDataById(itVec.keyEx.strLabelEx);
         }
     }
     return templateData;
@@ -104,7 +115,7 @@ QString CTemplateManage::GetTemplateDataById(const QString &strId)
     {
         if(itMap.first.strKey == strId)
         {
-            qDebug()<< itMap.second;
+            //qDebug()<< itMap.second;
             return itMap.second;
         }
     }
@@ -119,31 +130,102 @@ stTableKey CTemplateManage::AddTemplateData(const QString &strFirst, const QStri
     {
         return key;
     }
+    m_addName = strName;
+    m_currentFirst = strFirst;
+    m_currentSecond = strSecond;
     QJsonObject dataObject;
     //如果在缓存中，则此为修改，上传的json需要包含ID；不在，就去后端中获取。
-    for (auto& itMap : m_mapTemplate)
+    auto itFindFirst = m_mapTemplateList.find(strFirst);
+    bool bFind = true;
+    if (itFindFirst == m_mapTemplateList.end())
     {
-        if (itMap.first.strKey == strName)
+        bFind = false;
+        // return templateList;
+    }
+    if (bFind)
+    {
+        auto itFindSecond = itFindFirst->second.find(strSecond);
+        if (itFindSecond == itFindFirst->second.end())
         {
-            qDebug() << itMap.second;
-            dataObject["ID"] = itMap.first.keyEx.strLabelEx;
+
+        }
+        else
+        {
+            bFind = false;
+            dataObject["ID"] = "";
+            for (auto it : itFindSecond->second)
+            {
+                if (it.strKey == strName)
+                    dataObject["ID"] = it.keyEx.strLabelEx;
+            }  
 
         }
     }
+
 
     dataObject["FirstId"] = strFirst;
     dataObject["SecondId"] = strSecond;
     dataObject["Title"] = strName;
     dataObject["TreeJson"] = strData;
-    return AddTemplateData(dataObject);
+    return AddTemplateData(dataObject, dataObject["ID"] == "" ? 1 : 0);
 }
-
+//与前端交互
 void CTemplateManage::DeleteTemplateData(const QString &strId)
 {
     if( strId.isEmpty())
     {
         return ;
     }
+    //https://hidos-ris.kayisoft.dev/api/v1/sr_snapshot?id=665aba1c-0cd6-42e8-b12f-6e3c505ea698
+
+    //https://hidos-ris.kayisoft.dev/api/v1/sr_snapshot?id=a220c4aa-7ca9-4dee-80dd-4b6b5cbee163
+    QString url = m_strUrl + "/api/v1/sr_snapshot?id=" + strId;
+
+    QNetworkRequest request = QNetworkRequest(url);
+    
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    
+    QNetworkReply* reply = m_network->deleteResource(request);
+
+    QObject::connect(reply, &QNetworkReply::finished, [reply,this]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            // 成功响应
+            QByteArray responseData = reply->readAll();
+            QString str = responseData;
+            QJsonDocument doc = QJsonDocument::fromJson(responseData);
+            if (!doc.isNull())
+            {
+                if (doc.isObject())
+                {
+                    QJsonObject jsonObj = doc.object();
+                    // 现在可以使用jsonObj访问JSON对象中的数据
+                    // 例如：获取名为"exampleKey"的值
+                    QJsonValue value = jsonObj.value("Success");
+                    if (value != true)
+                    {
+                        signSettingInfo("解析失败", 1);
+                        return;
+                    }
+            
+                    value = jsonObj.value("StatusCode");
+                    if (value != 200)
+                    {
+                        signSettingInfo("HTTP状态码有误", 1);
+                        return;
+                    }
+                    signSettingInfo("删除成功", 0);
+                    signChangeComboboxItem( m_delName,0);
+                    return;
+                }
+            }
+        }
+        else 
+        {
+            // 出错处理
+            qDebug() << "Error:" << reply->errorString();
+        }
+        reply->deleteLater();
+        });
 }
 
 void CTemplateManage::DeleteTemplateData(const QString &strFirst, const QString &strSecond, const QString &strName)
@@ -152,13 +234,48 @@ void CTemplateManage::DeleteTemplateData(const QString &strFirst, const QString 
     {
         return ;
     }
-
+    m_delName = strName;
+    m_currentFirst = strFirst;
+    m_currentSecond = strSecond;
     auto vecTemplateList =  GetTemplateList(strFirst, strSecond);
     for(auto &itVec : vecTemplateList)
     {
-        if(itVec.keyEx.strLabelEx == strName)
+        if(itVec.strKey == strName)
         {
-            DeleteTemplateData(itVec.strKey);
+            DeleteTemplateData(itVec.keyEx.strLabelEx);
+            //从缓存中删除
+            auto itFindFirst = m_mapTemplateList.find(strFirst);
+            bool bFind = true;
+            if (itFindFirst == m_mapTemplateList.end())
+            {
+                bFind = false;
+                // return templateList;
+            }
+            if (bFind)
+            {
+                auto itFindSecond = itFindFirst->second.find(strSecond);
+                if (itFindSecond == itFindFirst->second.end())
+                {
+
+                }
+                else
+                {
+                    bFind = false;
+                    for (auto it = itFindSecond->second.begin(); it != itFindSecond->second.end(); ) 
+                    {
+                        if (it->strKey == strName) 
+                        {
+                            it = itFindSecond->second.erase(it);  // 使用迭代器直接删除元素，并更新迭代器位置
+                            break;
+                        }
+                        else 
+                        {
+                            ++it;  // 只有在不删除元素时才移动迭代器
+                        }
+                    }
+
+                }
+            }
             break;
             //return GetTemplateDataById(itVec.strKey);
         }
@@ -237,7 +354,7 @@ void CTemplateManage::ClearTemplateData(const std::vector<stTableKey> &dataList)
 
     }
 }
-QEventLoop loop;
+
 
 std::vector<stTableKey> CTemplateManage::LoadTemplateList(const QString &strFirst, const QString &strSecond)
 {
@@ -246,7 +363,7 @@ std::vector<stTableKey> CTemplateManage::LoadTemplateList(const QString &strFirs
 
     QNetworkRequest request = QNetworkRequest(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    handleFinish = false;
+
     QNetworkReply* reply = m_network->get(request);
  
    
@@ -254,8 +371,13 @@ std::vector<stTableKey> CTemplateManage::LoadTemplateList(const QString &strFirs
     QObject::connect(reply, &QNetworkReply::finished, forwarder, &SignalForwarder::handleSignal);
     QObject::connect(forwarder, &SignalForwarder::forwardSignal, this,&CTemplateManage::handleTemplateListReplay);
     std::vector<stTableKey> result;
-    loop.exec();
+    QObject::connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
 
+    eventLoop.exec();
+
+
+    
+    timer.start(1000);
     //auto vec = m_mapTemplateList.find(strFirst)->second.find(strSecond)->second;
     auto iter = m_mapTemplateList.find(strFirst);// ->second.find(strSecond)->second;
     if (iter != m_mapTemplateList.end())
@@ -269,19 +391,15 @@ std::vector<stTableKey> CTemplateManage::LoadTemplateList(const QString &strFirs
             }
         }
     }
-    //for(auto it:vec)
-    //{
-    //    result.push_back(it);
-    //}
-        
 
-  
     return result;
 }
 
 void CTemplateManage::handleTemplateListReplay(QNetworkReply* reply, QString first, QString second)
 {
     /*auto reply = qobject_cast<QNetworkReply*>(sender());*/
+
+
     if (reply->error() == QNetworkReply::NoError)
     {
         // 成功响应
@@ -323,14 +441,15 @@ void CTemplateManage::handleTemplateListReplay(QNetworkReply* reply, QString fir
                             if (it != iter->second.end())
                             {
                                 //找到了
-                                stTableKey k(itemObj["ID"].toString(),1);
-                                k.keyEx.strLabelEx = itemObj["Title"].toString();
+                                stTableKey k(itemObj["Title"].toString(),1);
+                                k.keyEx.strLabelEx = itemObj["ID"].toString();
+                                //m_mapTemplate.insert(std::pair(k, itemObj["Title"].toString()));
                                 it->second.push_back(k);
                             }
                             else
                             {
                                 std::vector<stTableKey> temp;
-                                iter->second.insert(std::pair(second, temp));
+                                iter->second.insert(std::pair<QString, std::vector<stTableKey>>(second, temp));
                                 goto loop2;
                             }
                         }
@@ -338,7 +457,7 @@ void CTemplateManage::handleTemplateListReplay(QNetworkReply* reply, QString fir
                         {
                             // not found
                             TemplateSecondListMap temp;
-                            m_mapTemplateList.insert(std::pair(first, temp));
+                            m_mapTemplateList.insert(std::pair<QString, TemplateSecondListMap>(first, temp));
                             goto loop;
                         }
 
@@ -354,73 +473,13 @@ void CTemplateManage::handleTemplateListReplay(QNetworkReply* reply, QString fir
         // 出错处理
         qDebug() << "Error:" << reply->errorString();
     reply->deleteLater();
-    loop.quit();
+    eventLoop.quit();
 }
 
 
 //从后端返回模板数据，测试
 QString CTemplateManage::LoadTemplateData(const QString &strId)
 {
-    ////读取测试json  该json为GetSaveReportJson返回完整json
-    //std::ifstream file("C:\\code\\json1.txt", std::ios::binary);
-    //if (file.is_open())
-    //{
-    //    //读取全部文件数据
-    //    file.seekg(0, std::ios::end);
-    //    int nLength = static_cast<int>(file.tellg());
-    //    file.seekg(0, std::ios::beg);
-    //    char* pBuffer = new char[nLength + 1];
-    //    file.read(pBuffer, nLength);
-    //    file.close();
-    //    pBuffer[nLength] = '\0';
-    //    QString strJson(pBuffer);
-    //    delete[]pBuffer;
-    //    pBuffer = nullptr;
-    //    QJsonParseError error;
-    //    //解析json
-    //    QJsonDocument jsonDocument = QJsonDocument::fromJson(strJson.toUtf8(), &error);
-    //    if (error.error == QJsonParseError::NoError)
-    //    {
-    //        if (jsonDocument.isObject())
-    //        {
-    //            auto result = jsonDocument.toVariant().toMap();
-    //            if (!result.empty())
-    //            {
-    //                auto itFind = result.find("TreeJson");
-    //                //获取treejson  保存在2t.txt
-    //                if (itFind != result.end() && !itFind->isNull())
-    //                {
-    //                    g_strTreeJson = itFind->toString();
-    //                    std::ofstream outfile("d:\\2t.txt");
-    //                    outfile << g_strTreeJson.toStdString() << std::endl;
-    //                    outfile.close();
-    //                }
-    //                //ListJson
-    //                itFind = result.find("ReportJson");
-    //                if (itFind != result.end() && !itFind->isNull())
-    //                {
-    //                    g_strListJson = itFind->toString();
-    //                    std::ofstream outfile("d:\\3t.txt");
-    //                    outfile << g_strListJson.toStdString() << std::endl;
-    //                    outfile.close();
-    //                }
-    //                //FirstId
-    //                itFind = result.find("FirstId");
-    //                if (itFind != result.end() && !itFind->isNull())
-    //                {
-    //                    g_strFirst = itFind->toString();
-    //                }
-    //                //SecondId
-    //                itFind = result.find("SecondId");
-    //                if (itFind != result.end() && !itFind->isNull())
-    //                {
-    //                    g_strSecond = itFind->toString();
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-
     //https://hidos-ris.kayisoft.dev/api/v1/sr_snapshot/file?id=e9102148-6802-4a04-be5d-9a3416ddbb88
     QString url = m_strUrl + "/api/v1/sr_snapshot/file?id="+ strId;
 
@@ -430,7 +489,10 @@ QString CTemplateManage::LoadTemplateData(const QString &strId)
  
     
     connect(reply, &QNetworkReply::finished, this, &CTemplateManage::handleTemplateJsonReplay);
-    loop.exec();
+    QObject::connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
+
+    eventLoop.exec();
+    timer.start(1000);
     //m_mapTemplate.insert(std::pair(, g_strTreeJson));
     //切换显示页面
     return g_strTreeJson;
@@ -442,7 +504,7 @@ void CTemplateManage::handleTemplateJsonReplay()
         // 成功响应
 
         auto responseData = reply->readAll();
-
+        QString str = responseData;
         /*qDebug() << "Response received:" << g_strTreeJson;*/
 
         QJsonDocument doc = QJsonDocument::fromJson(responseData);
@@ -488,27 +550,74 @@ void CTemplateManage::handleTemplateJsonReplay()
         qDebug() << "Error:" << reply->errorString();
     }
     reply->deleteLater();
-    loop.quit();
+    eventLoop.quit();
 }
-
-stTableKey CTemplateManage::AddTemplateData(const QJsonObject &json)
+//1 新增  0 修改
+stTableKey CTemplateManage::AddTemplateData(const QJsonObject &json,bool isAdd)
 {
     // 将JSON对象转换为JSON文档
     QJsonDocument doc(json);
     // 将JSON文档转换为字节流
     QByteArray data =  doc.toJson();
-    qDebug() << "dataJson = " << data.data();
+    QString s = data;
     QString url = m_strUrl + "/api/v1/sr_snapshot";
 
     QNetworkRequest request = QNetworkRequest(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QNetworkReply* reply = m_network->post(request, data);
     // 处理回复
-    QObject::connect(reply, &QNetworkReply::finished, [reply]() {
+    QObject::connect(reply, &QNetworkReply::finished, [reply,this,isAdd]() {
         if (reply->error() == QNetworkReply::NoError) {
             // 成功响应
             QByteArray responseData = reply->readAll();
-            //qDebug() << "Response received:" << responseData;
+            QString str = responseData;
+            QJsonDocument doc = QJsonDocument::fromJson(responseData);
+            if (!doc.isNull())
+            {
+                if (doc.isObject())
+                {
+                    QJsonObject jsonObj = doc.object();
+                    // 现在可以使用jsonObj访问JSON对象中的数据
+                    // 例如：获取名为"exampleKey"的值
+                    QJsonValue value = jsonObj.value("Success");
+                    if (value != true)
+                    {
+                        signSettingInfo("解析失败", 1);
+                        return;
+                    }
+
+                    value = jsonObj.value("StatusCode");
+                    if (value != 200)
+                    {
+                        signSettingInfo("HTTP状态码有误", 1);
+                        return;
+                    }
+                    //解析ID
+                    
+                    QJsonDocument document = QJsonDocument::fromJson(str.toUtf8());
+                    QJsonObject rootObject = document.object();
+
+                    QJsonObject context = rootObject.value("Context").toObject();
+                    QString id = context.value("ID").toString();
+                    //添加缓存中的内容
+                    auto it = m_mapTemplateList.find(m_currentFirst);
+                    if (it != m_mapTemplateList.end())
+                    {
+                        auto itt = it->second.find(m_currentSecond);
+                        if (itt != it->second.end())
+                        {
+                           
+                            stTableKey temp(m_addName,-1);
+                            temp.keyEx.strLabelEx = id;
+                            itt->second.push_back(temp);
+                        }
+                    }
+                    signSettingInfo(isAdd?"添加成功":"修改成功", 0);
+                    signChangeComboboxItem(m_addName,1);
+                    return;
+                }
+            }
+
         }
         else {
             // 出错处理
@@ -519,3 +628,4 @@ stTableKey CTemplateManage::AddTemplateData(const QJsonObject &json)
 
     return stTableKey("", -1);
 }
+

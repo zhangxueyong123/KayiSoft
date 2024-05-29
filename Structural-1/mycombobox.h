@@ -6,6 +6,9 @@
 #include "structdef.h"
 #include "qlabel.h"
 #include "clickablelabel.h"
+#include <qobject.h>
+#include <qmutex.h>
+#include <QStandardItemModel>
 struct ComboboxInfo
 {
     QString title;
@@ -37,6 +40,7 @@ using MapNameAndIdList =  std::map<QString,std::vector<stNameAndId>> ;
 //自定义combobox类
 class MyComboBox : public QComboBox
 {
+    Q_OBJECT
 public:
     MyComboBox(const QString &strId,
                const QString &strTitle,
@@ -75,31 +79,31 @@ public:
     ClickableLabel  *m_label = nullptr;
     QWidget *GetPtr();
     int     level = -1;
-    static QMap<QString, QMap<QString, comboboxInfo>> m_comboboxInfoMap;
-    static QString getFirstId(QString SecondId)
-    {
-        QString firstid = "";
-        
-        //for (auto it : m_comboboxInfoMap)
-        //{
-        //    if (it.find(SecondId) != it.end())
-        //    {
-        //        auto index = it.find(SecondId);
-        //        QString s = index.key();
-        //    }
-        //}
-        auto keys = m_comboboxInfoMap.keys();
-        auto values = m_comboboxInfoMap.values();
-        for (int i = 0; i < keys.size(); i++)
-        {
-            if (values[i].find(SecondId) != values[i].end())
-                firstid = keys[i];
-        }
-        return firstid;
-    }
+    
+    //禁止滚轮事件
+    void wheelEvent(QWheelEvent* e);
+
+    void setToolTip();
+    void setFormula(const QString& strFormula);
+    void Tdisconnect();
+    void Tconnect();
+    QString m_strFormula;
+
+protected:
+    virtual void mousePressEvent(QMouseEvent* e);  //添加鼠标点击事件
+
+signals:
+    void clicked();  //自定义点击信号，在mousePressEvent事件发生时触发
+
+public slots:
+
+    void slotChangeComboboxItem(QString title,bool sw);
+
 private:
     QString m_strDataTypeSummary;
     QString m_strBodyPart;
     ComboboxChangeCallBack m_pCallBack = nullptr;
+    bool    isNewChild = true;
+    QMutex     m_mutex;
 };
 #endif // MYCOMBOBOX_H

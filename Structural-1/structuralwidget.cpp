@@ -5,6 +5,9 @@
 #include <iostream>
 #include <fstream>
 #include "ctemplatemanage.h"
+
+QString stTemplateWnd::m_currentPre = "";
+QString beforeJson = "";
 std::atomic_int g_NowTimes(0);
 std::atomic_int g_EndTimes(0);
 QScopedPointer<QEventLoop> g_eventLoop;
@@ -21,9 +24,10 @@ StructuralWidget::StructuralWidget(const QString &strUrl, CNetworkAccessManager 
     if (g_eventLoop.isNull()){
         g_eventLoop.reset(new QEventLoop);
     }
+
     auto funMeasureCall = [](QStringList *pList, StructuralWidget *pThis)
     {
-        emit pThis->measureParameterCheck(*pList);
+         emit pThis->measureParameterCheck(*pList);
     };
     auto funExplainCall = [](QStringList *pList, StructuralWidget *pThis)
     {
@@ -31,18 +35,47 @@ StructuralWidget::StructuralWidget(const QString &strUrl, CNetworkAccessManager 
     };
     //接到模板数据，刷新界面
     auto funtemplateCall = [](QString * strFirst, QString* strSecond, QString* strTreeJson, StructuralWidget* pThis)
-    {  
+    { 
+        if (*strTreeJson == "change")//一般切换
+        {
+            pThis->signReLoad(*strFirst, *strSecond,"");
+            return;
+        }
+        if (*strTreeJson != "")//快照
+        {
+            pThis->signReLoad(*strFirst, *strSecond, *strTreeJson);
+        }
 
-        pThis->ReloadTreeDataByJson(*strFirst, *strSecond, *strTreeJson,1);
-        pThis->InitUiCtl(false, true);
-     
+        
     };
+    //m_StructuralWnd.InitCallBaCk(std::bind(funMeasureCall, std::placeholders::_1, this),
+    //                             std::bind(funExplainCall, std::placeholders::_1, this),
+    //                             std::bind(funtemplateCall, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, this));
     m_StructuralWnd.InitCallBaCk(std::bind(funMeasureCall, std::placeholders::_1, this),
                                  std::bind(funExplainCall, std::placeholders::_1, this),
                                  std::bind(funtemplateCall, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, this));
 
     CTemplateManage::GetSingle(strUrl, m_network);
 
+    connect(CTemplateManage::GetSingle(), &CTemplateManage::signSettingInfo, this, &StructuralWidget::slotSettingInfo);
+
+    connect(ControlCenter::getInstance(), &ControlCenter::signSendTemplateData, this, &StructuralWidget::sendTemplateData);
+    connect(ControlCenter::getInstance(), &ControlCenter::signDeleteTemplateData, this, &StructuralWidget::deleteTemplateData);
+    connect(ControlCenter::getInstance(), &ControlCenter::signSaveOpenedReport, this, [=](QString first,QString second) {
+        if (first == "" || second == "")
+            return;
+        auto json = GetSaveReportJson(ControlCenter::getInstance()->m_type);
+        QByteArray jsonBytes = json.toUtf8();
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonBytes);
+        // 将QJsonDocument转换为QJsonObject
+        QJsonObject jsonObj = jsonDoc.object();
+        // 输出QJsonObject的内容
+        if (jsonObj["FirstId"].toString() == first && jsonObj["SecondId"].toString() == second && jsonObj["TreeJson"].toString() != "")
+        {
+            BothId b(first, second);
+            ControlCenter::getInstance()->setOpenedReportJson(b, json);
+        }
+        });
     //th.start();
     //connect(&th, &HttpThread::signReplySuccess, this, &StructuralWidget::handleReply);
     
@@ -50,7 +83,13 @@ StructuralWidget::StructuralWidget(const QString &strUrl, CNetworkAccessManager 
     //m_file.open(QIODevice::WriteOnly);
     //m_qnetwork = new QNetworkAccessManager();
     
-    //m_StructuralWnd.m_RATemplateWnd.pWndSingle->SetCallback(std::bind(&StructuralWidget::FunctionToBeCalled, this, std::placeholders::_1));
+
+    this->setStyleSheet(QString("MyGroup{border:1px solid rgb(183,198,221);border-radius:4px;background:rgb(220,231,244);}"
+                                "QLabel{ color:rgba(0,0,0,0.7); }"
+                                "QComboBox{ background-color: transparent;color:  rgb(0, 0, 0); border:1px solid #B7C6DD;}"
+                                "QComboBox QAbstractItemView{ background-color: rgb(250,240,225);color:  rgb(0, 0, 0);}"
+                                "MyPushButton{border:1px solid #B7C6DD; padding:1px;}"
+                                "MyPushButton:hover{ background-color:rgb(255, 255, 255);}"));
 }
 
 
@@ -92,11 +131,14 @@ void StructuralWidget::SetPatientPar(const QString &systemCode, const QString &h
 
 bool StructuralWidget::SetViewerType(eTemplateType eViewerType, bool bReLoad, const QString &strFirstId, const QString &strSecondId, const QString &strJson, bool bSingle)
 {
+    ControlCenter::getInstance()->m_type = eViewerType;
+    m_selectFirstId = strFirstId;
+    m_selectSecondId = strSecondId;
     m_eViewerType = eViewerType;
     bool bReload =  ChangeViewer(bReLoad);
     if(m_bIsReset && !strJson.isEmpty())
     {
-        ReloadTreeDataByJson(strFirstId, strSecondId, strJson,bSingle );
+        ReloadTreeDataByJson(strFirstId, strSecondId, strJson, bSingle);
         m_bIsReset = false;
         bReload = true;
     }
@@ -105,6 +147,14 @@ bool StructuralWidget::SetViewerType(eTemplateType eViewerType, bool bReLoad, co
     {
         InitUiCtl(true, false);
     }
+    m_StructuralWnd.setFinish(true);
+    //qDebug() << "defaultFirst = " << ControlCenter::getInstance()->m_defaultFirstId;
+    //qDebug() << "defaultSecond = " << ControlCenter::getInstance()->m_defaultSecondId;
+
+    //QString fileName = "./StructuralWidget/" + QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch()) + ".png";
+    //QPixmap pixmap = this->grab();
+    //pixmap.save(fileName);
+    
     return true;
 }
 
@@ -127,11 +177,6 @@ void StructuralWidget::ResetTreeData()
     SetReportStateByValue(vecState);
 }
 
-void StructuralWidget::OnInitWidget()
-{
-
-}
-
 bool StructuralWidget::ChangeViewer(bool bReLoad)
 {
     QString str = TransType2Str(m_eViewerType);
@@ -152,11 +197,6 @@ bool StructuralWidget::ChangeViewer(bool bReLoad)
     return bReLoad;
 }
 
-void StructuralWidget::UnableAll()
-{
-
-}
-
 void StructuralWidget::InitUiCtl(bool sw ,bool bDeleteDelay)
 {
     CheckCreate(sw,bDeleteDelay);
@@ -171,10 +211,8 @@ void StructuralWidget::ReloadTreeDataBySelf()
     MoveBtn(true);
 }
 
-
 void StructuralWidget::ReloadTreeDataByNet(eTemplateType viewerType)
 {
-
     if (viewerType == eTemplateType_Null)
     {
         return;
@@ -189,7 +227,6 @@ void StructuralWidget::ReloadTreeDataByNet(eTemplateType viewerType)
      m_StructuralWnd.SetDepartment(m_eViewerType, m_DepartmentAndBodyPart.strDepartment, m_DepartmentAndBodyPart.strBodyPart);
     MoveBtn(true);
     m_bIsReset = true;
-
 }
 
 void StructuralWidget::ReloadTreeDataByNet()
@@ -200,7 +237,6 @@ void StructuralWidget::ReloadTreeDataByNet()
 void StructuralWidget::ReloadTreeDataByJson(const QString& strFirstId, const QString& strSecondId, const QString& strJson, bool bSingle)
 {
     std::vector<QString> vecCode;
-
     auto vecId = m_StructuralData.AddStructuralDataByJson(strJson, &vecCode, strFirstId, strSecondId);
     if (!bSingle)
     {
@@ -259,7 +295,6 @@ void StructuralWidget::SetMeasureParamePar(const QString &strUrl, CNetworkAccess
 void StructuralWidget::GetReportKeyValueState(std::vector<stTableState>* pVecState)
 {
     m_StructuralWnd.GetReportKeyValueState(m_eViewerType, pVecState);
-
 }
 
 QString StructuralWidget::GetReportKeyValueJson()
@@ -279,9 +314,11 @@ QString StructuralWidget::GetSaveReportJson(eTemplateType type)
     QJsonDocument doc;
     QJsonObject dataObject = GetSaveReportPar(type);
     doc.setObject(dataObject);
+    QByteArray arr = doc.toJson();
+    QString str = doc.toJson();
     return doc.toJson();
 }
-
+              
 QJsonObject StructuralWidget::GetSaveReportPar(eTemplateType type)
 {
     stSaveReportPar saveReportPar;
@@ -312,7 +349,6 @@ QJsonObject StructuralWidget::GetSaveReportPar(eTemplateType type)
 void StructuralWidget::SetReportStateByJson(const QString& strJson)
 {
     m_StructuralWnd.SetReportStateByJson(m_eViewerType, strJson);
-
 }
 
 void StructuralWidget::SetReportStateByValue(const std::vector<stTableState>& vecState)
@@ -350,9 +386,7 @@ std::vector<QString> StructuralWidget::GetDataTypeList()
 
 void StructuralWidget::ClearData()
 {
-
     m_StructuralData.Clear();
-
 //    QString m_strDepartment;
 //    QString m_strBodyPart;
     //m_ShowStructuralData.Clear();
@@ -360,11 +394,9 @@ void StructuralWidget::ClearData()
 std::chrono::time_point<std::chrono::high_resolution_clock> start;
 std::chrono::time_point<std::chrono::high_resolution_clock> end;
 //调用了2次，第一次为了 获取超声、内窥镜、放射三者的combobox中的下拉框合集，根据选择设置最左上角的一个combobox， （新文件6）
-//         第二次为了 获取 如放射下，所有的第二个combobox中的下拉框合集，再根据第一个下拉框的选择设置第二个下拉框（新文件7）,还有下拉框下的
+//         第二次为了 获取 如放射下，所有的第二个combobox中的下拉框合集，再根据第一个下拉框的选择设置第二个下拉框（新文件7）,还有下拉框下的多选框区域
 void StructuralWidget::LoadTreeData()
 {
-//    m_strDepartment = strDepartment;
-//    m_strBodyPart = strBodyPart;
     //创建结构参数
     QString strUrl = m_strUrl;
     if(m_ApiVersion == eVersionType_V1)
@@ -386,10 +418,6 @@ void StructuralWidget::LoadTreeData()
         {
             return;
         }
-        //QFile file;
-        //file.setFileName("C:\\Users\\章学勇\\Desktop\\新文件 7.cpp");
-        //file.open(QIODevice::ReadOnly);
-        //strDst = file.readAll();
 
         //根据接口json创建结构化报告节点
         m_StructuralData.AddStructuralDataByJson(strDst);
@@ -420,8 +448,6 @@ void StructuralWidget::LoadTreeData()
     {
          m_StructuralData.m_strUrl = m_strUrl + "/api/v1/sr_dictionary/tree/dictionaryid?dictionaryid=";
     }
-
-
 //    vecId = m_StructuralData.FindAllStateId();
 
 //    //根据节点数据获取所有结构化列表数据
@@ -527,7 +553,8 @@ void StructuralWidget::LoadTreeList(const std::map<eTemplateType, stTopPar>& map
 
                 if (reply->error() == QNetworkReply::NoError)
                 {
-                    /* auto vecNewId =*/ m_StructuralData.AddStructuralDataByJson(reply->readAll());
+                    /* auto vecNewId =*/ 
+                    m_StructuralData.AddStructuralDataByJson1(reply->readAll(),nullptr,/*"4756628e-34c2-408f-b510-9f3f7785cb4f"*/m_selectFirstId,/*"2aa8215f-bbb1-422a-b591-b9c9e4897443"*/m_selectSecondId);
                     //LoadSubList(vecNewId);
                     // ++nNowTimes;
                     ++g_NowTimes;
@@ -535,18 +562,10 @@ void StructuralWidget::LoadTreeList(const std::map<eTemplateType, stTopPar>& map
                     {
                         //2
                         g_eventLoop->quit();
-
                     }
                 }
             });
-
-
     }
-
-
-
-
-
 }
 
 void StructuralWidget::LoadDictionaryData(const std::vector<QString>& vecId)
@@ -567,7 +586,6 @@ void StructuralWidget::LoadDictionaryData(const std::vector<QString>& vecId)
         QNetworkReply* reply = m_network->get(request);
         connect(reply, &QNetworkReply::finished, [=]
             {
-
                 if (reply->error() == QNetworkReply::NoError)
                 {
                     QString strDst = reply->readAll();
@@ -584,31 +602,9 @@ void StructuralWidget::LoadDictionaryData(const std::vector<QString>& vecId)
     }
 }
 
-//std::vector<QString> StructuralWidget::GetDircionaryData()
-//{
-//    std::vector<QString> vecId;
-//    auto itFind = std::find(m_vecDepartmentAndBodyPart.begin(), m_vecDepartmentAndBodyPart.end(), m_DepartmentAndBodyPart);
-//    if(itFind == m_vecDepartmentAndBodyPart.end())
-//    {
-//        return vecId;
-//    }
-//     QString strUrl = m_strUrl;
-//     if(m_ApiVersion == eVersionType_V1)
-//     {
-//         strUrl += "/api/v1/sr_dictionary/tree/dictionaryid?dictionaryid=";
-//     }
-//     m_vecDepartmentAndBodyPart.push_back(m_DepartmentAndBodyPart);
-////     auto ret = CNetWork::netWorkGet(m_network, strUrl, strDst);
-////     if(ret != 0 || strDst.isEmpty())
-////     {
-////         return vecId;
-////     }
-//    return vecId;
-//}
-
-
 void StructuralWidget::CheckCreate(bool bReset, bool bDeleteDelay)
 {
+    //qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz") << __FUNCDNAME__;
     m_StructuralWnd.CrateByStructuralData(this,  /*m_ShowStructuralData.IsEmpty() ?*/ m_StructuralData /*: m_ShowStructuralData*/,bReset, bDeleteDelay);
     m_StructuralWnd.SetDepartment(m_eViewerType, m_DepartmentAndBodyPart.strDepartment, m_DepartmentAndBodyPart.strBodyPart);
 }
@@ -639,8 +635,65 @@ void StructuralWidget::paintEvent(QPaintEvent* event)
 void StructuralWidget::sendTemplateData(QString templateName,eTemplateType type)
 {
     auto json = GetSaveReportJson(type);
-    QString first, second;
-    m_StructuralWnd.getTemplateInfo(eTemplateType_SRRa, first, second);
-    //CTemplateManage::GetSingle()->AddTemplateData("4756628e-34c2-408f-b510-9f3f7785cb4f","2aa8215f-bbb1-422a-b591-b9c9e4897443", templateName,json);
+    QString first = ControlCenter::getInstance()->m_currentFirstId;
+    QString second = ControlCenter::getInstance()->m_currentSecondId;
     CTemplateManage::GetSingle()->AddTemplateData(first, second, templateName,json);
+}
+
+void StructuralWidget::deleteTemplateData(QString templateName, eTemplateType type)
+{
+    //通知快照combobox 改变当前index
+    ControlCenter::getInstance()->initCombobox();
+    QString first = ControlCenter::getInstance()->m_currentFirstId;
+    QString second = ControlCenter::getInstance()->m_currentSecondId;
+    CTemplateManage::GetSingle()->DeleteTemplateData(first, second, templateName);
+}
+
+void StructuralWidget::slotSettingInfo(QString title, bool flag)
+{
+    qDebug() << "快照设置结果:" << title << flag;
+    if (label != nullptr)
+    {
+        label->hide();
+        label->setParent(nullptr);
+        label = nullptr;
+    }
+        
+    label = new QLabel(this);
+    label->setText(title);
+    label->hide();
+    QString successStyle = "QLabel{color: rgb(255, 0, 0);font: 9pt ""微软雅黑"";}";
+    QString failStyle = "QLabel{color: rgb(0, 0, 0);font: 9pt ""微软雅黑"";}";;
+    label->setStyleSheet(!flag ? successStyle : failStyle);
+    //透明度
+    goe = new QGraphicsOpacityEffect();
+    label->setGraphicsEffect(goe);
+    //    gce = new QGraphicsColorizeEffect(label);
+    //    label->setGraphicsEffect(gce);
+        //移动动画
+    animation = new QPropertyAnimation(label, "geometry");
+
+    connect(animation, &QPropertyAnimation::finished, this, [=]() {
+        label->hide();
+        timer->stop();
+        });
+    timer = new QTimer();
+    //设置高精度定时器
+    //timer->setTimerType(Qt::PreciseTimer);
+    connect(timer, &QTimer::timeout, this, [=]() {
+        m_opacityVal -= 0.05;
+        goe->setOpacity(m_opacityVal);
+        });
+
+
+    m_opacityVal = 1.0f;
+    int t = 2000;//动画时间
+    //移动动画
+    animation->setDuration(t);//设置动画时间
+    animation->setEndValue(QRect((this->width() - label->width()) / 2, 0, 100, 30));//开始位置
+    animation->setStartValue(QRect((this->width() - label->width()) / 2, this->height() / 4, 100, 30));//结束位置
+    animation->start();//动画开始
+    label->raise();
+    label->show();
+    timer->start(t / 10);
 }

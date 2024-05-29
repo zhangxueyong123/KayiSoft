@@ -174,6 +174,9 @@ void TransNodeData(QVariantMap &mapData,  stStructuralNode *pNode)
  //   FindMapData(mapData, "Other", &pNode->strOther, eMapDaTaType_UnKnow);
     FindMapData(mapData, "Tip", &pNode->strTip, eMapDaTaType_UnKnow);
 
+    FindMapData(mapData, "Formula", &pNode->strFormula, eMapDaTaType_UnKnow);
+    FindMapData(mapData, "FormulaSummary", &pNode->strFormulaSummary, eMapDaTaType_UnKnow);
+
 
     QString str;
     FindMapData(mapData, "ElementAttribute", &str, eMapDaTaType_UnKnow);
@@ -504,6 +507,341 @@ std::vector<QString> StructuralData::AddStructuralDataByJson(const QString &strJ
     }
     return std::vector<QString>();
 }
+QString StructuralData::screeningForNKJ( QString strJson,  QString strFirst,  QString strSecond)
+{
+    //strFirst = "edd58a5a-5037-4959-a647-6e3dd482cd22";
+    // 解析JSON数据
+    QJsonDocument doc = QJsonDocument::fromJson(strJson.toUtf8());
+    if (doc.isNull()) {
+        qDebug() << "Failed to create JSON doc.";
+        return "";
+    }
+
+    // 获取根节点
+    QJsonObject root = doc.object();
+
+    // 保存需要保留的节点数据
+    QJsonArray newNodes;
+    QJsonArray nodes = root["Context"].toArray()[0].toObject()["Nodes"].toArray();
+    //先寻找默认节点
+    if (strFirst == "")
+    {
+        for (const auto& node : nodes) {
+            QJsonObject nodeObj = node.toObject();
+
+            if (nodeObj["Value2"].toString() == "1") {
+                strFirst = nodeObj["NodeId"].toString();
+            }
+        }
+
+    }
+
+    for (const auto& node : nodes) {
+        QJsonObject nodeObj = node.toObject();
+        ControlCenter::getInstance()->addFirstData(nodeObj["NodeId"].toString(), nodeObj["Title"].toString());
+        if (nodeObj["NodeId"].toString() == strFirst) {  
+            newNodes.append(nodeObj);
+        }
+    }
+     // 创建新的JSON数据包
+    QJsonObject newRoot;
+    newRoot["Errors"] = root["Errors"];
+    newRoot["Extras"] = root["Extras"];
+    newRoot["Msg"] = root["Msg"];
+    newRoot["StatusCode"] = root["StatusCode"];
+    newRoot["Success"] = root["Success"];
+    newRoot["Timestamp"] = root["Timestamp"];
+    newRoot["Context"] = newNodes;
+    QJsonDocument newDoc(newRoot);
+
+    // 将新的JSON数据包转换为字符串并打印输出
+    QString newJsonString = QString::fromUtf8(newDoc.toJson());
+    return newJsonString;
+}
+
+
+QString StructuralData::screening(QString strJson, QString strFirst, QString strSecond, bool isFirst)
+{
+    // 解析JSON数据
+    QJsonDocument doc = QJsonDocument::fromJson(strJson.toUtf8());
+    if (doc.isNull()) {
+        qDebug() << "Failed to create JSON doc.";
+        return "";
+    }
+
+    // 获取根节点
+    QJsonObject root = doc.object();
+
+    // 保存需要保留的节点数据
+    QJsonArray newNodes;
+    QJsonArray nodes = root["Context"].toArray()[0].toObject()["Nodes"].toArray();
+    if (strFirst == "" && strSecond == "")
+    {
+        if (ControlCenter::getInstance()->m_department != "" && ControlCenter::getInstance()->m_bodyPart != "")
+        {
+            for (const auto& node : nodes) {
+                QJsonObject nodeObj = node.toObject();
+                if (nodeObj["Value3"].toString() == ControlCenter::getInstance()->m_department)
+                {
+                    strFirst = nodeObj["NodeId"].toString();
+                    ControlCenter::getInstance()->m_defaultFirstId = strFirst;
+                    QJsonArray subNodes;
+                    QJsonArray subNodesData = nodeObj["Nodes"].toArray();
+                    for (const auto& subNode : subNodesData) {
+                        QJsonObject subNodeObj = subNode.toObject();
+                        auto list = ControlCenter::getInstance()->m_bodyPart.split(",");
+                        if (list.contains(subNodeObj["Value4"].toString())) {
+                            strSecond = subNodeObj["NodeId"].toString();
+                            ControlCenter::getInstance()->m_defaultSecondId = strSecond;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        else
+        {
+            for (const auto& node : nodes) {
+                QJsonObject nodeObj = node.toObject();
+                if (nodeObj["Value2"].toString() == "1")
+                {
+                    strFirst = nodeObj["NodeId"].toString();
+                    ControlCenter::getInstance()->m_defaultFirstId = strFirst;
+                    QJsonArray subNodes;
+                    QJsonArray subNodesData = nodeObj["Nodes"].toArray();
+                    for (const auto& subNode : subNodesData) {
+                        QJsonObject subNodeObj = subNode.toObject();
+
+                        if (subNodeObj["Value2"].toString() == "1") {
+                            strSecond = subNodeObj["NodeId"].toString();
+                            ControlCenter::getInstance()->m_defaultSecondId = strSecond;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    for (const auto& node : nodes) {
+        QJsonObject nodeObj = node.toObject();
+        if (isFirst)
+            ControlCenter::getInstance()->addFirstData(nodeObj["NodeId"].toString(), nodeObj["Title"].toString());
+        if (nodeObj["NodeId"].toString() == strFirst) {
+            QJsonArray subNodes;
+            QJsonArray subNodesData = nodeObj["Nodes"].toArray();
+            for (const auto& subNode : subNodesData) {
+                QJsonObject subNodeObj = subNode.toObject();
+                if (isFirst)
+                    ControlCenter::getInstance()->addSecondData(subNodeObj["NodeId"].toString(), subNodeObj["Title"].toString(), nodeObj["NodeId"].toString());
+                if (subNodeObj["NodeId"].toString() == strSecond) {
+                    subNodes.append(subNodeObj);
+                }
+            }
+            nodeObj["Nodes"] = subNodes;
+            newNodes.append(nodeObj);
+        }
+        else
+        {
+            QJsonArray subNodes;
+            QJsonArray subNodesData = nodeObj["Nodes"].toArray();
+            for (const auto& subNode : subNodesData) {
+                QJsonObject subNodeObj = subNode.toObject();
+                if (isFirst)
+                    ControlCenter::getInstance()->addSecondData(subNodeObj["NodeId"].toString(), subNodeObj["Title"].toString(), nodeObj["NodeId"].toString());
+                if (subNodeObj["NodeId"].toString() == strSecond) {
+                    subNodes.append(subNodeObj);
+                }
+            }
+            nodeObj["Nodes"] = subNodes;
+            //newNodes.append(nodeObj);
+        }
+    }
+    /* ControlCenter::getInstance()->addFirstData("545454as","6666");*/
+     // 创建新的JSON数据包
+    QJsonObject newRoot;
+    newRoot["Errors"] = root["Errors"];
+    newRoot["Extras"] = root["Extras"];
+    newRoot["Msg"] = root["Msg"];
+    newRoot["StatusCode"] = root["StatusCode"];
+    newRoot["Success"] = root["Success"];
+    newRoot["Timestamp"] = root["Timestamp"];
+    newRoot["Context"] = newNodes;
+    QJsonDocument newDoc(newRoot);
+
+    // 将新的JSON数据包转换为字符串并打印输出
+    QString newJsonString = QString::fromUtf8(newDoc.toJson());
+
+    return newJsonString;
+}
+static QString g_json = "";
+
+std::vector<QString> StructuralData::AddStructuralDataByJson1(const QString& strJson, std::vector<QString>* pVecCode, const QString& strFirst, const QString& strSecond)
+{
+    QJsonParseError error;
+    QJsonDocument jsonDocument; 
+    //if (strJson != "")
+    //{
+    //    g_json = strJson;
+        jsonDocument = QJsonDocument::fromJson(strJson.toUtf8(), &error);
+    //}      
+    //else
+    //{
+    //    jsonDocument = QJsonDocument::fromJson(g_json.toUtf8(), &error);
+    //}
+
+    if (error.error == QJsonParseError::NoError)
+    {
+        if (jsonDocument.isObject())
+        {
+            stStructuralData data;
+            auto result = jsonDocument.toVariant().toMap();
+            
+            if (!result.empty())
+            {
+                bool bFirst = false;
+                std::vector<QString> vecId;
+                bool bEmpty = false;
+                {
+                    std::shared_lock<std::shared_mutex> lock(g_cs);
+                    bEmpty = m_StructuralData.IsEmpty();
+                }
+                if (bEmpty)
+                {
+                    std::unique_lock<std::shared_mutex> lock(g_cs);
+                    bFirst = true;
+                    vecId = TrasnStructuralData(result, &m_StructuralData);
+                    if (pVecCode != nullptr)
+                    {
+                        GetAllCode(m_StructuralData.mapContext, pVecCode);
+
+                    }
+                    //   pData = &m_StructuralData;
+                }
+                else
+                {
+                    QVariantMap result;
+                    //把result处理一下       
+                    QString str;
+                    if (ControlCenter::getInstance()->m_type == eTemplateType_SRES)
+                    {
+                        str = screeningForNKJ(strJson, strFirst, "");
+                        QJsonDocument doc = QJsonDocument::fromJson(str.toUtf8());
+                        if (doc.isNull()) {
+                            qDebug() << "Failed to create JSON doc.";
+                        }
+                        result = doc.toVariant().toMap();
+                    }                  
+                    else
+                    {
+                        if (ControlCenter::getInstance()->needLoadAll)
+                        {
+                            str = screening(strJson, strFirst, strSecond, 1);
+                            QJsonDocument doc = QJsonDocument::fromJson(str.toUtf8());
+                            if (doc.isNull()) {
+                                qDebug() << "Failed to create JSON doc.";       
+                            }
+                            result = doc.toVariant().toMap();
+                        }                  
+                        else
+                        {
+                            BothId b(strFirst, strSecond);
+                            auto it = ControlCenter::getInstance()->jsonMap.find(b);
+                            if(it != ControlCenter::getInstance()->jsonMap.end())
+                                result = it.value();
+                        }                
+                    }    
+                    //保存所有json信息
+                    if (/*ControlCenter::getInstance()->needLoadAll*/0)
+                    {
+                        auto bothMap = ControlCenter::getInstance()->getDataSecondMap();
+                        QList<QFuture<void>> retList;
+                        // 使用迭代器遍历嵌套的 QMap
+                        for (auto it = bothMap.begin(); it != bothMap.end(); ++it)
+                        {
+                            QFuture<void> ret = QtConcurrent::run([it, this, strJson]
+                            {
+                                QString key = it.key();
+                                QMap<QString, QString> innerMap = it.value();
+                                for (auto innerIt = innerMap.begin(); innerIt != innerMap.end(); ++innerIt)
+                                {
+                                    QString innerKey = innerIt.key();
+                                    QString json = screening(strJson, key, innerKey, 0);
+                                    BothId b(key, innerKey);
+                                    QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8());
+                                    if (doc.isNull()) {
+                                        qDebug() << "Failed to create JSON doc.";
+                                    }
+                                    auto _result = doc.toVariant().toMap();
+                                    ControlCenter::getInstance()->jsonMap.insert(b, _result);
+                                }
+                            });
+                            retList.append(ret);
+                        }
+                        bool stop = 0;
+                        while (!stop)
+                        {
+                            int _stop = 1;
+                            for (int i = 0; i < bothMap.size(); i++)
+                            {
+                                _stop &= retList.at(i).isFinished();
+                            }
+                            if (_stop)
+                            {
+                                stop = 1;
+                            }
+                            else
+                                QApplication::processEvents(QEventLoop::AllEvents, 3);
+                        }
+                        ControlCenter::getInstance()->needLoadAll = false;
+                    }
+
+                    //QJsonDocument doc = QJsonDocument::fromJson(str.toUtf8());
+                    //if (doc.isNull()) {
+                    //    qDebug() << "Failed to create JSON doc.";       
+                    //}
+                    //result = doc.toVariant().toMap();
+
+
+                    //------------------------
+                    auto Context = result["Context"];
+                    //auto Nodes = Context.toJsonArray();
+                    vecId = TrasnStructuralData(result, &data);
+                    if (pVecCode != nullptr)
+                    {
+                        GetAllCode(data.mapContext, pVecCode);
+                    }
+                    //  pData = &data;
+                    std::unique_lock<std::shared_mutex> lock(g_cs);
+                    m_StructuralData.MergeStructuralData(data, strSecond.isEmpty() ? strFirst : strSecond);
+                }
+
+                {
+                    std::unique_lock<std::shared_mutex> lock(g_cs);
+                    if (!bFirst)
+                    {
+                        //m_StructuralData.MergeStructuralData(data, strSecond.isEmpty() ? strFirst : strSecond);
+
+                    }
+                    if (!strFirst.isEmpty())
+                    {
+                        m_StructuralData.SetTop(strFirst);
+                    }
+                    if (!strSecond.isEmpty())
+                    {
+                        m_StructuralData.SetTop(strSecond);
+                    }
+                }
+                return vecId;
+            }
+
+        }
+
+    }
+    return std::vector<QString>();
+}
+
 
 std::map<eTemplateType, stTopPar> StructuralData::GetTopPar()
 {
@@ -1204,6 +1542,10 @@ QJsonArray GetStructNodeArray(const MapNodes &mapNode)
         object["DefaultValue"] = itMap.second.strDefaultValue;
         object["TextSort"] = itMap.second.strTextSort;
         object["DataTypeSummary"] = itMap.second.strDataTypeSummary;
+        //公式
+        object["Formula"] = itMap.second.strFormula;
+        object["FormulaSummary"] = itMap.second.strFormulaSummary;
+
 
         if(itMap.second.bHasElementAttribute)
         {

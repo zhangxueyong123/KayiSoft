@@ -27,7 +27,7 @@ void WndSingle::InitLayout(QWidget* parent)
 
 }
 
-WndSingle::WndSingle(StructuralData* pData, UpdateDataCallBack updateCall, QWidget* parent,QString parentId)
+WndSingle::WndSingle(StructuralData* pData, UpdateDataCallBack updateCall, QWidget* parent, QString parentId)
 //    :QWidget(nullptr)
 {
     if (pData != nullptr)
@@ -43,7 +43,7 @@ WndSingle::WndSingle(StructuralData* pData, UpdateDataCallBack updateCall, QWidg
     {
         m_UpdateDataCallBack = updateCall;
     }
-    if(parentId != "")
+    if (parentId != "")
         m_strParentId = parentId;
 }
 
@@ -138,15 +138,14 @@ QString WndSingle::CreateSingle(QWidget* parent,
         if (!itVec.bStatus)
         {
             //根据据节点信息创建单选框
-            auto call = std::bind(&WndSingle::StateChange, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, this);
-
+            auto call = std::bind(&WndSingle::StateChange, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, this);
             if (itVec.bIsExplain)
             {
                 pBoxPtr->radioList.AddSingle/*<StateChangeCallBack>*/(parent, call,
                     itVec.strID, itVec.strPrefix,/*bUseTitle ? itVec.strTitle : itVec.strLabel*///,
                     "", itVec.strSuffix,
                     itVec.strDefaultValue == (bUseTitle ? itVec.strTitle : itVec.strLabel),
-                    pos, bInit, itVec.strTip, itVec.strDataType, itVec.strLabel);
+                    pos, bInit, itVec.strTip, itVec.strDataType, itVec.strLabel, itVec.strFormula);
                 //pBoxPtr->strExplain = itVec.strLabel;
             }
             else
@@ -155,7 +154,7 @@ QString WndSingle::CreateSingle(QWidget* parent,
                     itVec.strID, bUseTitle ? itVec.strTitle : itVec.strLabel,
                     itVec.strPrefix, itVec.strSuffix,
                     itVec.strDefaultValue == (bUseTitle ? itVec.strTitle : itVec.strLabel),
-                    pos, bInit, itVec.strTip, itVec.strDataType, "");
+                    pos, bInit, itVec.strTip, itVec.strDataType, "", itVec.strFormula);
             }
 
 
@@ -247,26 +246,36 @@ QString WndSingle::CreateMulti(QWidget* parent,
         }
         if (bCreate)
         {
-            auto call = std::bind(&WndSingle::StateChange, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, this);
+            bool flag = false;
+            if (itVec.nLoadElementAttribute == 3)
+            {
+                QString str = itVec.strID;
+                int k = 0;
+                flag = true;
+            }
+            auto call = std::bind(&WndSingle::StateChange, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, this);
             if (itVec.bIsExplain)
             {
                 pBoxPtr->boxList.AddSingle/*<StateChangeCallBack>*/(parent, call, itVec.strID, itVec.strPrefix,
                     "", itVec.strSuffix, itVec.strDefaultValue == "true",
-                    pos, bInit, itVec.strTip, itVec.strDataType, itVec.strLabel);
+                    pos, bInit, itVec.strTip, itVec.strDataType, itVec.strLabel, itVec.strFormula);
                 // pBoxPtr->strExplain = itVec.strLabel;
+                //pBoxPtr->
             }
             else
             {
                 pBoxPtr->boxList.AddSingle/*<StateChangeCallBack>*/(parent, call, itVec.strID, bUseTitle ? itVec.strTitle : itVec.strLabel,
                     itVec.strPrefix, itVec.strSuffix, itVec.strDefaultValue == "true",
-                    pos, bInit, itVec.strTip, itVec.strDataType, "");
+                    pos, bInit, itVec.strTip, itVec.strDataType, "", itVec.strFormula);
             }
 
 
             //   Add2MeasureParameterWidget(ptr, itVec.strTip);
             pBoxPtr->bChangeDir = itVec.strTextSort == "1";
-
-            pBoxPtr->mapType[itVec.strID] = eStructuralDataType_Multi;
+            if(flag)
+                pBoxPtr->mapType[itVec.strID] = eStructuralDataType_Illustrate;
+            else
+                pBoxPtr->mapType[itVec.strID] = eStructuralDataType_Multi;
             pBoxPtr->boxList.SetExclusive(false);
             strParent = itVec.strParentId;
             if (!itVec.mapChild.empty() && bCreateChild)
@@ -341,9 +350,9 @@ MyComboBox* WndSingle::CreateCombobox(QWidget* parent, const QString& strId, con
 
 
     //根据据节点信息创建下拉框，itNow：左侧的（CT结构化MR结构化等7项）combobox
-    auto call = std::bind(&WndSingle::ComboboxChange, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, this);
+    auto call = std::bind(&WndSingle::ComboboxChange, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, this);
     auto itNow = m_BoxListCollection.comboboxList.AddSingle/*<ComboboxChangeCallBack>*/(parent, call, strId, "",
-        "", "", false, eDataPostion_Left, true, "", "", "");
+        "", "", false, eDataPostion_Left, true, "", "", "", "");
     itNow->level = 1;
     for (auto& itVec : vecOther)
     {
@@ -352,7 +361,7 @@ MyComboBox* WndSingle::CreateCombobox(QWidget* parent, const QString& strId, con
             MyMeasureParameterManage::GetSingle()->AddMeasureParameters(itVec);
         }
     }
-    itNow->setStyleSheet(comboBoxQss);
+    //itNow->setStyleSheet(comboBoxQss);
     itNow->setMinimumWidth(30);
     itNow->clear();
     itNow->m_mapComboboxId.clear();
@@ -381,10 +390,13 @@ MyComboBox* WndSingle::CreateCombobox(QWidget* parent, const QString& strId, con
         }
 
     }
+    itNow->setToolTip();
     m_pLayout->addWidget(itNow);
     m_pLayout->setStretch(0, 1);
     m_pLayout->setStretch(1, 1);
     m_pLayout->setStretch(2, 1);
+
+
     //m_pLayout->setSizeConstraint(QLayout::SetMinAndMaxSize);  
     //m_pLayout->setAlignment( Qt::AlignLeft | Qt::AlignVCenter);
     //m_pLayerWidget->setLayout(m_pLayout);
@@ -423,6 +435,22 @@ MyComboBox* WndSingle::CreateCombobox(QWidget* parent, const QString& strId, con
             std::vector<QString>(), std::vector<QString>(), false, 0, true);
         itChild->level = 3;
         //itNow->SetChild(itChild, *vecId.begin());
+        MyPushButton* sendBtn = new MyPushButton(BtnType::Modify);
+        MyPushButton* deleteBtn = new MyPushButton(BtnType::Delete);
+        m_pLayout->addWidget(sendBtn);
+        m_pLayout->addWidget(deleteBtn);
+        auto strList = ControlCenter::getInstance()->getBtnStyleSheet().split(";");
+        QPixmap pixmap(strList[0]);
+        //QPixmap fitpixmap = pixmap.scaled(18, 18, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+        sendBtn->setToolTip("存为结构化词库模板快照（新增或修改）");
+        sendBtn->setIcon(QIcon(pixmap));
+        sendBtn->setIconSize(QSize(17, 17));
+        QPixmap pixmap1(strList[1]);
+        //QPixmap fitpixmap1 = pixmap1.scaled(18, 18, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+        deleteBtn->setToolTip("删除结构化词库模板快照");
+        deleteBtn->setIcon(QIcon(pixmap1));
+        deleteBtn->setIconSize(QSize(17, 17));
+     
     }
     return itNow;
 }
@@ -446,14 +474,16 @@ QString WndSingle::CreateText(QWidget* parent,
     pBoxPtr->dataType = (pBoxPtr->dataType | eStructuralDataType_Edit);
     bool bIsInit = SetLabel(parent, strTitle);
     QString strParent;
+
     for (auto& itVec : vecNode)
     {
+
         if (!itVec.bStatus)
         {
             //根据据节点信息创建文本框
-            auto call = std::bind(&WndSingle::StateChange, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, this);
+            auto call = std::bind(&WndSingle::StateChange, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, this);
             auto itNow = pBoxPtr->lineEditList.AddSingle/*<StateChangeCallBack>*/(parent, call, itVec.strID, itVec.strDefaultValue,
-                itVec.strPrefix, itVec.strSuffix, false, pos, bInit, itVec.strTip, itVec.strDataType, "");
+                itVec.strPrefix, itVec.strSuffix, false, pos, bInit, itVec.strTip, itVec.strDataType, "", itVec.strFormula);
             // Add2MeasureParameterWidget(itVec.strTip);
             strParent = itVec.strParentId;
             pBoxPtr->mapType[itVec.strID] = eStructuralDataType_Edit;
@@ -556,6 +586,7 @@ bool WndSingle::LoadDictionaryData(const QString& strId, bool bCheck, bool bWait
     QNetworkReply* reply = m_pData->m_network->get(request);
     QObject::connect(reply, &QNetworkReply::finished, [=]
         {
+            ControlCenter::getInstance()->firstLoadFinish = false;
             if (reply->error() == QNetworkReply::NoError)
             {
                 QString strDst = reply->readAll();
@@ -586,6 +617,8 @@ bool WndSingle::LoadDictionaryData(const QString& strId, bool bCheck, bool bWait
                 {
                     eventLoop->quit();
                 }
+                ControlCenter::getInstance()->firstLoadFinish = true;
+
             }
         });
     if (bWait && eventLoop != nullptr)
@@ -1022,6 +1055,7 @@ void WndSingle::UpdateByReportData(listReportData* pList)
         QString strData = itList.drawData.strDrawData;
         if (!itList.drawData.bEdit)
         {
+            //                                     选中文本，id,是否可见，是否多选
             SetCheckStateById(strId, stTableState("true", strId, true, false), false, true, false);
         }
         else
@@ -1394,6 +1428,11 @@ void WndSingle::SetDepartment(const QString& strDepartment, const QString& strBo
     m_BoxListCollection.SetDepartment(strDepartment, strBodyPart);
 }
 
+void WndSingle::SetFinish(bool sw)
+{
+    m_isFinish = sw;
+}
+
 void WndSingle::ClearAllSelect(const QString& strRemarks)
 {
     for (auto& itVec : m_vecChildWnd)
@@ -1576,14 +1615,26 @@ void WndSingle::CreateControlByNodes(QWidget* parent, const QString& strTitle, M
     //    }
 }
 
-
+static QString g_currentFirstTitle;
 //处理控件状态变化时的行为，如根据复选框或单选按钮的选择显示或隐藏相关控件，或者是响应下拉框的选项更改。
-void WndSingle::StateChange(bool bCheck, const QString& strId, const QString& strTitle, bool bWait, void* pPar)
+void WndSingle::StateChange(bool bCheck, const QString& strId, const QString& strTitle, bool bWait, bool* isNewChild, void* pPar)
 {
     if (strId.isEmpty())
     {
         return;
     }
+    if (ControlCenter::getInstance()->firstLoadFinish)
+    {
+        ControlCenter::getInstance()->signStructuralWidgetBeUsed();
+    }
+    //if (m_vecChildWnd.size() > 0)
+    //{
+    //    for (auto it : m_vecChildWnd)
+    //    {
+    //        if (it->m_strTitle == strTitle)
+    //            g_currentFirstTitle = strTitle;
+    //    }
+    //}
     for (auto& itVecChild : m_vecChildWnd)
     {
         if (itVecChild->m_strId == strId)
@@ -1624,41 +1675,197 @@ void WndSingle::StateChange(bool bCheck, const QString& strId, const QString& st
     }
     m_BoxListCollection.ShowChild(strId, bCheck);
 
+    //if (isNewChild != nullptr && *isNewChild /*&& m_vecChildWnd.size() == 0*/)
+    //{
+    //    *isNewChild = false;
+    //    return;
+    //}
+
+    //是文本框时，判断公式
+    if (m_BoxListCollection.dataType == 4)
+    {
+        for (auto& itMap : m_BoxListCollection.lineEditList.list.mapControl)
+        {
+            //找到被修改的那个文本框
+            if (itMap.first.strKey == strId)
+            {
+                for (auto& it : m_BoxListCollection.lineEditList.list.mapControl)
+                {
+                    //找到有公式的那个文本框
+                    if (it.second->m_strFormula != "")
+                    {
+                        //处理所有map
+                        std::map<std::string, std::string> tempMap;
+                        for (auto& itt : m_BoxListCollection.lineEditList.list.mapControl)
+                        {
+                            if (itt.first.strKey != it.first.strKey)
+                            {
+                                QString str = itt.second->text();
+                                tempMap.insert(std::pair<std::string, std::string>(itt.first.strKey.toStdString(), str.toStdString()));
+                            }
+
+                        }
+                        Parser p(it.second->m_strFormula.toStdString(), tempMap);
+                        double r = p.getResult();
+                        int rr = (r * 100.0) / 100.0;
+                        //double r = GetRegexResult(tempMap, it.second->m_strFormula.toStdString());
+                        //std::cout << "result :" << " = " << r << std::endl;
+                        it.second->setText(QString::number(rr));
+                        int k;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    //是单选框时，判断公式
+    if (m_BoxListCollection.dataType == 1)
+    {
+        for (auto& itMap : m_BoxListCollection.radioList.list.mapControl)
+        {
+            if (itMap.second->m_strFormula == "()")
+            {
+                auto childMap = m_BoxListCollection.childBox;
+                for (auto childIt : childMap)
+                {
+                    if (childIt.first.strKey == itMap.first.strKey)
+                    {
+                        auto Lists = childIt.second;
+                        for (auto it : Lists)
+                        {
+                            auto radioLists = it.radioList.list.mapControl;
+                            auto editLists = it.lineEditList.list.mapControl;
+                            //先从radioLists中取值
+                            std::map<std::string, std::string> tempMap;
+                            for (auto radioIt : radioLists)
+                            {
+                                if (radioIt.second->isChecked())
+                                {
+                                    QString value = radioIt.second->m_strTitle;
+                                    tempMap.insert(std::pair<std::string, std::string>(childIt.first.strKey.toStdString(), value.toStdString()));
+                                    break;
+                                }
+                            }
+                            //再根据公式把值输入到编辑框中
+                            //qDebug() << "values = " << value;
+                            for (auto editIt : editLists)
+                            {
+                                if (editIt.second->m_strFormula != "")
+                                {
+                                    Parser p(editIt.second->m_strFormula.toStdString(), tempMap);
+                                    double r = p.getResult();
+                                    int rr = (r * 100.0) / 100.0;
+                                    //double r = GetRegexResult(tempMap, it.second->m_strFormula.toStdString());
+                                    //std::cout << "result :" << " = " << r << std::endl;
+                                    editIt.second->setText(QString::number(rr));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //是说明框时，不显示
+    if (m_BoxListCollection.dataType == 2)
+    {
+        auto childBox = m_BoxListCollection.childBox;
+        QString targetID = "";
+        for (auto it : childBox)
+        {
+            auto childVec = it.second;
+            for (auto itt : childVec)
+            {
+                auto childMapType = itt.mapType;
+                for (auto ittt : childMapType)
+                {
+                    if (ittt.second == 16)
+                    {
+                        targetID = ittt.first;
+                    }
+                }
+                if (targetID != "")
+                {
+                    auto map = itt.boxList.list.mapControl;
+                    for (auto iitt : map)
+                    {
+                        iitt.second->setDisabled(1);
+                        iitt.second->setCheckable(0);
+                        iitt.second->setDisabled(1);
+                        iitt.second->setStyleSheet("QRadioButton::indicator { width: 0; }");
+                    }
+                }
+            }
+        }
+    }
     if (m_bCanCallBack && !m_bIsUpadteReport)
     {
         if (m_UpdateDataCallBack != nullptr)
         {
+            /*QString str = strTitle;*/
             m_UpdateDataCallBack(nullptr, strId);
         }
     }
 }
-static QString q_secondId;
-static QString q_firstId;
-static QString g_templateTexe = "";
-static QString g_LastTemplateTexe = "";
+
 //处理控件状态变化时的行为，如根据复选框或单选按钮的选择显示或隐藏相关控件，或者是响应下拉框的选项更改。
-void WndSingle::ComboboxChange(const QString& strChange, const QString& strId, const QString& parentId, const int& level, void* pPar)
+void WndSingle::ComboboxChange(const QString& strChange, const QString& strId, const QString& parentId, const int& level, bool* pNewChild, void* pPar)
 {
-    if (parentId != "" && level == 1)
+    if (ControlCenter::getInstance()->m_type == eTemplateType_SRES)
     {
-        //q_firstId = parentId;
-        //m_currentFirst = q_firstId;
+        //  auto itNow = m_BoxListCollection.comboboxList.Empty();
+        if (!m_bChildIsConnectCombobox)
+        {
+            if (!m_BoxListCollection.comboboxList.Empty())
+            {
+                LoadDictionaryData(strId, true, true);
+                ShowChild(strId, true, false);
+            }
+        }
+        else
+        {
+            for (auto& itVecChild : m_vecChildWnd)
+            {
+                if (itVecChild->m_strId == strId)
+                {
+                    itVecChild->m_pLayerWnd->ShowWnd(true);
+                    itVecChild->m_BoxListCollection.SetListVisible(true);   
+                    if (m_isFinish && level == 1)
+                    {
+                        callback(strId,"", "change");
+                        return;
+                    }
+                }
+                else
+                {
+                    itVecChild->m_pLayerWnd->ShowWnd(false);
+                    itVecChild->m_BoxListCollection.SetListVisible(false);
+                }
+            }
+        }
+        if (m_bCanCallBack && !m_bIsUpadteReport)
+        {
+            if (m_UpdateDataCallBack != nullptr)
+            {
+                m_UpdateDataCallBack(nullptr, strId);
+            }
+        }
+        return;
     }
+
     if (strId != "" && level == 2)
     {
-        q_secondId = strId;
-        m_currentSecnd = q_secondId;
         for (auto& itVecChild : m_vecChildWnd)
         {
             if (itVecChild->m_strId == strId)
             {
                 itVecChild->m_pLayerWnd->ShowWnd(true);
                 itVecChild->m_BoxListCollection.SetListVisible(true);
-                //更新第三级目录
-                MyComboBox temp ("","","","","",nullptr,nullptr);
-                q_firstId = temp.getFirstId(q_secondId);
-                m_currentFirst = q_firstId;
-                auto list = CTemplateManage::GetSingle()->GetTemplateList(q_firstId, q_secondId);
+                //更新第三级目录    
+                auto list = CTemplateManage::GetSingle()->GetTemplateList(ControlCenter::getInstance()->m_currentFirstId, ControlCenter::getInstance()->m_currentSecondId);
                 WndSingle* wnd = static_cast<WndSingle*>(pPar);
                 templeteList.clear();
                 if (!wnd->m_BoxListCollection.comboboxList.Empty())
@@ -1667,14 +1874,26 @@ void WndSingle::ComboboxChange(const QString& strChange, const QString& strId, c
                     auto combo = lastPair.second;
                     combo->blockSignals(1);
                     combo->clear();
-                    combo->addItem("--");
+                    templeteList.append("--");
                     for (auto it : list)
                     {
-                        templeteList.append(it.keyEx.strLabelEx);
+                        if(!templeteList.contains(it.strKey))
+                            templeteList.append(it.strKey);
                     }
                     combo->addItems(templeteList);
                     combo->blockSignals(0);
-                    combo->setCurrentText(g_templateTexe);
+                    combo->setCurrentText(ControlCenter::getInstance()->m_currentTemplateName);
+                    combo->Tdisconnect();
+                    combo->Tconnect();
+                    ControlCenter::getInstance()->setCombobox(combo);
+                    //combo->setToolTip();
+                }
+                if (m_isFinish)
+                {
+                    BothId b(ControlCenter::getInstance()->m_currentFirstId, ControlCenter::getInstance()->m_currentSecondId);
+                    auto json = ControlCenter::getInstance()->getOpenedReportJson(b);
+                    callback(ControlCenter::getInstance()->m_currentFirstId, ControlCenter::getInstance()->m_currentSecondId, json == "" ? "change" : json);
+                    return;
                 }
             }
             else
@@ -1687,19 +1906,21 @@ void WndSingle::ComboboxChange(const QString& strChange, const QString& strId, c
     if (templeteList.contains(strChange) && level == 3)
     {
         //去找保存的报告模板
-        auto strJson = CTemplateManage::GetSingle()->GetTemplateDataByName(q_firstId, q_secondId, strChange);
-        //std::ofstream file("C:\\code\\json1.txt");
-        //file << strJson.toStdString() << std::endl;
-        //file.close();
+        auto strJson = CTemplateManage::GetSingle()->GetTemplateDataByName(ControlCenter::getInstance()->m_currentFirstId, ControlCenter::getInstance()->m_currentSecondId, strChange);
         //通知界面刷新
-        g_LastTemplateTexe = g_templateTexe;
-        g_templateTexe = strChange;
-        m_tempVecChildWnd = m_vecChildWnd;
-        if (g_LastTemplateTexe != g_templateTexe && strJson != "")
-            callback(q_firstId, q_secondId, strJson);
+        ControlCenter::getInstance()->m_currentTemplateName = strChange;
+        if (strChange != "--" && strJson != "")
+            callback(ControlCenter::getInstance()->m_currentFirstId, ControlCenter::getInstance()->m_currentSecondId, strJson);
     }
-    
-    //  auto itNow = m_BoxListCollection.comboboxList.Empty();
+    //切换回正常的编辑
+    if (strChange == "--" && level == 3 )
+    {
+        ControlCenter::getInstance()->m_currentTemplateName = "--";
+        BothId b(ControlCenter::getInstance()->m_currentFirstId, ControlCenter::getInstance()->m_currentSecondId);
+        auto json = ControlCenter::getInstance()->getOpenedReportJson(b);
+        callback(ControlCenter::getInstance()->m_currentFirstId, ControlCenter::getInstance()->m_currentSecondId, json == "" ? "change" : json);
+    }
+
     if (!m_bChildIsConnectCombobox)
     {
         if (!m_BoxListCollection.comboboxList.Empty())
@@ -1708,70 +1929,6 @@ void WndSingle::ComboboxChange(const QString& strChange, const QString& strId, c
             ShowChild(strId, true, false);
         }
     }
-
-
-
-    //{
-    //    //     一级目录             三级目录
-    //    if (strChange == "" || strChange == "--")
-    //    {
-    //        return;
-    //    }
-    //    //取消模板选择，回到原始状态
-    //    if (/*strChange == "--"*/0)
-    //    {
-    //        //qDebug() << "  ";
-    //        //q_childId = strId;
-    //        //for (auto& itVecChild : m_tempVecChildWnd)
-    //        //{
-    //        //    if (itVecChild->m_strId == strId)
-    //        //    {
-    //        //        itVecChild->m_pLayerWnd->ShowWnd(true);
-    //        //        itVecChild->m_BoxListCollection.SetListVisible(true);
-    //        //        //更新第三级目录
-    //        //        //auto list = CTemplateManage::GetSingle()->GetTemplateList(parentId, strId);
-    //        //        WndSingle* wnd = static_cast<WndSingle*>(pPar);
-    //        //        if (!wnd->m_BoxListCollection.comboboxList.Empty())
-    //        //        {
-    //        //            auto lastPair = *wnd->m_BoxListCollection.comboboxList.list.mapControl.rbegin();
-    //        //            auto combo = lastPair.second;
-    //        //            combo->clear();
-    //        //            combo->addItem("--");
-    //        //            combo->addItems(templeteList);
-    //        //            combo->setCurrentText(g_templateTexe);
-    //        //        }
-    //        //    }
-    //        //    else
-    //        //    {
-    //        //        itVecChild->m_pLayerWnd->ShowWnd(false);
-    //        //        itVecChild->m_BoxListCollection.SetListVisible(false);
-    //        //    }
-    //        //}
-
-    //        //if (m_bCanCallBack && !m_bIsUpadteReport)
-    //        //{
-    //        //    if (m_UpdateDataCallBack != nullptr)
-    //        //    {
-    //        //        m_UpdateDataCallBack(nullptr, strId);
-    //        //    }
-    //        //}
-
-    //        return;
-
-    //    }
-
-    //    //第三级目录，模板目录
-    //    if (strId == "" && templeteList.contains(strChange) && level == 3)
-    //    {
-
-    //    }
-    //    else
-    //    {
-    //       
-    //        
-
-    //    }
-    //}
 
     if (m_bCanCallBack && !m_bIsUpadteReport)
     {

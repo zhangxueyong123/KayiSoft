@@ -1,5 +1,10 @@
 ﻿#ifndef WNDSINGLE_H
 #define WNDSINGLE_H
+#include <iostream>
+#include <string>
+#include <regex>
+#include <map>
+#include <cmath>
 #include "structuraldata.h"
 #include "qcheckbox.h"
 #include  "qradiobutton.h"
@@ -20,6 +25,7 @@
 #include "CLabelSplitLayout.h"
 #include "mymeasureparameter.h"
 #include "ctemplatemanage.h"
+#include "mypushbutton.h"
 //文本显示方向
 enum eDataPostion
 {
@@ -74,7 +80,7 @@ struct stBoxList
     template <typename CALL>
     T *AddSingle(QWidget *parent, CALL callBack, const QString &strId, const QString &strText
                  , const QString &strPre, const QString &strSuff, bool bCheck, eDataPostion pos, const QString &strCheckTip,
-                 const QString &strDataTypeSummary, const QString &strExplain)
+                 const QString &strDataTypeSummary, const QString &strExplain,const QString & strFormula )
     {
         //添加一个控件
         InitLayout(parent, pos);
@@ -99,6 +105,7 @@ struct stBoxList
             pBox->blockSignals(true);
             pBox->setChecked(bCheck);
             pBox->blockSignals(false);
+            pBox->setFormula(strFormula);
             if(!strPre.isEmpty())
             {
                 pLayout->addWidget(pBox->m_pPreLabel);
@@ -255,7 +262,7 @@ struct stBoxDelayPar
     QString strCheckTip;
     QString strDataTypeSummary;
     QString strExplain;
-
+    QString strFormula;
 };
 //延迟加载控件列表模板类
 template <typename T, typename CALL>
@@ -269,19 +276,19 @@ struct stBoxDelayList
 
     T *AddSingle(QWidget *parent, CALL call, const QString &id, const QString &text
                  , const QString &pre, const QString &suff, bool check, eDataPostion pos, bool bInit, const QString &strCheckTip,
-                 const QString &strDataTypeSummary, const QString &strExplain)
+                 const QString &strDataTypeSummary, const QString &strExplain,const QString &strFormula)
     {
         //添加一个控件
         if(bInit)
         {
             bIsInit = true;
-            return list.AddSingle(parent, call, id, text, pre,suff, check, pos,strCheckTip ,strDataTypeSummary,strExplain);
+            return list.AddSingle(parent, call, id, text, pre,suff, check, pos,strCheckTip ,strDataTypeSummary,strExplain, strFormula);
         }
         else
         {
             //暂不加载
             list.InitLayout(parent, pos);
-            vecDelayPar.push_back(stBoxDelayPar<CALL>{parent, call,id, text, pre,suff, check, pos, strCheckTip,strDataTypeSummary,strExplain});
+            vecDelayPar.push_back(stBoxDelayPar<CALL>{parent, call,id, text, pre,suff, check, pos, strCheckTip,strDataTypeSummary,strExplain, strFormula});
             return nullptr;
         }
     }
@@ -306,7 +313,7 @@ struct stBoxDelayList
             for(auto &itVec : vecDelayPar)
             {
                 list.AddSingle(itVec.pParent, itVec.callBack, itVec.strId, itVec.strText, itVec.strPre,itVec.strSuff,
-                               itVec.bCheck, itVec.dataPos, itVec.strCheckTip ,itVec.strDataTypeSummary, itVec.strExplain);
+                               itVec.bCheck, itVec.dataPos, itVec.strCheckTip ,itVec.strDataTypeSummary, itVec.strExplain,itVec.strFormula);
             }
         }
     }
@@ -967,6 +974,16 @@ struct stBoxListCollection
             }
         }
     }
+
+    //eStructuralDataType GetItemType(QString id)
+    //{
+    //    eStructuralDataType type = eStructuralDataType_UnNow;
+    //    for (auto it : boxList)
+    //    {
+
+    //    }
+    //    return type;
+    //}
 };
 struct stChildNodeDraw
 {
@@ -1069,13 +1086,13 @@ public:
     QString m_strParentId; //父节点id
     //QString         m_childId;
     QHBoxLayout  *m_pLayout = nullptr; //布局
-    std::vector< WndSingle *> m_vecChildWnd; //子节点
-    std::vector< WndSingle*> m_tempVecChildWnd; //子节点
+    std::vector< WndSingle *> m_vecChildWnd; //子节点  如左肺下的前段，上叶，用于演示这三个
+    
     QSingleLineWidget *m_pLayerWidget = nullptr; //
     QSingleLineWidget *m_pLayerTableWidgt = nullptr;
     MyLayerWnd *m_pLayerWnd = nullptr;
     bool m_bAddChild = true;
-    std::map<QString, std::map<stTableKey, WndSingle*>> m_childTable; //子列表节点
+    std::map<QString, std::map<stTableKey, WndSingle*>> m_childTable; //子列表节点  列表中的内容
     stBoxListCollection m_BoxListCollection; //控件管理类
     //设置回调
    // void SetCallBck(UpdateDataCallBack updateCall);
@@ -1102,6 +1119,7 @@ public:
     void SetReportStateByMap(const std::vector<stTableState> &vecState);
     void AllBoxWork();
     void SetDepartment(const QString &strDepartment, const QString & strBodyPart);
+    void SetFinish(bool sw);
     void ClearAllSelect(const QString &strRemarks);
     bool m_bCanCallBack = true;
     static bool m_bIsUpadteReport;
@@ -1112,6 +1130,7 @@ public:
     GetTemplateDataCallBack templateCallBack = nullptr;
     QString     m_currentFirst;
     QString     m_currentSecnd;
+
 private:
     //设置子节点数据类型
     void SetAllChildRemarks();
@@ -1124,9 +1143,9 @@ private:
     bool m_bChildIsConnectCombobox = false;
     UpdateDataCallBack m_UpdateDataCallBack = nullptr;
     //单选/多选/编辑框变化响应
-    void StateChange(bool bCheck,const QString &strId, const QString &strTitle, bool bWait, void *pPar);
+    void StateChange(bool bCheck,const QString &strId, const QString &strTitle, bool bWait, bool* isNewChild,void *pPar);
     //下拉框变化响应
-    void ComboboxChange(const QString &strChange,const QString &strId, const QString& parentId, const int& level,void *pPar);
+    void ComboboxChange(const QString &strChange,const QString &strId, const QString& parentId, const int& level,  bool* isNewChild,void *pPar);
     void InitLayout(QWidget *parent);
     //创建子列表
     WndSingle *CreateChildTable(QWidget *parent, StructuralData &data, const std::vector<QString> &vecCombobox,
@@ -1140,8 +1159,129 @@ private:
     StructuralData *m_pData = nullptr;
     QStringList templeteList;
     QString         m_currentTemplateText = "";
+    bool        m_isFinish = false;
 public:
 };
+
+class Parser {
+public:
+    Parser(const std::string& expr, std::map< std::string, std::string > map) : expression(expr), uuid_to_num(map),index(0) {}
+
+    double parseExpression() {
+        double result = parseTerm();
+        while (index < expression.size() && (expression[index] == '+' || expression[index] == '-')) {
+            char op = expression[index++];
+            double term = parseTerm();
+            if (op == '+') {
+                result += term;
+            }
+            else {
+                result -= term;
+            }
+        }
+        return result;
+    }
+
+    double getResult()
+    {
+        std::regex bracket_regex("\\[([^\\]]+)\\]");  // 匹配方括号内的内容
+
+        std::vector<std::string> results;  // 存储匹配结果的向量
+        std::smatch match;  // 用于存储每次匹配的结果
+
+        // 使用 std::sregex_iterator 迭代所有匹配项
+        auto begin = std::sregex_iterator(expression.begin(), expression.end(), bracket_regex);
+        auto end = std::sregex_iterator();
+
+        for (std::sregex_iterator i = begin; i != end; ++i) {
+            std::smatch match = *i;
+            results.push_back(match[1].str());  // 将捕获的内容添加到结果向量中
+        }
+
+        for (auto it : results)
+        {
+            size_t pos = 0;
+            while ((pos = expression.find(it, pos)) != std::string::npos) {
+                expression.replace(pos, it.length(), uuid_to_num[it]);
+                pos += uuid_to_num[it].length();  // 移动位置到新插入的字符串的末尾，避免替换刚替换的部分
+            }
+        }
+        //移除中括号
+        std::string str = "(66+77)/66*77";
+        size_t pos = 0;
+        while ((pos = expression.find("[", pos)) != std::string::npos) {
+            expression.replace(pos, 1, "");
+            pos++;  // 移动位置到新插入的字符串的末尾，避免替换刚替换的部分
+        }
+        pos = 0;
+        while ((pos = expression.find("]", pos)) != std::string::npos) {
+            expression.replace(pos, 1, "");
+            pos++;  // 移动位置到新插入的字符串的末尾，避免替换刚替换的部分
+        }
+        //移除空格
+        pos = 0;
+        while ((pos = expression.find(" ", pos)) != std::string::npos) {
+            expression.replace(pos, 1, "");
+            pos++;  // 移动位置到新插入的字符串的末尾，避免替换刚替换的部分
+        }
+                
+        double r = -1;
+        r = parseExpression();
+        return r;
+    }
+private:
+    double parseTerm() {
+        double result = parseFactor();
+        while (index < expression.size() && (expression[index] == '*' || expression[index] == '/')) {
+            char op = expression[index++];
+            double factor = parseFactor();
+            if (op == '*') {
+                result *= factor;
+            }
+            else {
+                result /= factor;
+            }
+        }
+        return result;
+    }
+
+    double parseFactor() {
+        double result = 0.0;
+        double divisor = 1.0; // 用于处理小数点后的数字
+        bool decimalPointEncountered = false; // 跟踪是否遇到小数点
+
+        if (expression[index] == '(') {
+            index++;
+            result = parseExpression();
+            index++; // 跳过右括号
+        }
+        else {
+            while (index < expression.size() && (std::isdigit(expression[index]) || expression[index] == '.')) {
+                if (expression[index] == '.') {
+                    decimalPointEncountered = true;
+                    index++; // 移过小数点
+                }
+                else {
+                    int digit = expression[index++] - '0';
+                    if (!decimalPointEncountered) {
+                        result = result * 10 + digit;
+                    }
+                    else {
+                        divisor *= 10.0;
+                        result += digit / divisor;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    std::string expression;
+    std::map< std::string, std::string > uuid_to_num;
+    size_t index;
+};
+
+
 
 
 #endif // WNDSINGLE_H

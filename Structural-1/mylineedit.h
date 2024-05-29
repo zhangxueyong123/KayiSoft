@@ -32,10 +32,13 @@ public:
     QWidget *GetPtr();
     //获取控件状态
     std::vector<stTableState> GetState();
+    void setFormula(const QString& strFormula);
+    QString     m_strFormula;
 private:
 
     QString m_strDataTypeSummary;
     StateChangeCallBack m_pCallBack = nullptr;
+    bool    isNewChild = true;
 };
 
 

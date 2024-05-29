@@ -105,7 +105,7 @@ int CNetWork::waitForNetworkReplyFinished(QNetworkReply* reply, int nTimeout)
             timer.stop();
         } else { /* 处理超时 */
             QObject::disconnect(reply, &QNetworkReply::finished, &eventLoop, &QEventLoop::quit);
-            reply->abort();
+               
             reply->deleteLater();
 
             //qDebug() << QString("URL(%1):%2, ERROR(timeout)").arg(reply->operation()).arg(reply->url().toString());

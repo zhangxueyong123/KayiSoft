@@ -11,13 +11,12 @@ MyRadioButton::MyRadioButton(const QString &strId, const QString &strTitle,  con
     ,m_pCallBack(callBack)
     ,m_strDataTypeSummary(strDataTypeSummary)
     ,m_strTitle(strTitle)
-      ,QRadioButton(parent)
+    ,QRadioButton(parent)
 {
     m_pPreLabel = new ClickableLabel(strPre, this);
     m_pSuffLabel = new ClickableLabel(strSuff, this);
     m_pPreLabel->setAlignment(Qt::AlignRight | Qt::AlignBottom);
     m_pSuffLabel->setAlignment(Qt::AlignLeft | Qt::AlignBottom);
-
     //当前文本控件
     m_label = new ClickableLabel(strTitle, this);
     QStyleOptionButton opt;
@@ -28,10 +27,12 @@ MyRadioButton::MyRadioButton(const QString &strId, const QString &strTitle,  con
     connect(m_label, SIGNAL(clicked()), this, SLOT(click()));
     //修改回调
     connect(this, &QRadioButton::toggled, [&](bool bCheck)
-    {
+    {        
         if(m_pCallBack != nullptr && (!m_bExclusive || bCheck))
         {
-            m_pCallBack(bCheck,m_strId,m_strTitle ,m_bWait);
+            m_pCallBack(bCheck,m_strId,m_strTitle,m_bWait, &isNewChild);
+            //m_pCallBack(!bCheck,m_strId,m_strTitle,m_bWait, &isNewChild);
+            //m_pCallBack(bCheck,m_strId,m_strTitle,m_bWait, &isNewChild);
             m_bWait = true;
         }
     });
@@ -104,6 +105,11 @@ void MyRadioButton::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
     updateGeometry();
+}
+
+void MyRadioButton::setFormula(const QString& strFormula)
+{
+    m_strFormula = strFormula;
 }
 
 

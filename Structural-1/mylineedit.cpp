@@ -18,7 +18,7 @@ MyLineEdit::MyLineEdit(const QString &strId, const QString &strTitle,  const QSt
     {
         if(m_pCallBack != nullptr)
         {
-            m_pCallBack(false,m_strId,textChanged ,m_bWait);
+            m_pCallBack(false,m_strId,textChanged ,m_bWait, &isNewChild);
             m_bWait = true;
         }
     });
@@ -50,3 +50,7 @@ std::vector<stTableState> MyLineEdit::GetState()
     return vec;
 }
 
+void MyLineEdit::setFormula(const QString& strFormula)
+{
+    m_strFormula = strFormula;
+}

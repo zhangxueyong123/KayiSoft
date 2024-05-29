@@ -9,7 +9,7 @@ MyGroup::MyGroup(QWidget *parent)
 {
     this->setAttribute(Qt::WA_StyledBackground);
 
-    this->setStyleSheet(QString("MyGroup{border:1px solid rgb(183,198,221);border-radius:4px;background:rgb(220,231,244);} QLabel{ color:rgba(0,0,0,0.7); }"));
+    //this->setStyleSheet(QString("MyGroup{border:1px solid rgb(183,198,221);border-radius:4px;background:rgb(220,231,244);} QLabel{ color:rgba(0,0,0,0.7); }"));
 }
 
 void MyGroup::resizeEvent(QResizeEvent *event)

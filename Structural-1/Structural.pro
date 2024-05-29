@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui concurrent
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets \
                                         network  \
@@ -21,6 +21,9 @@ SOURCES += \
     CLabelSplitLayout.cpp \
     clickablelabel.cpp \
 #   cmeasuredata.cpp \
+    contrl_center.cpp \
+    ctemplatemanage.cpp \
+    explotwidget.cpp \
     main.cpp \
     mainwindow.cpp \
     mycheckbox.cpp \
@@ -29,6 +32,7 @@ SOURCES += \
     mylayerwnd.cpp \
     mylineedit.cpp \
     mymeasureparameter.cpp \
+    mypushbutton.cpp \
     myradiobutton.cpp \
     mytextreportwidget.cpp \
     qsinglelinewidget.cpp \
@@ -43,6 +47,9 @@ HEADERS += \
     CLabelSplitLayout.h \
     clickablelabel.h \
   #  cmeasuredata.h \
+    contrl_center.h \
+    ctemplatemanage.h \
+    explotwidget.h \
     mainwindow.h \
     mycheckbox.h \
     mycombobox.h \
@@ -50,6 +57,7 @@ HEADERS += \
     mylayerwnd.h \
     mylineedit.h \
     mymeasureparameter.h \
+    mypushbutton.h \
     myradiobutton.h \
     mytextreportwidget.h \
     qsinglelinewidget.h \
@@ -64,7 +72,7 @@ HEADERS += \
 FORMS += \
     mainwindow.ui \
     structuralwidget.ui
-
+LIBS += -lDbgHelp
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

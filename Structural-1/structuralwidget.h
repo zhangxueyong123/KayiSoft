@@ -8,6 +8,8 @@
 #include <thread>
 #include "wndsingle.h"
 #include "qscrollbar.h"
+#include "contrl_center.h"
+#include "mytextreportwidget.h"
 namespace Ui {
 class StructuralWidget;
 }
@@ -23,6 +25,7 @@ using namespace std::chrono;
 static std::chrono::time_point<std::chrono::high_resolution_clock> start1;
 static std::chrono::time_point<std::chrono::high_resolution_clock> end1;
 //结构化数据窗口，每个类型一个
+
 struct stTemplateWnd
 {
     //内容显示子控件
@@ -36,13 +39,14 @@ struct stTemplateWnd
     //滚动条
     QScrollArea *scrollArea =nullptr;
     bool bInit = false;
+    static QString     m_currentPre ;
     //回调函数
     std::map<QString, stCallBack> mapCallBack;
     GetMeasureParameterCallBack measureParameterCallBack  = nullptr;
     GetExplainParameterCallBack explainParameterCallBack  = nullptr;
     GetTemplateDataCallBack templateCallBack = nullptr;
     bool bCanCallBackEmpty = false;
-
+    listReportData m_LastList;
     void memberFuncB(QString  data, QString parent, QString child) {
         if (templateCallBack != nullptr/* && !vecCheckList.isEmpty()*/)
         {
@@ -61,7 +65,7 @@ struct stTemplateWnd
     }
     void AddLayout( WndSingle *pWnd)
     {
-        start1 = high_resolution_clock::now();
+        //start1 = high_resolution_clock::now();
         pGroupBox->setUpdatesEnabled(false);
         //添加子控件layout
         if(!pWnd->m_pLayerWnd->m_bIsEmpty)
@@ -81,10 +85,10 @@ struct stTemplateWnd
         }
         pGroupBox->setUpdatesEnabled(true);
         pGroupBox->update();
-        end1 = high_resolution_clock::now();
-        auto duration = duration_cast<std::chrono::microseconds>(end1 - start1);
-        kkkk += duration.count();
-        qDebug() << "addWidget total spend times:" << kkkk;
+        //end1 = high_resolution_clock::now();
+        //auto duration = duration_cast<std::chrono::microseconds>(end1 - start1);
+        //kkkk += duration.count();
+        //qDebug() << "addWidget total spend times:" << kkkk;
     }
 
     void ClearAll()
@@ -112,6 +116,7 @@ struct stTemplateWnd
   
         }
     }
+    
     void CrateByStructuralData(QWidget *parent, StructuralData &data, eTemplateType eType, bool bReset )
     {
         //根据结构化节点数据构建显示控件
@@ -137,7 +142,7 @@ struct stTemplateWnd
             pGroupBox = new QWidget();
             pGroupBox->setObjectName("StructuralWidgetScrollAreaContents");
             pLayout = new QVBoxLayout();
-            pLayout->setContentsMargins(5,5,5,5);
+            pLayout->setContentsMargins(0,0,0,0);
             pGroupBox->setLayout(pLayout);
         }
         if(pWndSingle == nullptr)
@@ -164,8 +169,29 @@ struct stTemplateWnd
 
         start1 = high_resolution_clock::now();
        
-        scrollArea->setWidget(pGroupBox);
+        //int numcombo = pGroupBox->findChildren<MyComboBox*>().count();
+        //int numline = pGroupBox->findChildren<MyLineEdit*>().count();
+        //int numradio = pGroupBox->findChildren<MyRadioButton*>().count();
+        //int numwid = pGroupBox->findChildren<QWidget*>().count();
+        //int numtotal = numcombo + numline + numradio + numwid;
+        //auto wids = pGroupBox->findChildren<QWidget*>();
+        //for (int i = 100 ;i < wids.size();i++)
+        //{
+        //    wids[i]->hide();
+        //    //QPixmap pixmap = wids[i] ->grab();
+        //    //QString fileName = "C:\\temp\\widget\\img\\" + QString::number(i) + ".png";
+        //    //pixmap.save(fileName);
+        //}
+       
+
+        //if(numtotal < 500)
+            scrollArea->setWidget(pGroupBox);
+ 
   
+        //QPixmap pixmap = pGroupBox->grab();
+        //QString fileName = "C:\\temp\\widget\\" + QString::number(QDateTime::currentMSecsSinceEpoch()) + ".png";
+        //pixmap.save(fileName);
+      
         //while (!end.isFinished())
         //{
         //    QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
@@ -176,9 +202,9 @@ struct stTemplateWnd
         qDebug() << "setWidget  spend times:" << duration.count();
         bInit = true;
         //设置回调，用于对MyTextReportWidget输出文本内容
-       
+
         pWndSingle->AllBoxWork();
- 
+
         
         s = clock();
         std::cout <<"AllBoxWork:" <<  e - s << std::endl;
@@ -187,7 +213,6 @@ struct stTemplateWnd
         {
             GetReportData(nullptr, "");
         }
-
     }
     void Move(const QRect &rect, bool bSend)
     {
@@ -232,6 +257,7 @@ struct stTemplateWnd
         QStringList vecExplainList;
         //获取子控件状态
         GetReportInLayout(pLayOut, pList, &vecCheckList, &vecExplainList);
+
         if(measureParameterCallBack != nullptr/* && !vecCheckList.isEmpty()*/)
         {
             measureParameterCallBack(&vecCheckList);
@@ -254,18 +280,65 @@ struct stTemplateWnd
                 }
                 ++itList;
             }
+            
             if(!bCanCallBackEmpty && singleList.empty())
             {
                 continue;
             }
             if(itMap.second.updateDataCallBack != nullptr )
             {
-                itMap.second.updateDataCallBack(&singleList,strChangId);
+                ModifyComma(&singleList);
+                itMap.second.updateDataCallBack(&singleList, strChangId);
+;            }
+        }
+    }
+    bool VQStringContains(std::vector<QString> vec,QString str)
+    {
+        bool isHas = false;
+        for (auto it : vec)
+        {
+            if (str == it)
+                isHas = true;
+        }
+        return isHas;
+    }
+
+    void ModifyComma(listReportData * List)
+    {
+        auto it = List->begin();
+        while (it != List->end())
+        {
+            auto vecList = it->drawData.vecId;
+            int vecSize = vecList.size();
+            if (vecSize > 1)
+            {
+                for (int i = 0; i < vecSize - 1; i++,it++)
+                {
+                    
+                    if (it == List->end() || (it + 1) == List->end())
+                    {
+                        it++;
+                        break;
+                    }
+                        
+                    if (VQStringContains(vecList, it->strId) && VQStringContains(vecList, (it + 1)->strId))
+                    {
+                        it->drawData.strDrawSuffAdd = "，";
+                    }
+                    else
+                    {
+                        it++;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                it++;
             }
         }
-
-
     }
+
     void UpdateByReportData(listReportData *pList)
     {
         //根据列表状态修改控件状态
@@ -293,6 +366,7 @@ struct stTemplateWnd
         {
             //遍历子控件
             int nCount = pLayOut->count();
+            
             for(int i = 0; i < nCount; ++i)
             {
                 auto it = pLayOut->itemAt(i);
@@ -328,6 +402,7 @@ struct stTemplateWnd
         //获取子控件状态
         WndSingle *pWnd = (WndSingle *)pSingleWidget->m_pWndSingle;
         auto strParentTitle = pWnd->m_strTitle;
+        m_currentPre = "";
         if(!pWnd->m_childTable.empty())
         {
             bool bHas = false;
@@ -355,21 +430,36 @@ struct stTemplateWnd
                         while(itVecTitle != vecTitle.end() && itVecId != vecId.end())
                         {
                             data.drawData = *itVecTitle;
+                            bool isFirst = false;
+                            if (m_currentPre != strParentTitle)
+                            {
+                                m_currentPre = strParentTitle;
+                                isFirst = true;
+                            }
+                            //去除重复标题，并且对设置成段落的样式
+                            QString isFirstP = isFirst ? ("\n" + strParentTitle + (strParentTitle.contains("：") || strParentTitle.contains(":") ? "" : "：")) + "\n    " : "";
+
                             if(!itVecTitle->bChangDir)
                             {
-                                data.drawData.strDrawPre = strParentTitle + strKey+ itVecTitle->strDrawPre;
+
+                                    
+                                //data.drawData.strDrawPre = (isFirst ? (strParentTitle + (strParentTitle.contains("：") ? "" : "：")) : "") + (strKey == strParentTitle + "：" ? "" : strKey) + itVecTitle->strDrawPre + (isFirst ? "：" : "");
+
+                                //data.drawData.strDrawPre = isFirstP + (strKey == strParentTitle + "：" ? "" : (strKey.contains("：") ? strKey : strKey + "：")) + itVecTitle->strDrawPre;
+                                data.drawData.strDrawPre = isFirstP + (strKey == strParentTitle ? "" : strKey) + itVecTitle->strDrawPre;
                                 data.drawData.strDrawSuff = itVecTitle->strDrawSuff;
                             }
                             else
                             {
-                                data.drawData.strDrawPre = strParentTitle + itVecTitle->strDrawPre;
+                                data.drawData.strDrawPre = isFirstP + itVecTitle->strDrawPre;
                                 data.drawData.strDrawSuff = itVecTitle->strDrawSuff + strKey;
                             }
 
                             strKey.clear();
-                            strParentTitle.clear();
+                            //strParentTitle.clear();
                             data.strId = *itVecId;
                             data.strRemarks = itVecTitle->strRemarks;
+                            //data.strPreId = "";
                             pList->push_back(data);
                             ++itVecTitle;
                             ++itVecId;
@@ -391,17 +481,17 @@ struct stTemplateWnd
                 {
                     if(itBegin == itEnd)
                     {
-                        itBegin->drawData.strDrawSuffAdd = "。\n";
+                        itBegin->drawData.strDrawSuffAdd = /*"。\n";*/"。";
                     }
                     else if(itBegin->drawData.bHasChild)
                     {
                          //itBegin->drawData.strDrawSuff += ":";
-                         itBegin->drawData.strDrawSuffAdd = ":";
+                         itBegin->drawData.strDrawSuffAdd = "：";
                     }
                     else if(!itBegin->drawData.bEdit || (itBegin->drawData.bEdit && itBegin->drawData.bIsEndEdit))
                     {
                         //itBegin->drawData.strDrawSuff += ",";
-                        itBegin->drawData.strDrawSuffAdd = ",";
+                        itBegin->drawData.strDrawSuffAdd = "； ";
                     }
 
                     ++itBegin;
@@ -463,47 +553,50 @@ struct stTemplateWnd
        }
    }
 
+   void setFinish(bool sw)
+   {
+       if (pWndSingle != nullptr)
+       {
+           pWndSingle->SetFinish(sw);
+       }
+   }
+
 };
+ 
 //结构化窗口，包含三个类型结构化数据窗口
-const int MAX_TEMPLATEWNDSIZE = 2;
+#include <QVector>
+static int count = 0;
 struct stStructuralWnd
 {
-    stTemplateWnd m_RATemplateWnd[MAX_TEMPLATEWNDSIZE];  //放射
-    stTemplateWnd m_USTemplateWnd[MAX_TEMPLATEWNDSIZE]; //超声
-    stTemplateWnd m_ESTemplateWnd[MAX_TEMPLATEWNDSIZE]; //内镜
+    stTemplateWnd m_RATemplateWnd;  //放射
+    stTemplateWnd m_USTemplateWnd; //超声
+    stTemplateWnd m_ESTemplateWnd; //内镜
     QString m_strDepartment;
     QString m_strBodyPart;
     eTemplateType m_eViewType = eTemplateType_Null;
-    int m_nCul = 0;
+    QString m_templateName;
+    QMap<QString, int>    m_templateMap;
     void InitCallBaCk(GetMeasureParameterCallBack measureParameterCallBack, GetExplainParameterCallBack explainParameterCallBack, GetTemplateDataCallBack templateDataCallBack)
     {
-        for(int i = 0; i < MAX_TEMPLATEWNDSIZE; ++i)
-        {
-            m_RATemplateWnd[i].measureParameterCallBack = measureParameterCallBack;
-            m_USTemplateWnd[i].measureParameterCallBack = measureParameterCallBack;
-            m_ESTemplateWnd[i].measureParameterCallBack = measureParameterCallBack;
+        m_RATemplateWnd.measureParameterCallBack = measureParameterCallBack;
+        m_USTemplateWnd.measureParameterCallBack = measureParameterCallBack;
+        m_ESTemplateWnd.measureParameterCallBack = measureParameterCallBack;
 
-            m_RATemplateWnd[i].explainParameterCallBack = explainParameterCallBack;
-            m_USTemplateWnd[i].explainParameterCallBack = explainParameterCallBack;
-            m_ESTemplateWnd[i].explainParameterCallBack = explainParameterCallBack;
+        m_RATemplateWnd.explainParameterCallBack = explainParameterCallBack;
+        m_USTemplateWnd.explainParameterCallBack = explainParameterCallBack;
+        m_ESTemplateWnd.explainParameterCallBack = explainParameterCallBack;
 
-            m_RATemplateWnd[i].templateCallBack = templateDataCallBack;
-            m_USTemplateWnd[i].templateCallBack = templateDataCallBack;
-            m_ESTemplateWnd[i].templateCallBack = templateDataCallBack;
-        }
-
-
-        //m_RATemplateWnd.pWndSingle->templateCallBack = templateDataCallBack;
-        //m_USTemplateWnd.pWndSingle->templateCallBack = templateDataCallBack;
-        //m_ESTemplateWnd.pWndSingle->templateCallBack = templateDataCallBack;
-
+        m_RATemplateWnd.templateCallBack = templateDataCallBack;
+        m_USTemplateWnd.templateCallBack = templateDataCallBack;
+        m_ESTemplateWnd.templateCallBack = templateDataCallBack;   
     }
     void EnableAll()
     {
-        m_RATemplateWnd[m_nCul].ShowWnd(false);
-        m_USTemplateWnd[m_nCul].ShowWnd(false);
-        m_ESTemplateWnd[m_nCul].ShowWnd(false);
+        m_RATemplateWnd.ShowWnd(false);
+        m_USTemplateWnd.ShowWnd(false);
+        m_ESTemplateWnd.ShowWnd(false);
     }
+   
     void CrateByStructuralData(QWidget *parent, StructuralData &data, bool bReset, bool bDeleteDelay)
     {
         if(MyMeasureParameterManage::GetSingle() != nullptr)
@@ -513,12 +606,33 @@ struct stStructuralWnd
         if(bDeleteDelay)
         {
             EnableAll();
-            m_nCul = m_nCul == 0 ? 1 : 0;
             Clear();
         }
-        m_RATemplateWnd[m_nCul].CrateByStructuralData(parent,data, eTemplateType_SRRa, bReset);
-        m_USTemplateWnd[m_nCul].CrateByStructuralData(parent,data,eTemplateType_SRUS, bReset );
-        m_ESTemplateWnd[m_nCul].CrateByStructuralData(parent,data,eTemplateType_SRES, bReset );
+        if (count == 0)
+        {
+            m_RATemplateWnd.CrateByStructuralData(parent, data, eTemplateType_SRRa, bReset);
+            m_USTemplateWnd.CrateByStructuralData(parent, data, eTemplateType_SRUS, bReset);
+            m_ESTemplateWnd.CrateByStructuralData(parent, data, eTemplateType_SRES, bReset);
+        }
+        else
+        {
+            switch (m_eViewType)
+            {
+            case eTemplateType_SRRa:
+                m_RATemplateWnd.CrateByStructuralData(parent, data, eTemplateType_SRRa, bReset);
+                break;
+            case eTemplateType_SRUS:
+                m_USTemplateWnd.CrateByStructuralData(parent, data, eTemplateType_SRUS, bReset);
+                break;
+            case eTemplateType_SRES:
+                m_ESTemplateWnd.CrateByStructuralData(parent, data, eTemplateType_SRES, bReset);
+                break;
+            default:
+                break;
+            }
+        }
+        count = (count == 0 ? 1 : 0);
+
         if(bDeleteDelay)
         {
             SetDepartment(eTemplateType_SRRa, m_strDepartment, m_strBodyPart);
@@ -534,15 +648,15 @@ struct stStructuralWnd
     void  SetViewer(eTemplateType eViewerType)
     {
         m_eViewType = eViewerType;
-        m_RATemplateWnd[m_nCul].ShowWnd(eViewerType == eTemplateType_SRRa);
-        m_USTemplateWnd[m_nCul].ShowWnd(eViewerType == eTemplateType_SRUS);
-        m_ESTemplateWnd[m_nCul].ShowWnd(eViewerType == eTemplateType_SRES);
+        m_RATemplateWnd.ShowWnd(eViewerType == eTemplateType_SRRa);
+        m_USTemplateWnd.ShowWnd(eViewerType == eTemplateType_SRUS);
+        m_ESTemplateWnd.ShowWnd(eViewerType == eTemplateType_SRES);
     }
     void Move(const QRect &rect, bool bSend)
     {
-        m_RATemplateWnd[m_nCul].Move(rect,bSend);
-        m_USTemplateWnd[m_nCul].Move(rect,bSend);
-        m_ESTemplateWnd[m_nCul].Move(rect,bSend);
+        m_RATemplateWnd.Move(rect,bSend);
+        m_USTemplateWnd.Move(rect,bSend);
+        m_ESTemplateWnd.Move(rect,bSend);
     }
 //    void SetBkColor(int nR, int nG, int nB)
 //    {
@@ -555,9 +669,9 @@ struct stStructuralWnd
     {
 
         switch (eViewerType) {
-        case eTemplateType_SRRa: m_RATemplateWnd[m_nCul].GetReportData(pList, "");break;
-        case eTemplateType_SRUS:m_USTemplateWnd[m_nCul].GetReportData(pList, "");break;
-        case eTemplateType_SRES:  m_ESTemplateWnd[m_nCul].GetReportData(pList, "");break;
+        case eTemplateType_SRRa:    m_RATemplateWnd.GetReportData(pList, "");break;
+        case eTemplateType_SRUS:    m_USTemplateWnd.GetReportData(pList, "");break;
+        case eTemplateType_SRES:    m_ESTemplateWnd.GetReportData(pList, "");break;
         default:
             break;
         }
@@ -567,9 +681,9 @@ struct stStructuralWnd
          m_strDepartment = strDepartment;
          m_strBodyPart = strBodyPart;
          switch (eViewerType) {
-         case eTemplateType_SRRa: m_RATemplateWnd[m_nCul].SetDepartment(strDepartment, strBodyPart);break;
-         case eTemplateType_SRUS:m_USTemplateWnd[m_nCul].SetDepartment(strDepartment, strBodyPart);break;
-         case eTemplateType_SRES:  m_ESTemplateWnd[m_nCul].SetDepartment(strDepartment, strBodyPart);break;
+         case eTemplateType_SRRa:   m_RATemplateWnd.SetDepartment(strDepartment, strBodyPart);break;
+         case eTemplateType_SRUS:   m_USTemplateWnd.SetDepartment(strDepartment, strBodyPart);break;
+         case eTemplateType_SRES:   m_ESTemplateWnd.SetDepartment(strDepartment, strBodyPart);break;
          default:
              break;
          }
@@ -578,34 +692,31 @@ struct stStructuralWnd
     {
         switch (eViewerType)
         {
-        case eTemplateType_SRRa: m_RATemplateWnd[m_nCul].UpdateByReportData(pList);break;
-        case eTemplateType_SRUS:m_USTemplateWnd[m_nCul].UpdateByReportData(pList);break;
-        case eTemplateType_SRES:  m_ESTemplateWnd[m_nCul].UpdateByReportData(pList);break;
+        case eTemplateType_SRRa:    m_RATemplateWnd.UpdateByReportData(pList);break;
+        case eTemplateType_SRUS:    m_USTemplateWnd.UpdateByReportData(pList);break;
+        case eTemplateType_SRES:    m_ESTemplateWnd.UpdateByReportData(pList);break;
         default:
             break;
         }
     }
     void SetCallBck(const QString &strTitle,const stCallBack &callBack/*UpdateDataCallBack updateCall*/)
     {
-        for(int i = 0; i < MAX_TEMPLATEWNDSIZE; ++i)
-        {
-            m_RATemplateWnd[i].SetCallBck(strTitle, callBack);
-            m_USTemplateWnd[i].SetCallBck(strTitle, callBack);
-            m_ESTemplateWnd[i].SetCallBck(strTitle, callBack);
-        }
+        m_RATemplateWnd.SetCallBck(strTitle, callBack);
+        m_USTemplateWnd.SetCallBck(strTitle, callBack);
+        m_ESTemplateWnd.SetCallBck(strTitle, callBack);
     }
     void ClearCallBack()
     {
-        m_RATemplateWnd[m_nCul].ClearCallBack();
-        m_USTemplateWnd[m_nCul].ClearCallBack();
-        m_ESTemplateWnd[m_nCul].ClearCallBack();
+        m_RATemplateWnd.ClearCallBack();
+        m_USTemplateWnd.ClearCallBack();
+        m_ESTemplateWnd.ClearCallBack();
     }
    void  GetReportKeyValueState(eTemplateType eViewerType, std::vector<stTableState> *pVecState)
     {
         switch (eViewerType) {
-        case eTemplateType_SRRa:m_RATemplateWnd[m_nCul].GetReportKeyValueState(pVecState);break;
-        case eTemplateType_SRUS:m_USTemplateWnd[m_nCul].GetReportKeyValueState(pVecState);break;
-        case eTemplateType_SRES:  m_ESTemplateWnd[m_nCul].GetReportKeyValueState(pVecState);break;
+        case eTemplateType_SRRa:    m_RATemplateWnd.GetReportKeyValueState(pVecState);break;
+        case eTemplateType_SRUS:    m_USTemplateWnd.GetReportKeyValueState(pVecState);break;
+        case eTemplateType_SRES:    m_ESTemplateWnd.GetReportKeyValueState(pVecState);break;
         default:
             break;
         }
@@ -613,9 +724,9 @@ struct stStructuralWnd
     QString GetReportKeyValueJson(eTemplateType eViewerType)
     {
         switch (eViewerType) {
-        case eTemplateType_SRRa:return m_RATemplateWnd[m_nCul].GetReportKeyValueJson();break;
-        case eTemplateType_SRUS:return m_USTemplateWnd[m_nCul].GetReportKeyValueJson();break;
-        case eTemplateType_SRES: return m_ESTemplateWnd[m_nCul].GetReportKeyValueJson();break;
+        case eTemplateType_SRRa:    return m_RATemplateWnd.GetReportKeyValueJson();break;
+        case eTemplateType_SRUS:    return m_USTemplateWnd.GetReportKeyValueJson();break;
+        case eTemplateType_SRES:    return m_ESTemplateWnd.GetReportKeyValueJson();break;
         default:
             break;
         }
@@ -624,9 +735,9 @@ struct stStructuralWnd
     void GetSaveReportPar(eTemplateType eViewerType, stSaveReportPar &saveReportPar, StructuralData &data, bool bCheckStruct)
     {
         switch (eViewerType) {
-        case eTemplateType_SRRa: m_RATemplateWnd[m_nCul].GetSaveReportPar(saveReportPar,data, eViewerType,bCheckStruct);break;
-        case eTemplateType_SRUS: m_USTemplateWnd[m_nCul].GetSaveReportPar(saveReportPar,data, eViewerType,bCheckStruct);break;
-        case eTemplateType_SRES:  m_ESTemplateWnd[m_nCul].GetSaveReportPar(saveReportPar,data, eViewerType,bCheckStruct);break;
+        case eTemplateType_SRRa:    m_RATemplateWnd.GetSaveReportPar(saveReportPar,data, eViewerType,bCheckStruct);break;
+        case eTemplateType_SRUS:    m_USTemplateWnd.GetSaveReportPar(saveReportPar,data, eViewerType,bCheckStruct);break;
+        case eTemplateType_SRES:    m_ESTemplateWnd.GetSaveReportPar(saveReportPar,data, eViewerType,bCheckStruct);break;
         default:
             break;
         }
@@ -635,9 +746,9 @@ struct stStructuralWnd
     void SetReportStateByJson(eTemplateType eViewerType, const QString &strJson)
     {
         switch (eViewerType) {
-        case eTemplateType_SRRa:m_RATemplateWnd[m_nCul].SetReportStateByJson(strJson);break;
-        case eTemplateType_SRUS:m_USTemplateWnd[m_nCul].SetReportStateByJson(strJson);break;
-        case eTemplateType_SRES:  m_ESTemplateWnd[m_nCul].SetReportStateByJson(strJson);break;
+        case eTemplateType_SRRa:    m_RATemplateWnd.SetReportStateByJson(strJson);break;
+        case eTemplateType_SRUS:    m_USTemplateWnd.SetReportStateByJson(strJson);break;
+        case eTemplateType_SRES:    m_ESTemplateWnd.SetReportStateByJson(strJson);break;
         default:
             break;
         }
@@ -645,9 +756,9 @@ struct stStructuralWnd
     void SetReportStateByMap(eTemplateType eViewerType, const std::vector<stTableState> &vecState)
     {
         switch (eViewerType) {
-        case eTemplateType_SRRa:m_RATemplateWnd[m_nCul].SetReportStateByMap(vecState);break;
-        case eTemplateType_SRUS:m_USTemplateWnd[m_nCul].SetReportStateByMap(vecState);break;
-        case eTemplateType_SRES:  m_ESTemplateWnd[m_nCul].SetReportStateByMap(vecState);break;
+        case eTemplateType_SRRa:    m_RATemplateWnd.SetReportStateByMap(vecState);break;
+        case eTemplateType_SRUS:    m_USTemplateWnd.SetReportStateByMap(vecState);break;
+        case eTemplateType_SRES:    m_ESTemplateWnd.SetReportStateByMap(vecState);break;
         default:
             break;
         }
@@ -657,53 +768,60 @@ struct stStructuralWnd
     bool IsInit(eTemplateType viewerType)
     {
         switch (viewerType) {
-        case eTemplateType_SRRa: return m_RATemplateWnd[m_nCul].bInit;break;
-        case eTemplateType_SRUS:return m_USTemplateWnd[m_nCul].bInit;break;
-        case eTemplateType_SRES:return m_ESTemplateWnd[m_nCul].bInit; break;
-        case eTemplateType_All: return m_RATemplateWnd[m_nCul].bInit && m_USTemplateWnd[m_nCul].bInit && m_ESTemplateWnd[m_nCul].bInit  ;  break;
+        case eTemplateType_SRRa:    return m_RATemplateWnd.bInit;break;
+        case eTemplateType_SRUS:    return m_USTemplateWnd.bInit;break;
+        case eTemplateType_SRES:    return m_ESTemplateWnd.bInit; break;
+        case eTemplateType_All:     return m_RATemplateWnd.bInit && m_USTemplateWnd.bInit && m_ESTemplateWnd.bInit  ;  break;
         default:
             break;
         }
         return false;
     }
 
-    void getTemplateInfo(eTemplateType viewerType,QString &first,QString&second)
-    {
-        switch (viewerType) 
-        {
-            case eTemplateType_SRRa:
-            {
-                first =  m_RATemplateWnd[m_nCul].pWndSingle->m_currentFirst; 
-                second = m_RATemplateWnd[m_nCul].pWndSingle->m_currentSecnd;
-                break;
-            }    
-            case eTemplateType_SRUS:
-            {
-                first = m_USTemplateWnd[m_nCul].pWndSingle->m_currentFirst;
-                second = m_USTemplateWnd[m_nCul].pWndSingle->m_currentSecnd;
-                break;
-            }
-            case eTemplateType_SRES:
-            {
-                first = m_ESTemplateWnd[m_nCul].pWndSingle->m_currentFirst;
-                second = m_ESTemplateWnd[m_nCul].pWndSingle->m_currentSecnd;
-                break;
-            } 
-            case eTemplateType_All:
-            {
-                //return m_RATemplateWnd[m_nCul].bInit && m_USTemplateWnd[m_nCul].bInit && m_ESTemplateWnd[m_nCul].bInit;  break;
-            }
-            default:
-                break;
-        }
-        return ;
-    }
+    //void getTemplateInfo(eTemplateType viewerType,QString &first,QString&second)
+    //{
+    //    switch (viewerType) 
+    //    {
+    //        case eTemplateType_SRRa:
+    //        {
+    //            first =  m_RATemplateWnd.pWndSingle->m_currentFirst; 
+    //            second = m_RATemplateWnd.pWndSingle->m_currentSecnd;
+    //            break;
+    //        }    
+    //        case eTemplateType_SRUS:
+    //        {
+    //            first =  m_USTemplateWnd.pWndSingle->m_currentFirst;
+    //            second = m_USTemplateWnd.pWndSingle->m_currentSecnd;
+    //            break;
+    //        }
+    //        case eTemplateType_SRES:
+    //        {
+    //            first =  m_ESTemplateWnd.pWndSingle->m_currentFirst;
+    //            second = m_ESTemplateWnd.pWndSingle->m_currentSecnd;
+    //            break;
+    //        } 
+    //        case eTemplateType_All:
+    //        {
+    //            //return m_RATemplateWnd[m_nCul].bInit && m_USTemplateWnd[m_nCul].bInit && m_ESTemplateWnd[m_nCul].bInit;  break;
+    //        }
+    //        default:
+    //            break;
+    //    }
+    //    return ;
+    //}
 
     void Clear()
     {
-        m_RATemplateWnd[m_nCul].ClearAll();
-        m_USTemplateWnd[m_nCul].ClearAll();
-        m_ESTemplateWnd[m_nCul].ClearAll();
+        m_RATemplateWnd.ClearAll();
+        m_USTemplateWnd.ClearAll();
+        m_ESTemplateWnd.ClearAll();
+    }
+
+    void setFinish(bool sw)
+    {
+        m_RATemplateWnd.setFinish(sw);
+        m_USTemplateWnd.setFinish(sw);
+        m_ESTemplateWnd.setFinish(sw);
     }
 };
 struct stDepartmentAndBodyPart
@@ -717,6 +835,8 @@ struct stDepartmentAndBodyPart
     }
 };
 
+#include <QGraphicsOpacityEffect>
+#include <QPropertyAnimation>
 //结构化模板窗口
 class StructuralWidget : public QWidget
 {
@@ -730,6 +850,7 @@ public:
                               eVersionType eApiVersion = eVersionType_V1);
     //初始化结构
     void InitStructuralData(/*const QString &strDepartment, const QString & strBodyPart*/);
+    //部门只可设置1个，部位可以设置多个，多个部位之间用,隔开
     void SetDepartment(const QString &strDepartment, const QString & strBodyPart/*, bool bUpdate*/);
     //设置病人相关参数
     void SetPatientPar(const QString & systemCode, const QString & hospitalCode, const QString & sex, const QString & strAge);
@@ -741,6 +862,7 @@ public:
     }
     //修改显示窗口
     bool SetViewerType(eTemplateType eViewerType, bool bReLoad,const QString &strFirstId, const QString &strSecondId, const QString &strJson, bool bSingle);
+    
     //获取结构化列表数据
     void GetReportData(listReportData *pList)
     {
@@ -802,19 +924,23 @@ public:
     //不知道TemplateName的时候调用删除，删除当前，可提供校验回调
     void DeleteTemplate(CheckCallBack checkCallBack = nullptr);
     /****************/
-    void FunctionToBeCalled(QString);
     void InitUiCtl(bool sw ,bool bDeleteDelay);
     void sendTemplateData( QString templateName,eTemplateType type = eTemplateType_Null);
+
+    void deleteTemplateData( QString templateName,eTemplateType type = eTemplateType_Null);
+
+private:
+  
+public slots:
+    void slotSettingInfo(QString title, bool flag);
 public:
     bool m_bIsReset = true;
     void ReloadTreeDataBySelf();
    
     void SetMeasureParamePar(const QString &strUrl, CNetworkAccessManager *network );
     void ClearData();
-    void OnInitWidget();
     bool ChangeViewer(bool bReLoad);
-    void UnableAll();
-    
+ 
 
     eTemplateType m_eViewerType = eTemplateType_Null;
     eTemplateType m_eTemplateType =eTemplateType_Null;
@@ -823,7 +949,6 @@ public:
     void LoadSubList(const std::vector<QString> &vecId);
     void LoadTreeList(const std::map<eTemplateType, stTopPar>  &mapTop, eTemplateType type);
     void LoadDictionaryData(const std::vector<QString> &vecId);
-  //  std::vector<QString> GetDircionaryData();
  //   std::vector<stDepartmentAndBodyPart> m_vecDepartmentAndBodyPart;
     QString m_strUrl;
     Ui::StructuralWidget *ui;
@@ -840,15 +965,25 @@ public:
 //    QString m_strDepartment;
 //    QString m_strBodyPart;
     bool m_bIsInitStruct = false;
+    //提示信息用
+    QLabel* label = nullptr;
+    QGraphicsOpacityEffect * goe = nullptr;
+    QPropertyAnimation* animation = nullptr;
+    QTimer* timer;
+    float m_opacityVal = 1.0f;
 public:
     void resizeEvent(QResizeEvent *event);
     void paintEvent(QPaintEvent *event);
     bool templateRepaint = false;
+    QString   m_selectFirstId;
+    QString   m_selectSecondId;
 public:
 Q_SIGNALS:
     void measureParameterCheck(const QStringList & measureParameterList);
 
     void explainParameterCheck(const QStringList & explainParameterList);
+
+    void signReLoad(QString firstId,QString secondId,QString json);
 };
 
 #endif // STRUCTURALWIDGET_H
