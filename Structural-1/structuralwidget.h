@@ -1,15 +1,34 @@
 ﻿#ifndef STRUCTURALWIDGET_H
 #define STRUCTURALWIDGET_H
-
+#include "qscrollbar.h"
 #include <QWidget>
-//#include "CNetWork.h"
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <QVBoxLayout>
+#include <QScrollArea>
+
+
+#include "structdef.h"
 #include "wndsingle.h"
-#include "qscrollbar.h"
-#include "contrl_center.h"
-#include "mytextreportwidget.h"
+
+//class WndSingle;
+//class MyLayerWnd;
+//class CNetworkAccessManager;
+
+#ifndef ETEMPLATETYPE
+#define ETEMPLATETYPE
+enum eTemplateType
+{
+    eTemplateType_Null = 0,
+    eTemplateType_SRRa = 1, //放射
+    eTemplateType_SRUS = 2, //超声
+    eTemplateType_SRES = 4, //内窥镜
+    eTemplateType_All = eTemplateType_SRRa | eTemplateType_SRUS | eTemplateType_SRES,
+};
+#endif
+
+//#include "mytextreportwidget.h"
 namespace Ui {
 class StructuralWidget;
 }

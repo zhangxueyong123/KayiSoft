@@ -1,6 +1,13 @@
 ﻿#ifndef MYTEXTREPORTWIDGET_H
 #define MYTEXTREPORTWIDGET_H
 
+
+#if defined(MYTEXTREPORTWIDGET_LIBRARY)
+#  define MYTEXTREPORTWIDGETSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define MYTEXTREPORTWIDGETSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
 #include "qtextedit.h"
 #include "structdef.h"
 #include "qevent.h"
@@ -48,7 +55,7 @@ struct stHighLight
 using listHighLight = std::vector<stHighLight>;
 using listColorShow = std::vector<stColorShow>;
 //自定义多行文本编辑器
-class MyTextReportWidget : public QTextEdit
+class MYTEXTREPORTWIDGETSHARED_EXPORT MyTextReportWidget : public QTextEdit
 {
     Q_OBJECT
 public:

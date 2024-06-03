@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QJsonObject>
 #include "qwidget.h"
-#include "CNetWork.h"
+//#include "CNetWork.h"
 #include "mycheckbox.h"
 #include "myradiobutton.h"
 #include "mylineedit.h"

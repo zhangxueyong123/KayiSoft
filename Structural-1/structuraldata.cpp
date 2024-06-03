@@ -1,5 +1,7 @@
 ﻿#include "structuraldata.h"
 #include "shared_mutex"
+#include "contrl_center.h"
+#include "CNetWork.h"
 std::shared_mutex g_cs;
 enum eMapDaTaType
 {

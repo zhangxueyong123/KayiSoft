@@ -5,27 +5,33 @@
 #include <regex>
 #include <map>
 #include <cmath>
-#include "structuraldata.h"
+#include "qbuttongroup.h"
 #include "qcheckbox.h"
-#include  "qradiobutton.h"
+#include "structuraldata.h"
 #include "qlabel.h"
-#include "qguiapplication.h"
+#include "qradiobutton.h"
 #include "qscreen.h"
+#include "qguiapplication.h"
 #include "qcombobox.h"
 #include "qgroupbox.h"
 #include "qboxlayout.h"
 #include "qscrollarea.h"
+
 #include "mylayerwnd.h"
-#include "qbuttongroup.h"
-#include "mycheckbox.h"
-#include "myradiobutton.h"
-#include "mylineedit.h"
+//#include "mycheckbox.h"
+//#include "myradiobutton.h"
+//#include "mylineedit.h"
 #include "mycombobox.h"
 #include "qsinglelinewidget.h"
 #include "CLabelSplitLayout.h"
 #include "mymeasureparameter.h"
-#include "ctemplatemanage.h"
-#include "mypushbutton.h"
+
+//class MyLayerWnd;
+class MyCheckBox;
+//class MyComboBox;
+class MyRadioButton;
+class MyLineEdit;
+//class MapNameAnldIdList;
 //文本显示方向
 enum eDataPostion
 {

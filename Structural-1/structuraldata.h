@@ -5,9 +5,21 @@
 #include "structdef.h"
 #include "qjsondocument.h"
 #include "CNetWork.h"
-#include "contrl_center.h"
+
 #include <QtConcurrent>
 #include <QApplication>
+
+#ifndef ETEMPLATETYPE
+#define ETEMPLATETYPE
+enum eTemplateType
+{
+    eTemplateType_Null = 0,
+    eTemplateType_SRRa = 1, //放射
+    eTemplateType_SRUS = 2, //超声
+    eTemplateType_SRES = 4, //内窥镜
+    eTemplateType_All = eTemplateType_SRRa | eTemplateType_SRUS | eTemplateType_SRES,
+};
+#endif
 //Node
 struct stStructuralNode;
 

@@ -8,6 +8,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets \
 CONFIG += c++17
 
 
+TEMPLATE += explotwidget MyTextReportWidget
+
+DEFINES += EXPLOTWIDGET_LIBRARY MYTEXTREPORTWIDGET_LIBRARY
+TEMPLATE = lib
+
 msvc:{
     QMAKE_CFLAGS += /utf-8
     QMAKE_CXXFLAGS += /utf-8

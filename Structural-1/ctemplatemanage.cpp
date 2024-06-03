@@ -1,6 +1,7 @@
 ﻿#include "ctemplatemanage.h"
 #include <iostream>
 #include <fstream>
+#include "CNetWork.h"
 
 QString g_strListJson;
 QString g_strTreeJson;

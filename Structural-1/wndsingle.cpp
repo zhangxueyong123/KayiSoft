@@ -3,6 +3,18 @@
 #include "qsizepolicy.h"
 #include <iostream>
 #include <fstream>
+#include "contrl_center.h"
+//#include "mylayerwnd.h"
+//#include "mycheckbox.h"
+//#include "myradiobutton.h"
+//#include "mylineedit.h"
+//#include "mycombobox.h"
+//#include "qsinglelinewidget.h"
+//#include "CLabelSplitLayout.h"
+//#include "mymeasureparameter.h"
+#include "ctemplatemanage.h"
+#include "mypushbutton.h"
+
 const QString comboBoxQss = QStringLiteral(
     "QComboBox{ background-color: transparent;color:  rgb(0, 0, 0);}"
     "QComboBox QAbstractItemView{ background-color: rgb(250,240,225);color:  rgb(0, 0, 0);}"

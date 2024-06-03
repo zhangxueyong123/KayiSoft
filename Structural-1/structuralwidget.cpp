@@ -5,7 +5,10 @@
 #include <iostream>
 #include <fstream>
 #include "ctemplatemanage.h"
-
+#include "wndsingle.h"
+#include "qscrollbar.h"
+#include "contrl_center.h"
+#include "mytextreportwidget.h"
 QString stTemplateWnd::m_currentPre = "";
 QString beforeJson = "";
 std::atomic_int g_NowTimes(0);

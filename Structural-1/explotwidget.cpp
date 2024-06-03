@@ -1,15 +1,19 @@
 ﻿#include "explotwidget.h"
 #include <qpointer.h>
-int ExplotWidget::count = 0;
-ExplotWidget::ExplotWidget(const QString& strUrl, CNetworkAccessManager* network, QWidget* parent, eTemplateType eNowTemplateType, eVersionType eApiVersion) :
+#include "contrl_center.h"
+//int ExplotWidget::count = 0;
+ExplotWidget::ExplotWidget(const QString& strUrl, QString token, QWidget* parent, eTemplateType eNowTemplateType, eVersionType eApiVersion) :
     QWidget(parent)
 {
     m_strUrl = strUrl;
-    m_network = network;
+    m_token = token;
+    //m_network = network;
     m_pStuctualWidget[0] = nullptr;
     m_pStuctualWidget[1] = nullptr;
+    m_network = new CNetworkAccessManager;
+    m_network->setRawHeader("Authorization", m_token.toLatin1());
 
-    m_pStuctualWidget[m_clu] = new StructuralWidget(strUrl, network, this, eTemplateType_Null);
+    m_pStuctualWidget[m_clu] = new StructuralWidget(strUrl, m_network, this, eTemplateType_Null);
     connect(m_pStuctualWidget[m_clu], &StructuralWidget::signReLoad, this, [=](const QString firstid, const QString secondid, QString json) {
         reloadStructuralWidget(firstid, secondid, json);
         ControlCenter::getInstance()->m_isUseDefault = false;  
@@ -130,6 +134,11 @@ void ExplotWidget::showAllDepartment(bool sw)
         ControlCenter::getInstance()->m_bodyPart = m_beforeBodyPart;
         reloadStructuralWidget("", "", "");
     }
+}
+
+void ExplotWidget::updataToken(QString token)
+{
+    m_token = token;
 }
 
 void ExplotWidget::ResetTreeData()

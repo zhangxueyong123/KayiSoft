@@ -1,19 +1,36 @@
 ﻿#ifndef EXPLOTWIDGET_H
 #define EXPLOTWIDGET_H
 
+#if defined(EXPLOTWIDGET_LIBRARY)
+#  define EXPLOTWIDGETSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define EXPLOTWIDGETSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
 #include <QWidget>
-#include "structuralwidget.h"
 #include <QString>
 #include "mytextreportwidget.h"
 #include "structuralwidget.h"
-#include "qlineedit.h"
 
-class ExplotWidget : public QWidget
+#ifndef ETEMPLATETYPE
+#define ETEMPLATETYPE
+enum eTemplateType
+{
+    eTemplateType_Null = 0,
+    eTemplateType_SRRa = 1, //放射
+    eTemplateType_SRUS = 2, //超声
+    eTemplateType_SRES = 4, //内窥镜
+    eTemplateType_All = eTemplateType_SRRa | eTemplateType_SRUS | eTemplateType_SRES,
+};
+#endif
+
+
+class EXPLOTWIDGETSHARED_EXPORT ExplotWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit ExplotWidget(const QString &strUrl,
-                              CNetworkAccessManager* network,
+                              QString token,
                               QWidget *parent = nullptr,
                               eTemplateType eNowTemplateType = eTemplateType_Null,
                               eVersionType eApiVersion = eVersionType_V1);
@@ -43,6 +60,8 @@ public:
     void setBtnStyleSheet(QString modifyBtn, QString deleteBtn);
 
     void showAllDepartment(bool sw);
+
+    void updataToken(QString token);
 private:
     void reloadStructuralWidget(QString firstId, QString secondId, QString json);
 
@@ -72,8 +91,8 @@ private:
     eTemplateType m_eViewerType;
     int     m_clu = 0;
     QTimer timer;
-    static int count;
-
+//    static int count;
+    QString  m_token;
     bool m_updateDataCallBackEnable = false;
 };
 

@@ -11,6 +11,8 @@
 #include "mytextreportwidget.h"
 
 //#include "structuraldata.h"
+#ifndef ETEMPLATETYPE
+#define ETEMPLATETYPE
 enum eTemplateType
 {
     eTemplateType_Null = 0,
@@ -19,7 +21,7 @@ enum eTemplateType
     eTemplateType_SRES = 4, //ÄÚ¿ú¾µ
     eTemplateType_All = eTemplateType_SRRa | eTemplateType_SRUS | eTemplateType_SRES,
 };
-
+#endif
 struct BothId
 {
     BothId(QString f, QString s)
