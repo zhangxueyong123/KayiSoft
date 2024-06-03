@@ -13,6 +13,8 @@ MyMeasureParameter::MyMeasureParameter(const QString &strUrl, CNetworkAccessMana
 
 }
 
+
+
 QStringList MyMeasureParameter::getMatchingStrings(QString str, QString pattern)
 {
     QStringList list;
@@ -454,6 +456,21 @@ void MyMeasureParameterManage::ChangeWidgetValue(const  QString &strId)
             }
         }
     }
+}
+
+void MyMeasureParameterManage::updataToken(QString token)
+{
+    m_pNetwork->setRawHeader("Authorization", token.toLatin1());
+}
+
+
+MyMeasureParameterManage* MyMeasureParameterManage::getInstance()
+{
+    if (!m_pSinglePtr)
+    {
+        m_pSinglePtr = new MyMeasureParameterManage();
+    }
+    return m_pSinglePtr;
 }
 
 int MyMeasureParameterManage::GetID(const QString &fieldName)

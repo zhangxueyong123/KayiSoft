@@ -90,7 +90,8 @@ public:
     static MyMeasureParameterManage* GetSingle();
     QString CheckWidget(const QString &strId, const QString &strText);
     void ChangeWidgetValue(const  QString &strId);
-
+    void updataToken(QString token);
+    static MyMeasureParameterManage* getInstance();
 private:
     MyMeasureParameterManage(){}
     MyMeasureParameterManage(const QString &strUrl, CNetworkAccessManager *network, QObject *parent = nullptr);

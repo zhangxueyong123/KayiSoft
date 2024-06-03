@@ -328,6 +328,11 @@ void CTemplateManage::Clear(const QString &strFirst, const QString &strSecond)
     }
 }
 
+void CTemplateManage::updataToken(QString token)
+{
+    m_network->setRawHeader("Authorization", token.toLatin1());
+}
+
 void CTemplateManage::ClearTemplateData(const QString &strId)
 {
      auto itFind = m_mapTemplate.begin();

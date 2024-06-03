@@ -43,6 +43,8 @@ public:
     void DeleteTemplateData(const QString &strFirst, const QString &strSecond, const QString &strName);
 
     void Clear(const QString &strFirst, const QString &strSecond);
+
+    void updataToken(QString token);
 signals:
     void signSettingInfo(QString title,bool flag);
     void signChangeComboboxItem(QString str, bool f);//0是删 1是增

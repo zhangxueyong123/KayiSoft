@@ -1,6 +1,7 @@
 ﻿#include "explotwidget.h"
 #include <qpointer.h>
 #include "contrl_center.h"
+#include "ctemplatemanage.h"
 //int ExplotWidget::count = 0;
 ExplotWidget::ExplotWidget(const QString& strUrl, QString token, QWidget* parent, eTemplateType eNowTemplateType, eVersionType eApiVersion) :
     QWidget(parent)
@@ -139,6 +140,9 @@ void ExplotWidget::showAllDepartment(bool sw)
 void ExplotWidget::updataToken(QString token)
 {
     m_token = token;
+    m_network->setRawHeader("Authorization", m_token.toLatin1());
+    MyMeasureParameterManage::getInstance()->updataToken(m_token);
+    CTemplateManage::GetSingle()->updataToken(m_token);
 }
 
 void ExplotWidget::ResetTreeData()
