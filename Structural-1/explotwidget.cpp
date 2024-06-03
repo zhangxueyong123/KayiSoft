@@ -2,8 +2,10 @@
 #include <qpointer.h>
 #include "contrl_center.h"
 #include "ctemplatemanage.h"
+#include "mytextreportwidget.h"
+#include "structuralwidget.h"
 //int ExplotWidget::count = 0;
-ExplotWidget::ExplotWidget(const QString& strUrl, QString token, QWidget* parent, eTemplateType eNowTemplateType, eVersionType eApiVersion) :
+ExplotWidget::ExplotWidget(const QString& strUrl, QString token, QWidget* parent, eTemplateType eNowTemplateType/*, int eApiVersion*/) :
     QWidget(parent)
 {
     m_strUrl = strUrl;
@@ -17,7 +19,7 @@ ExplotWidget::ExplotWidget(const QString& strUrl, QString token, QWidget* parent
     m_pStuctualWidget[m_clu] = new StructuralWidget(strUrl, m_network, this, eTemplateType_Null);
     connect(m_pStuctualWidget[m_clu], &StructuralWidget::signReLoad, this, [=](const QString firstid, const QString secondid, QString json) {
         reloadStructuralWidget(firstid, secondid, json);
-        ControlCenter::getInstance()->m_isUseDefault = false;  
+        ControlCenter::getInstance()->m_isUseDefault = false;
         });
     connect(m_pStuctualWidget[m_clu], &StructuralWidget::measureParameterCheck, this, [=](const QStringList& measureParameterList) {
         measureParameterCheck(measureParameterList);
@@ -66,7 +68,7 @@ bool ExplotWidget::SetViewerType(eTemplateType eViewerType, bool bReLoad, const 
         {
             m_updateDataCallBackEnable = true;
             setEditCallBack();
-        }         
+        }
         isFirst = false;
 
         return result;
@@ -108,7 +110,7 @@ void ExplotWidget::reloadStructuralWidget(QString firstId, QString secondId, QSt
         isFirst = false;
         return;
     }
-    ControlCenter::getInstance()->needLoadAll = true;    
+    ControlCenter::getInstance()->needLoadAll = true;
     initStructuralWidget(firstId, secondId, json);
     timer.start(10);
     return;

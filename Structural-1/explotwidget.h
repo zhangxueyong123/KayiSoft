@@ -9,9 +9,16 @@
 
 #include <QWidget>
 #include <QString>
+#include <QTimer>
+#include <QHBoxLayout>
+#include <QPointer>
+#include <QMap>
+//#include "structdef.h"
+class StructuralWidget;
+//class MyTextReportWidget;
 #include "mytextreportwidget.h"
-#include "structuralwidget.h"
-
+//#include "structuralwidget.h"
+class CNetworkAccessManager;
 #ifndef ETEMPLATETYPE
 #define ETEMPLATETYPE
 enum eTemplateType
@@ -32,8 +39,8 @@ public:
     explicit ExplotWidget(const QString &strUrl,
                               QString token,
                               QWidget *parent = nullptr,
-                              eTemplateType eNowTemplateType = eTemplateType_Null,
-                              eVersionType eApiVersion = eVersionType_V1);
+                              eTemplateType eNowTemplateType = eTemplateType_Null/*,
+                              eVersionType eApiVersion = eVersionType_V1*/);
    
     ~ExplotWidget();
     //设置病人相关参数
