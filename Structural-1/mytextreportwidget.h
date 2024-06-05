@@ -117,7 +117,7 @@ signals:
     void signal_clicked();
 
 private:
-    int m_lineSpacing = 10;
+    int m_lineSpacing = 0;
     bool m_bSendChange = false;
     QTimer *m_pTimer = nullptr;
     std::atomic_int m_timerTimes;

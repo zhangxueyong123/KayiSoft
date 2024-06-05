@@ -4,6 +4,7 @@
 #include "quuid.h"
 #include "structuraldata.h"
 #include <iostream>
+#include "contrl_center.h"
 const QString REPORTMENU_GSS = QStringLiteral("QMenu{background-color:rgb(255, 255, 255);}"
                                               " QMenu::item {color:rgb(0,0,0);}"
                                               );
@@ -31,6 +32,8 @@ bool CheckPosInRange(int nPos, int nLeft, int nRight, bool bMax)
 //copy  默认是eCopyState_CopyDrawById
 void MyTextReportWidget::SetReportData( listReportData *pListData, const QString &strChangeId, eCopyState copy)
 {
+    if(ControlCenter::getInstance()->firstLoadFinish)
+        this->clear();
     int nOldPos = m_nSelectLeft ;
     //关闭所有信号
     blockSignals(true);
@@ -741,6 +744,12 @@ void MyTextReportWidget::ReDrawList()
                 itList.drawData.strDrawPre.remove(0, 1);
             }
         }
+        if (!itList.drawData.strDrawPre.isEmpty() && itList.drawData.strDrawData == "" && ControlCenter::getInstance()->firstLoadFinish)
+        {
+            itList.drawData.strDrawPre = "";
+            itList.drawData.strDrawSuff = "";
+            itList.drawData.strDrawSuffAdd = "";
+        }
         if(!itList.drawData.strDrawPre.isEmpty()/* m_currentDrawPre != itList.drawData.strDrawPre */)
         {
             drawColor = colorNormal;
@@ -790,7 +799,8 @@ void MyTextReportWidget::ReDrawList()
     }
     blockSignals(1);
     QTextBlockFormat blockFormat;
-    blockFormat.setLineHeight(m_lineSpacing, QTextBlockFormat::LineDistanceHeight);//设置行间距为10
+    if(m_lineSpacing != 0)
+        blockFormat.setLineHeight(m_lineSpacing, QTextBlockFormat::LineDistanceHeight);//设置行间距为10
     selectAll();//选中全部文本，否则只会修改当前行
     auto textCursor = this->textCursor();
     textCursor.setBlockFormat(blockFormat);
