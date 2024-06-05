@@ -46,7 +46,7 @@ WndSingle::WndSingle(StructuralData* pData, UpdateDataCallBack updateCall, QWidg
     if (parentId != "")
         m_strParentId = parentId;
 
-    timer.setSingleShot(true);
+    //timer.setSingleShot(true);
     
 
 }
@@ -585,7 +585,7 @@ bool WndSingle::LoadDictionaryData(const QString& strId, bool bCheck, bool bWait
     if (bWait)
     {
         eventLoop = new QEventLoop();
-        QObject::connect(&timer, &QTimer::timeout, eventLoop, &QEventLoop::quit);
+        //QObject::connect(&timer, &QTimer::timeout, eventLoop, &QEventLoop::quit);
     }
     QNetworkRequest request = QNetworkRequest(strUrl);
     QNetworkReply* reply = m_pData->m_network->get(request);
@@ -628,7 +628,7 @@ bool WndSingle::LoadDictionaryData(const QString& strId, bool bCheck, bool bWait
         });
     if (bWait && eventLoop != nullptr)
     {
-        timer.start(1000);
+        //timer.start(1000);
         eventLoop->exec();
         delete eventLoop;
         eventLoop = nullptr;

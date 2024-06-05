@@ -92,6 +92,7 @@ void MyComboBox::SetChild(MyComboBox *pChild, const QString &strChildId)
         for(auto &itName : itFindNameList->second)
         {
             //std::cout << itName.strShow.toStdString() << std::endl;
+            m_strBodyPart = ControlCenter::getInstance()->m_bodyPart;
             auto bodyParttList = m_strBodyPart.split(",");
             //if(m_strBodyPart.isEmpty() || itName.strShow == m_strBodyPart)
             if(m_strBodyPart.isEmpty() || bodyParttList.contains(itName.strShow ))
@@ -143,15 +144,24 @@ void MyComboBox::SetDepartment(const QString &strDepartment, const QString &strB
     }
     QMutex mutex;
     mutex.lock();
+
     m_strBodyPart = strBodyPart;
     this->clear();
-    int size = m_mapComboboxId.size();
-    for(auto itMap : m_mapComboboxId)
+    auto map = ControlCenter::getInstance()->getFirst();
+
+    for (auto it : map)
     {
-        if(itMap.second.strShow == strDepartment)
-            addItem(itMap.second.strName, itMap.second.strId);
-     
+        auto itMap = m_mapComboboxId.find(it);
+        if (itMap->second.strShow == strDepartment)
+            addItem(itMap->second.strName, itMap->second.strId);
     }
+    //int size = m_mapComboboxId.size();
+    //for(auto itMap : m_mapComboboxId)
+    //{
+    //    if(itMap.second.strShow == strDepartment)
+    //        addItem(itMap.second.strName, itMap.second.strId);
+    // 
+    //}
     //setToolTip();
     if(this->count() != 0)
     {

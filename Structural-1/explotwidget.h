@@ -75,6 +75,7 @@ private:
     static int count;
 
     bool m_updateDataCallBackEnable = false;
+    QFile file;
 };
 
 #endif // EXPLOTWIDGET_H

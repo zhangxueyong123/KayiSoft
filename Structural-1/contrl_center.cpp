@@ -90,6 +90,7 @@ void ControlCenter::addFirstData(const QString& key,QString value)
     //´æÔÚ£¬ºöÊÓ
 }
 
+
 QMap<QString, QMap<QString, QString>> ControlCenter::getDataSecondMap()
 {
     return dataSecondMap;
@@ -194,6 +195,13 @@ QString ControlCenter::getParentID(QString id)
     }
     return result;
 }
+
+void ControlCenter::addSequence(QString id)
+{
+    if (!dataFirstInsertSequence.contains(id))
+        dataFirstInsertSequence.append(id);
+}
+
 QString ControlCenter::getParentIDByTitle(QString title)
 {
     QString targetFirstid = "";
@@ -214,4 +222,9 @@ QString ControlCenter::getParentIDByTitle(QString title)
     //auto it = dataFirstMap.find(targetFirstid);
     //return it.value();
     return targetFirstid;
+}
+
+QList<QString> ControlCenter::getFirst()
+{
+    return dataFirstInsertSequence;
 }

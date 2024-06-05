@@ -34,6 +34,8 @@ ExplotWidget::ExplotWidget(const QString& strUrl, CNetworkAccessManager* network
         m_updateDataCallBackEnable = true;
         setEditCallBack();
         });
+
+
 }
 
 ExplotWidget::~ExplotWidget()
@@ -44,6 +46,13 @@ ExplotWidget::~ExplotWidget()
 
 bool ExplotWidget::SetViewerType(eTemplateType eViewerType, bool bReLoad, const QString& strFirstId, const QString& strSecondId, const QString& strJson, bool bSingle)
 {
+    file.setFileName("C:\\code\\1t.txt");
+    file.open(QIODevice::WriteOnly|QIODevice::Append);
+
+    file.write(strFirstId.toUtf8());
+    file.write(strSecondId.toUtf8());
+    file.write(strJson.toUtf8());
+    file.close();
     ControlCenter::getInstance()->firstLoadFinish = false;
     BothId b(strFirstId, strSecondId);
     ControlCenter::getInstance()->setOpenedReportJson(b, strJson);
@@ -164,6 +173,12 @@ void ExplotWidget::SetDepartment(const QString& strDepartment, const QString& st
 {
     ControlCenter::getInstance()->m_department = strDepartment;
     ControlCenter::getInstance()->m_bodyPart = strBodyPart;
+
+    file.setFileName("C:\\code\\1t.txt");
+    file.open(QIODevice::WriteOnly|QIODevice::Append);
+    file.write(strDepartment.toUtf8());
+    file.write(strBodyPart.toUtf8());
+    file.close();
 }
 //存疑
 QString ExplotWidget::GetReportKeyValueJson()

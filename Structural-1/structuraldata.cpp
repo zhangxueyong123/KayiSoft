@@ -539,6 +539,7 @@ QString StructuralData::screeningForNKJ( QString strJson,  QString strFirst,  QS
     for (const auto& node : nodes) {
         QJsonObject nodeObj = node.toObject();
         ControlCenter::getInstance()->addFirstData(nodeObj["NodeId"].toString(), nodeObj["Title"].toString());
+        ControlCenter::getInstance()->addSequence(nodeObj["NodeId"].toString());
         if (nodeObj["NodeId"].toString() == strFirst) {  
             newNodes.append(nodeObj);
         }
@@ -627,7 +628,12 @@ QString StructuralData::screening(QString strJson, QString strFirst, QString str
     for (const auto& node : nodes) {
         QJsonObject nodeObj = node.toObject();
         if (isFirst)
+        {
             ControlCenter::getInstance()->addFirstData(nodeObj["NodeId"].toString(), nodeObj["Title"].toString());
+            ControlCenter::getInstance()->addSequence(nodeObj["NodeId"].toString());
+        }
+            
+
         if (nodeObj["NodeId"].toString() == strFirst) {
             QJsonArray subNodes;
             QJsonArray subNodesData = nodeObj["Nodes"].toArray();
@@ -658,6 +664,7 @@ QString StructuralData::screening(QString strJson, QString strFirst, QString str
             //newNodes.append(nodeObj);
         }
     }
+    auto map = ControlCenter::getInstance()->getFirst();
     /* ControlCenter::getInstance()->addFirstData("545454as","6666");*/
      // 创建新的JSON数据包
     QJsonObject newRoot;

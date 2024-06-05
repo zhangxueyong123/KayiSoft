@@ -49,6 +49,7 @@ class ControlCenter : public QObject
 public:
     static ControlCenter* getInstance();
     void addFirstData(const QString& key, QString value);
+    void addSequence(QString id);
     void addSecondData(const QString& key, const QString& value, const QString& first);
     bool isCreatedFinish();
     int getComboboxLevel(QString id);
@@ -65,6 +66,7 @@ public:
     QString getBtnStyleSheet();
     void setOpenedReportJson(BothId d,QString json);
     QString getOpenedReportJson(BothId d);
+    QList<QString> getFirst();
     bool        m_isUseDefault = true;
     bool        needLoadAll = true;
     bool        firstLoadFinish = false;//第一次打开该份报告，是否已经初始化完成
@@ -91,6 +93,7 @@ private:
     static ControlCenter* instance;
     //key:id   value:title
     QMap<QString, QString>                  dataFirstMap;
+    QList<QString>                          dataFirstInsertSequence;
     //out-key:firstid    inner-key:secondid  inner-value:secondtitle
     QMap<QString, QMap<QString,QString>>    dataSecondMap;
     QComboBox* m_currentTemplatebox = nullptr;
