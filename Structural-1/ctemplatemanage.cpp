@@ -368,7 +368,7 @@ std::vector<stTableKey> CTemplateManage::LoadTemplateList(const QString &strFirs
     QObject::connect(forwarder, &SignalForwarder::forwardSignal, this,&CTemplateManage::handleTemplateListReplay);
     std::vector<stTableKey> result;
     //QObject::connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-    timer.start(1000);
+    timer.start(3000);
     eventLoop.exec();
 
 
@@ -486,7 +486,7 @@ QString CTemplateManage::LoadTemplateData(const QString &strId)
     
     connect(reply, &QNetworkReply::finished, this, &CTemplateManage::handleTemplateJsonReplay);
     //QObject::connect(reply, SIGNAL(finished()), &eventLoop, SLOT(quit()));
-    timer.start(1000);
+    timer.start(3000);
     eventLoop.exec();
     
     //m_mapTemplate.insert(std::pair(, g_strTreeJson));

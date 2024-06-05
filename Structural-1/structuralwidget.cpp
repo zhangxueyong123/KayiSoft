@@ -23,11 +23,11 @@ StructuralWidget::StructuralWidget(const QString &strUrl, CNetworkAccessManager 
     ui->setupUi(this);
     if (g_eventLoop.isNull()){
         g_eventLoop.reset(new QEventLoop);
-        connect(&timerForLoop, &QTimer::timeout, this, [=]() {
-            g_eventLoop->quit();
-            });
+        // connect(&timerForLoop, &QTimer::timeout, this, [=]() {
+        //     g_eventLoop->quit();
+        //     });
     }
-    timerForLoop.setSingleShot(true);
+    // timerForLoop.setSingleShot(true);
 
     auto funMeasureCall = [](QStringList *pList, StructuralWidget *pThis)
     {
@@ -422,7 +422,7 @@ void StructuralWidget::LoadTreeData()
     if (g_EndTimes != 0)
     {
         //1
-        timerForLoop.start(1000);
+        // timerForLoop.start(1000);
         g_eventLoop->exec();
         g_EndTimes = 0;
         g_NowTimes = 0;

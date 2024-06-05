@@ -9,7 +9,7 @@ CLabelSplitLayout::CLabelSplitLayout(QWidget* parent, int margin, int hSpacing, 
     : QLayout(parent), m_hSpace(hSpacing), m_vSpace(vSpacing)
 {
     setContentsMargins(0, 0, 5, 0);
-    m_signleLineSelect << "是" << "否" << "有" << "无" << "1" << "2" << "3" << "4" << "5" << "6" 
+    m_signleLineSelect << "是" << "否" << "有" << "无" << "正常" << "异常" << "1" << "2" << "3" << "4" << "5" << "6"
         << "7" << "8" << "9" << "10" << "11" << "12" << "13" << "14" << "15";
 }
 
@@ -17,7 +17,7 @@ CLabelSplitLayout::CLabelSplitLayout(int margin, int hSpacing, int vSpacing)
     : m_hSpace(hSpacing), m_vSpace(vSpacing)
 {
     setContentsMargins(0, 0, 5, 0);
-    m_signleLineSelect << "是" << "否" << "有" << "无" << "1" << "2" << "3" << "4" << "5" << "6"
+    m_signleLineSelect << "是" << "否" << "有" << "无" << "正常" << "异常" << "1" << "2" << "3" << "4" << "5" << "6"
         << "7" << "8" << "9" << "10" << "11" << "12" << "13" << "14" << "15";
 }
 CLabelSplitLayout::~CLabelSplitLayout()
